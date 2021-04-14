@@ -6,12 +6,16 @@ import Tabs from './navigation/tabs'
 import Sidebar from './navigation/sidebar'
 import {Home}from './screens'
 import { Dashboard }from './screens'
+import { Provider } from 'react-redux'
+import store from './store/store';
+
 
 const Stack = createStackNavigator();
 
 const  App =() =>{
   return (
-    <NavigationContainer>
+    <Provider store={store}>
+         <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown:false
@@ -22,6 +26,7 @@ const  App =() =>{
       <Stack.Screen name="Signup" component={Sidebar} />
         </Stack.Navigator>
     </NavigationContainer>
+    </Provider>
   );
 }
 

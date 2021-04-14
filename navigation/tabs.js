@@ -1,15 +1,20 @@
 import React from 'react';
+
 import {
     View,
     Image,
     TouchableOpacity
 } from 'react-native';
+
+
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 
 import { Home, Dashboard, Login, Getstarted ,Signup, Forgetpassword ,Uservendorlogin ,Allcategories} from "../screens"
 // import Svg, { Path } from 'react-native-svg';
 
 import { COLORS, icons } from "../constants"
+
+
 const Tab = createBottomTabNavigator();
 // const TabBarCustomButton = ({ accessibilityState, children, onPress }) => {
 //     var isSelected = accessibilityState.isSelected
