@@ -88,7 +88,7 @@ const Signup =()=>{
 var styles = StyleSheet.create({
   backgroundimage: {
     resizeMode: 'contain',
-    height: '50%',
+    height: '40%',
     width:'100%',
     flex: 1
 },

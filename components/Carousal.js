@@ -43,7 +43,7 @@ import Carousel from 'react-native-snap-carousel';
     render() {
         return (
           <SafeAreaView style={{flex: 1, paddingTop: 50, }}>
-            <View style={{ flex: 1, flexDirection:'row', justifyContent: 'center', alignItems:'center' ,width:'100%'}}>
+            <View style={{ flex: 1, flexDirection:'column', justifyContent: 'center', alignItems:'center' ,width:'100%'}}>
                 <Carousel
                   layout={"default"}
                   loop={true}
@@ -51,7 +51,7 @@ import Carousel from 'react-native-snap-carousel';
                   ref={ref => this.carousel = ref}
                   data={this.state.carouselItems}
                   sliderWidth={400}
-                  itemWidth={400}
+                  itemWidth={350}
                   renderItem={this._renderItem}
                   onSnapToItem = { index => this.setState({activeIndex:index}) } />
             </View>

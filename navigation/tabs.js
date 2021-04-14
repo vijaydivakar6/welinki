@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 
-import { Home, Dashboard, Login, Getstarted ,Signup, Forgetpassword ,Uservendorlogin ,Allcategories} from "../screens"
+import { Home, Dashboard, Login, Getstarted ,Signup, Forgetpassword ,Uservendorlogin ,Allcategories ,Allbusiness ,Viewinfoads} from "../screens"
 // import Svg, { Path } from 'react-native-svg';
 
 import { COLORS, icons } from "../constants"
@@ -72,11 +72,11 @@ const Tabs = () => {
             showLabel: true,
             style: {
                 borderTopWidth: 0,
-                backgroundColor: "transparent",
+                backgroundColor: "#fff",
                 elevation: 0
             }
         }}>
-            <Tab.Screen name="Home" component={Signup}
+            <Tab.Screen name="Allbusiness" component={Viewinfoads}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{

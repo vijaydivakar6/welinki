@@ -6,7 +6,7 @@ const signup_img = require("../assets/images/signup-img.png");
 const usericon = require("../assets/images/usericon.png");
 const vendoricon = require("../assets/images/vendoricon.png");
 const welinkilogo = require("../assets/images/welinkilogo.png");
-
+const businessimg = require("../assets/images/businessimg.png");
 
 export default {
     girlsit,
@@ -16,5 +16,6 @@ export default {
     signup_img,
     usericon,
     vendoricon,
-    welinkilogo
+    welinkilogo,
+    businessimg
 }

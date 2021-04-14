@@ -6,6 +6,8 @@ import Forgetpassword from './Forgetpassword'
 import Signup from './Signup'
 import Uservendorlogin from './Uservendorlogin'
 import Allcategories from './Allcategories'
+import Allbusiness from './Allbusiness'
+import Viewinfoads from './Viewinfoads'
 export{
     Home,
     Dashboard,
@@ -14,5 +16,7 @@ export{
     Forgetpassword,
     Signup,
     Uservendorlogin,
-    Allcategories
+    Allcategories,
+    Allbusiness,
+    Viewinfoads
 }

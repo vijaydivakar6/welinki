@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, ImageBackground, Image } from "react-native";
 import { COLORS, icons, images } from "../constants";
-import Icon from 'react-native-vector-icons/FontAwesome'
+
 
 const Allcategories = () => {
     return (
@@ -10,12 +10,89 @@ const Allcategories = () => {
                 <View style={styles.allCateSec} >
                     <Text style={styles.allCateText}>All Categories</Text>
                 </View>
-                <View >
+                <View style={[styles.containerIcon]}>
                     <View>
-                        <Image source={icons.allcategory} />
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
                     </View>
-                    <Text>
-                    </Text>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                </View>
+                <View style={[styles.containerIcon]}>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                </View>
+                <View style={[styles.containerIcon]}>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                </View>
+                <View style={[styles.containerIcon]}>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                </View>
+                <View style={[styles.containerIcon]}>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                </View>
+                <View style={[styles.containerIcon]}>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
+                    <View>
+                        <Image style={[styles.catImg]} source={icons.allcategory} />
+                        <Text style={[styles.catText]}>Automobile</Text>
+                    </View>
                 </View>
             </View>
         </ScrollView>
@@ -34,14 +111,17 @@ const styles = StyleSheet.create({
         lineHeight: 32,
         color: '#17297C'
     },
-    catIcons: {
-        fontSize: 30,
-        color: '#fff',
-        backgroundColor: '#05EB6D',
-        padding: 10,
-        borderRadius: 10,
-        width: 50
-    }
+    containerIcon:{
+        flexDirection: 'row',
+        alignContent: 'center',
+        justifyContent: 'space-evenly',
+        textAlign:'center',
+        paddingTop:10,
+        paddingBottom:10
+    },
+    catText:{
+        textAlign:'center'
+    },
 
 })
 export default Allcategories;
