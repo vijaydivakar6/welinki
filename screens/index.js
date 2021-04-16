@@ -8,6 +8,9 @@ import Uservendorlogin from './Uservendorlogin'
 import Allcategories from './Allcategories'
 import Allbusiness from './Allbusiness'
 import Viewinfoads from './Viewinfoads'
+import Addbusiness from './Addbusiness'
+import Mybusiness from './Mybusiness'
+import Youtubead from './Youtubead'
 export{
     Home,
     Dashboard,
@@ -18,5 +21,8 @@ export{
     Uservendorlogin,
     Allcategories,
     Allbusiness,
-    Viewinfoads
+    Viewinfoads,
+    Addbusiness,
+    Mybusiness,
+    Youtubead
 }

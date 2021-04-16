@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 
-import { Home, Dashboard, Login, Getstarted ,Signup, Forgetpassword ,Uservendorlogin ,Allcategories ,Allbusiness ,Viewinfoads} from "../screens"
+import {  Getstarted ,Mybusiness ,Allcategories ,Allbusiness ,Viewinfoads ,Addbusiness ,Youtubead} from "../screens"
 // import Svg, { Path } from 'react-native-svg';
 
 import { COLORS, icons } from "../constants"
@@ -76,7 +76,7 @@ const Tabs = () => {
                 elevation: 0
             }
         }}>
-            <Tab.Screen name="Allbusiness" component={Viewinfoads}
+            <Tab.Screen name="Allbusiness" component={Youtubead}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{
@@ -93,7 +93,7 @@ const Tabs = () => {
                     // )
                 }}
             />
-            <Tab.Screen name="All Ad's" component={Login}
+            <Tab.Screen name="All Ad's" component={Allbusiness}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_ad} resizeMode="contain" style={{
@@ -110,7 +110,7 @@ const Tabs = () => {
                     // )
                 }}
             />
-            <Tab.Screen name="All Business" component={Dashboard}
+            <Tab.Screen name="All Business" component={Viewinfoads}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_building} resizeMode="contain" style={{

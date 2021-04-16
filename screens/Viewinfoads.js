@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, ImageBackground, Image } from "react-native";
 import { COLORS, icons, images } from "../constants";
+import ImageCarousal from "../components/ImageCarousal";
+import VideoCarousal from "../components/VideoCarousal";
 
 const Viewinfoads = () => {
-
     return (
         <ScrollView>
             <View style={[styles.container]} >
@@ -11,29 +12,20 @@ const Viewinfoads = () => {
                     <Text style={styles.allCateText}>Cuion Technologies</Text>
                     <Text style={styles.infoPara}>Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet. </Text>
                 </View>
-                <View style={styles.imgAdSec}>
-                    <View style={styles.imgAdContent}>
-                    <Image style={[styles.busiImg]} source={images.businessimg} />
-                    <Text style={styles.imgAdTitle}>Handy Clutches</Text>
-                    <Text style={styles.imgAdPara}>Lorem ipsum dolor sit ametdolor</Text>
-                    </View>
-                    <View style={styles.imgAdContent}>
-                    <Image style={[styles.busiImg]} source={images.businessimg} />
-                    <Text style={styles.imgAdTitle}>Handy Clutches</Text>
-                    <Text style={styles.imgAdPara}>Lorem ipsum dolor sit ametdolor</Text>
-                    </View>
+             
+                <View  style={styles.imgAdTitle}>
+                    <Image style={[styles.busiImg]} source={icons.imageAd} />
+                    <Text>Image Ad’s</Text>
                 </View>
                 <View style={styles.imgAdSec}>
-                    <View style={styles.imgAdContent}>
-                    <Image style={[styles.busiImg]} source={images.businessimg} />
-                    <Text style={styles.imgAdTitle}>Handy Clutches</Text>
-                    <Text style={styles.imgAdPara}>Lorem ipsum dolor sit ametdolor</Text>
-                    </View>
-                    <View style={styles.imgAdContent}>
-                    <Image style={[styles.busiImg]} source={images.businessimg} />
-                    <Text style={styles.imgAdTitle}>Handy Clutches</Text>
-                    <Text style={styles.imgAdPara}>Lorem ipsum dolor sit ametdolor</Text>
-                    </View>
+                    <ImageCarousal />
+                </View>
+                <View  style={styles.imgAdTitle}>
+                    <Image style={[styles.busiImg]} source={icons.videoAd} />
+                    <Text>Video Ad’s</Text>
+                </View>
+                <View style={styles.imgAdSec}>
+                    <VideoCarousal />
                 </View>
             </View>
         </ScrollView>
@@ -69,26 +61,24 @@ const styles = StyleSheet.create({
         fontFamily: 'rubik',
         letterSpacing: 0.6
     },
-    imgAdSec:{
-        flex:1,
-    flexDirection:'row',
-    justifyContent:'center',
-    marginTop:30
-    },
-    imgAdContent:{
-        flex:1,
-      justifyContent:'center',
-      alignContent:'center',
-      textAlign:'center',
-      padding:20
-    },
     imgAdTitle:{
-        fontSize: 14,
-        lineHeight: 26,
-        color: '#17297C',
-        fontWeight: '500',
-        fontFamily: 'rubik',
-        letterSpacing: 0.6
+        flex:1,
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        alignItems:'flex-start',
+        alignContent:'flex-start',
+        marginTop:10,
+        borderWidth: 1,
+        borderColor: "#05EB6D",
+        padding:5,
+        width:135
+    },
+    busiImg:{
+        marginRight:10
+    },
+    imgAdSec:{
+        marginRight:20,
+        marginLeft:20
     }
 
 })

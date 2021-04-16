@@ -14,7 +14,8 @@ const sideBar = () => {
       <Drawer.Navigator screenOptions={{
           headerShown:true,
           headerStyle:{
-            backgroundColor:'#fff'
+            backgroundColor:'#16d09b',
+            color:'#fff'
           }
         }}
         >
