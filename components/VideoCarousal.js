@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {
   Text, 
   View,
-  SafeAreaView ,StyleSheet  } from 'react-native';
+  SafeAreaView ,StyleSheet ,Image } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import { COLORS, icons, images } from "../constants";
 
-
- class Carousalcomponent extends Component {
+ class VideoCarousal extends Component {
 
  
     constructor(props){
@@ -15,16 +15,16 @@ import Carousel from 'react-native-snap-carousel';
           activeIndex:0,
           carouselItems: [
           {
-              title:"Lorem ipsum sesde",
-              text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet, consectetur.",
+              title:"Handy Clutches",
+              text: "Lorem ipsum dolor sit ametdolor",
           },
           {
-              title:"Lorem ipsum sesde",
-              text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet, consectetur.",
+            title:"Handy Clutches",
+            text: "Lorem ipsum dolor sit ametdolor",
           },
           {
-              title:"Lorem ipsum sesde",
-              text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet, consectetur.",
+            title:"Handy Clutches",
+            text: "Lorem ipsum dolor sit ametdolor",
           }
         ]
       }
@@ -32,7 +32,8 @@ import Carousel from 'react-native-snap-carousel';
 
     _renderItem({item,index}){
         return (
-          <View>
+          <View  style={styles.imgAdContent}>
+            <Image style={[styles.busiImg]} source={images.businessimg} />
             <Text style={styles.firstTitleText }>{item.title}</Text>
             <Text style={styles.secondText}>{item.text}</Text>
           </View>
@@ -42,7 +43,7 @@ import Carousel from 'react-native-snap-carousel';
 
     render() {
         return (
-          <SafeAreaView style={{flex: 1, paddingTop: 50, }}>
+          <SafeAreaView style={{flex: 1 }}>
             <View style={{ flex: 1, flexDirection:'column', justifyContent: 'center', alignItems:'center' ,width:'100%'}}>
                 <Carousel
                   layout={"default"}
@@ -50,8 +51,8 @@ import Carousel from 'react-native-snap-carousel';
              autoplay={true}
                   ref={ref => this.carousel = ref}
                   data={this.state.carouselItems}
-                  sliderWidth={400}
-                  itemWidth={350}
+                  sliderWidth={370}
+                  itemWidth={180}
                   renderItem={this._renderItem}
                   onSnapToItem = { index => this.setState({activeIndex:index}) } />
             </View>
@@ -66,15 +67,20 @@ var styles = StyleSheet.create({
     textAlign: 'center' , 
     color:'#17297C' , 
     fontWeight:'900' ,
-    marginBottom:10 
   },
   secondText:{
     fontSize: 14,
     lineHeight: 30 ,
     color:'#2C2C2C' ,
     textAlign: 'center', 
-  }
+  },
+  imgAdContent: {
+    flex: 1,
+    alignItems: 'center',
+    padding: 20,
+    width:'100%'
+}, 
  });
 
 
- export default Carousalcomponent;
+ export default VideoCarousal;

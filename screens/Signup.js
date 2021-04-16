@@ -193,11 +193,11 @@ const Signup = () => {
 var styles = StyleSheet.create({
   backgroundimage: {
     resizeMode: 'contain',
-    height: '50%',
-    width: '100%',
-    flex: 1,
-  },
-  login_head: {
+    height: '40%',
+    width:'100%',
+    flex: 1
+},
+login_head: {
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'row',

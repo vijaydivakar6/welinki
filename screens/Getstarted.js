@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   backgroundimage: {
     resizeMode: 'contain',
     height: '60%',
+    width:'100%',
     flex: 1
   },
   welinkilogoImg:{

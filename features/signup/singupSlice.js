@@ -8,8 +8,12 @@ const singupSlice = createSlice({
   reducers: {
     registerUser : (state, action) => {
       // console.log(action.payload);
+     
+      
 
-     axios.get(`https://jsonplaceholder.typicode.com/todos/1`)
+     axios.post(`https://we-linki.com/api/test`,{
+         ...action.payload
+     })
      .then(success => console.log(success))
      .catch(error => console.log(error));
 
