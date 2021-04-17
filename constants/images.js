@@ -7,7 +7,7 @@ const usericon = require("../assets/images/usericon.png");
 const vendoricon = require("../assets/images/vendoricon.png");
 const welinkilogo = require("../assets/images/welinkilogo.png");
 const businessimg = require("../assets/images/businessimg.png");
-
+const workchart = require("../assets/images/work_chart.png");
 export default {
     girlsit,
     girlstanding,
@@ -17,5 +17,6 @@ export default {
     usericon,
     vendoricon,
     welinkilogo,
-    businessimg
+    businessimg,
+    workchart
 }

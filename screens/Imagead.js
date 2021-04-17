@@ -4,12 +4,12 @@ import { COLORS, icons, images } from "../constants";
 import ImagePickerComponent from "../components/ImagePicker"
 import DatePickerComponent from "../components/DatePicker";
 
-const Youtubead = () => {
+const Imagead = () => {
     return (
         <ScrollView>
             <View style={[styles.container]} >
                 <View>
-                    <Text style={styles.pageTitle}>Youtube Ad</Text>
+                    <Text style={styles.pageTitle}>Image Ad</Text>
                 </View>
                 <View>
                     <Text>Ad’s Title*</Text>
@@ -28,11 +28,10 @@ const Youtubead = () => {
                     <DatePickerComponent />
                 </View>
                 <View style={[styles.selectBox]}>
-                    <Text>Youtube Url (use the video-Id from the URL)</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Example- WYu6fBWg6zs"
-                        keyboardType="numeric" />
+                    <Text>Image Banner : Select Images </Text>
+                    <View style={[styles.chooseFile]}>
+                        <ImagePickerComponent />
+                    </View>
                 </View>
                 <View style={styles.desCription}>
                 <Text>Description</Text>
@@ -129,4 +128,4 @@ const styles = StyleSheet.create({
           textAlign:'center'
       }
 })
-export default Youtubead;
+export default Imagead;

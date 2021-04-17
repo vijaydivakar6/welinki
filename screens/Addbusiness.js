@@ -90,14 +90,8 @@ const Addbusiness = () => {
                     </View>
                 </View>
                 <View style={[styles.savePreviewBtn]}>
-                    <Text style={styles.buttonStyle}>
-                    SAVE
-                    </Text>
-                    <Text style={styles.buttonStyle}>
-                    PREVIEW
-                    </Text>
-                {/* <Button title="SAVE" color="#05EB6D"  style={styles.buttonStyle} />
-                <Button title="PREVIEW" color="#05EB6D"  style={styles.buttonStyle} /> */}
+                <Button title="SAVE" color="#05EB6D"  style={styles.buttonStyle} />
+                <Button title="PREVIEW" color="#05EB6D"  style={styles.buttonStyle} />
                 </View>
 
             </View>
