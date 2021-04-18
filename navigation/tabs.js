@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 
-import {  Getstarted ,Mymembership,Mybusiness ,Allcategories ,Allbusiness ,Viewinfoads ,Addbusiness ,Changepassword} from "../screens"
+import {  Getstarted ,Mymembership,Mybusiness ,Allcategories ,Allbusiness ,Viewinfoads ,Addbusiness ,Changepassword ,Addlinks} from "../screens"
 // import Svg, { Path } from 'react-native-svg';
 
 import { COLORS, icons } from "../constants"
@@ -76,7 +76,7 @@ const Tabs = () => {
                 elevation: 0
             }
         }}>
-            <Tab.Screen name="Changepassword" component={Changepassword}
+            <Tab.Screen name="Changepassword" component={Addlinks}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{

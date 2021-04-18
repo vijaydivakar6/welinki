@@ -16,6 +16,8 @@ import Videoad from './Videoad'
 import Mymembership from './Mymembership'
 import Editprofile from './Editprofile'
 import Changepassword from './Changepassword'
+import Mycontacts from './Mycontacts'
+import Addlinks from './Addlinks'
 export{
     Home,
     Dashboard,
@@ -34,5 +36,7 @@ export{
     Videoad,
     Mymembership,
     Editprofile,
-    Changepassword
+    Changepassword,
+    Mycontacts,
+    Addlinks
 }

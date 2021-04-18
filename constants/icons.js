@@ -6,6 +6,9 @@ export const bx_profile = require("../assets/icons/bx-profile.png");
 export const allcategory = require("../assets/icons/allcategory.png");
 export const imageAd = require("../assets/icons/imageAd.png");
 export const videoAd = require("../assets/icons/videoAd.png");
+export const editicon = require("../assets/icons/edit.png");
+export const deleteicon = require("../assets/icons/delete.png");
+export const eyeicon = require("../assets/icons/eye.png");
 export default {
     leftarrow,
     bx_home,
@@ -14,5 +17,8 @@ export default {
     bx_profile,
     allcategory,
     imageAd,
-    videoAd
+    videoAd,
+    editicon,
+    deleteicon,
+    eyeicon
 }
