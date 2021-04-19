@@ -18,6 +18,7 @@ import Editprofile from './Editprofile'
 import Changepassword from './Changepassword'
 import Mycontacts from './Mycontacts'
 import Addlinks from './Addlinks'
+import Addcategory from './Addcategory'
 export{
     Home,
     Dashboard,
@@ -38,5 +39,6 @@ export{
     Editprofile,
     Changepassword,
     Mycontacts,
-    Addlinks
+    Addlinks,
+    Addcategory
 }

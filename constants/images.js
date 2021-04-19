@@ -20,5 +20,5 @@ export default {
     welinkilogo,
     businessimg,
     workchart,
-    shoppingimage
+    shoppingimage,
 }

@@ -9,6 +9,7 @@ export const videoAd = require("../assets/icons/videoAd.png");
 export const editicon = require("../assets/icons/edit.png");
 export const deleteicon = require("../assets/icons/delete.png");
 export const eyeicon = require("../assets/icons/eye.png");
+export const addcategory = require("../assets/icons/addcategory.png");
 export default {
     leftarrow,
     bx_home,
@@ -20,5 +21,6 @@ export default {
     videoAd,
     editicon,
     deleteicon,
-    eyeicon
+    eyeicon,
+    addcategory
 }

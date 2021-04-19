@@ -17,10 +17,24 @@ const Mycontacts = () => {
                         </View>
                     </View>
                     <View style={styles.linktypeContent}>
-                        <Text style={styles.linkTitle}>Enter link name</Text>
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: '#2C2C2C',
+                                borderBottomWidth: 1,
+                            }}
+                            placeholder="Enter link name"
+                        />
                     </View>
                     <View style={styles.linktypeContent}>
-                        <Text style={styles.linkTitle}>Enter link Url</Text>
+                        <TextInput
+                            style={{
+                                height: 40,
+                                borderColor: '#2C2C2C',
+                                borderBottomWidth: 1,
+                            }}
+                            placeholder="Enter link Url"
+                        />
                     </View>
                     <Text>(use link with http/https)</Text>
                     <TouchableHighlight style={styles.buttonStyle}>
