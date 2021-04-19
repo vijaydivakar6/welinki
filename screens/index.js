@@ -11,6 +11,14 @@ import Viewinfoads from './Viewinfoads'
 import Addbusiness from './Addbusiness'
 import Mybusiness from './Mybusiness'
 import Youtubead from './Youtubead'
+import Imagead from './Imagead'
+import Videoad from './Videoad'
+import Mymembership from './Mymembership'
+import Editprofile from './Editprofile'
+import Changepassword from './Changepassword'
+import Mycontacts from './Mycontacts'
+import Addlinks from './Addlinks'
+import Addcategory from './Addcategory'
 export{
     Home,
     Dashboard,
@@ -24,5 +32,13 @@ export{
     Viewinfoads,
     Addbusiness,
     Mybusiness,
-    Youtubead
+    Youtubead,
+    Imagead,
+    Videoad,
+    Mymembership,
+    Editprofile,
+    Changepassword,
+    Mycontacts,
+    Addlinks,
+    Addcategory
 }

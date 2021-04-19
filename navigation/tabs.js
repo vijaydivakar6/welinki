@@ -81,7 +81,11 @@ const Tabs = () => {
                 elevation: 0
             }
         }}>
+<<<<<<< HEAD
             <Tab.Screen name="Allbusiness" component={Forgetpassword}
+=======
+            <Tab.Screen name="Changepassword" component={Addcategory}
+>>>>>>> 82eec01e51a52b5eb8facd4f4fa7af8d835b31d0
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{

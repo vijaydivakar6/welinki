@@ -195,6 +195,90 @@ const Addbusiness = () => {
                 <View key={id} style={[styles.selectLinkInput]}>
 
                 <View>
+                    <Text>Company Name*</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter Company Name"
+                        keyboardType="numeric" />
+                </View>
+                <View style={[styles.selectBox]} >
+                    <Text>Select Category*</Text>
+                    <View style={[styles.inputBoder]}>
+                        <Selector />
+                    </View>
+                </View>
+                <View style={[styles.imgSelect]}>
+                    <Text>Business Image/Logo*</Text>
+                    <View style={[styles.chooseFile]}>
+                        <ImagePickerComponent />
+                    </View>
+                </View>
+                <View style={[styles.selectBox]}>
+                    <Text>Area Name*</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter Area Name"
+                        keyboardType="numeric" />
+                </View>
+                <View style={[styles.selectBox]}>
+                    <Text>Pin Code*</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter Pin Code"
+                        keyboardType="numeric" />
+                </View>
+                <View style={[styles.selectBox]}>
+                    <Text>GST Number</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter GST Number"
+                        keyboardType="numeric" />
+                </View>
+                <View style={[styles.selectBox]}>
+                    <Text>Mobile Number*</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter Mobile Number*"
+                        keyboardType="numeric" />
+                </View>
+                <View style={[styles.selectBox]}>
+                    <Text>Company Links  (use link with http/https)</Text>
+                </View>
+                <View style={[styles.selectLinkBorder]}>
+                    <View style={[styles.selectLinkUrl]}>
+                        <Text>Select Link Type</Text>
+                        <Text>Link Url</Text>
+                    </View>
+                    <View style={[styles.selectLinkInput]}>
+                        <TextInput
+                            style={styles.inputSelect}
+                            placeholder="Select Link Type"
+                            keyboardType="numeric" />
+                        <TextInput
+                            style={styles.inputSelect}
+                            placeholder="Enter Link Url"
+                            keyboardType="numeric" />
+                    </View>
+                </View>
+                <View style={[styles.selectBox]}>
+                    <Text>Keywords (Your business ideal keywords which people used to find vendors like you.)</Text>
+                </View>
+                <View style={[styles.selectLinkBorder]}>
+                    <View style={[styles.selectLinkUrl]}>
+                        <Text>Keywords list*</Text>
+                        <Text>Add Keywords</Text>
+                    </View>
+                    <View style={[styles.selectLinkInput]}>
+                        <TextInput
+                            style={styles.inputSelectKeyword}
+                            placeholder="Enter Keyword"
+                            keyboardType="numeric" />
+                    </View>
+                </View>
+                <View style={[styles.savePreviewBtn]}>
+                <Button title="SAVE" color="#05EB6D"  style={styles.buttonStyle} />
+                <Button title="PREVIEW" color="#05EB6D"  style={styles.buttonStyle} />
+                </View>
 
                   <Controller
                     control={control}
@@ -233,7 +317,6 @@ const Addbusiness = () => {
 
                 </View>
 
-                </View>
               );
             })}
              
