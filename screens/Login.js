@@ -1,8 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Button, Image, TextInput, ImageBackground } from 'react-native'
 import { COLORS, icons, images } from "../constants";
+import {useForm,Controller} from 'react-hook-form';
+
 
 const Login =()=>{
+  
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+
+
+  const onSubmit = data => console.log(data);
+
   return(
     <ScrollView>
      <ImageBackground style={styles.backgroundimage} source={images.backgrounddesign}>
@@ -20,34 +32,66 @@ const Login =()=>{
         <View style={[styles.emailandpass]}>
           <View>
             <Text style={[styles.email_text]}>Email address</Text>
-            <TextInput
-              style={{
-                height: 40,
-                borderColor: 'gray',
-                borderBottomWidth: 1,
-                marginTop: 10
-              }}
-              label="Email"
-              defaultValue="Dosamarvis@gmail.com" 
-            />
+            <Controller
+                control={control}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <TextInput
+                    style={styles.input}
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                    label="Email"
+                    style={{
+                      height: 40,
+                      borderColor: 'gray',
+                      borderBottomWidth: 1,
+                      marginTop: 10
+                    }}
+                    rules={{required: true}}
+                  />
+                )}
+                name="email"
+                rules={{required: true}}
+                defaultValue=""
+              />
+              {errors.name && <Text>Name is required.</Text>}
           </View>
           <View>
             <Text style={[styles.password_text]}>Password</Text>
-            <TextInput secureTextEntry={true} style={styles.default} value="abcfghji" style={{
-              height: 40,
-              borderColor: 'gray',
-              borderBottomWidth: 1,
-              marginTop: 10
-            }}
-              label="Email"
-              defaultValue="You can type in me" 
+
+            <Controller
+                control={control}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <TextInput
+                    style={styles.input}
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                    secureTextEntry={true} 
+                    style={styles.default}
+                    style={{
+                      height: 40,
+                      borderColor: 'gray',
+                      borderBottomWidth: 1,
+                      marginTop: 10
+                    }}
+                    rules={{required: true}}
+                  />
+                )}
+                name="password"
+                rules={{required: true}}
+                defaultValue=""
               />
+              {errors.name && <Text>Name is required.</Text>}
+              
           </View>
           <View style={styles.forgotSec} >
             <Text style={styles.forgotText}>Forgot Password</Text>
           </View>
           <View style={styles.getButton} >
-            <Button title="Login" color="#05EB6D"  style={styles.ButtonStyle} />
+            <Button
+                 onPress={handleSubmit(onSubmit)}
+            title="Login" color="#05EB6D"  style={styles.ButtonStyle} />
           </View>
           <View style={styles.donthaveSec}>
             <Text style={styles.donthaveText}>Don’t have account? Signup</Text>

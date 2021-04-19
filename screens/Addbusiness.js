@@ -13,9 +13,10 @@ import {COLORS, icons, images} from '../constants';
 import Selector from '../components/Selector';
 import ImagePickerComponent from '../components/ImagePicker';
 
-import {useForm, Controller} from 'react-hook-form';
+import {useForm, useFieldArray,Controller} from 'react-hook-form';
 
 const Addbusiness = () => {
+
   const [categories, setcategories] = useState([
     {
       label: 'Football',
@@ -35,8 +36,31 @@ const Addbusiness = () => {
     control,
     handleSubmit,
     formState: {errors},
-  } = useForm();
+  } = useForm({
+    defaultValues : { 
+      "links": [{"link": "", "name": ""}],
+      "keyword": [{"name": ""}],
+    },
+  });
 
+  const {
+      fields : linkType,
+      append : linkAppend, 
+      remove :  linkRemove
+    } = useFieldArray({
+    control,
+    name: "links",
+  });
+  
+  const {
+      fields : keywordType,
+      append : keywordAppend, 
+      remove :  keywordRemove
+    } = useFieldArray({
+    control,
+    name: "keyword",
+  });
+  
   const onSubmit = data => {
     console.log(data);
   };
@@ -51,12 +75,11 @@ const Addbusiness = () => {
             render={({field: {onChange, onBlur, value}}) => (
               <TextInput
                 placeholder="Enter Company Name"
-                keyboardType="numeric"
+                // keyboardType="numeric"
                 style={styles.input}
                 onBlur={onBlur}
                 onChangeText={value => onChange(value)}
                 value={value}
-
               />
             )}
             name="name"
@@ -79,7 +102,6 @@ const Addbusiness = () => {
                 />
               )}
               name="category"
-
               defaultValue=""
             />
           </View>
@@ -101,7 +123,6 @@ const Addbusiness = () => {
                 onBlur={onBlur}
                 onChangeText={value => onChange(value)}
                 value={value}
-
               />
             )}
             name="area_name"
@@ -119,13 +140,11 @@ const Addbusiness = () => {
                 onBlur={onBlur}
                 onChangeText={value => onChange(value)}
                 value={value}
-
               />
             )}
             name="pincode"
             defaultValue=""
           />
-
         </View>
         <View style={[styles.selectBox]}>
           <Text>GST Number</Text>
@@ -138,13 +157,11 @@ const Addbusiness = () => {
                 onBlur={onBlur}
                 onChangeText={value => onChange(value)}
                 value={value}
-
               />
             )}
             name="gst_number"
             defaultValue=""
           />
-
         </View>
         <View style={[styles.selectBox]}>
           <Text>Mobile Number*</Text>
@@ -152,13 +169,12 @@ const Addbusiness = () => {
             control={control}
             render={({field: {onChange, onBlur, value}}) => (
               <TextInput
-              placeholder="Enter Mobile Number*"
-              keyboardType="numeric"
+                placeholder="Enter Mobile Number*"
+                keyboardType="numeric"
                 style={styles.input}
                 onBlur={onBlur}
                 onChangeText={value => onChange(value)}
                 value={value}
-
               />
             )}
             name="gst_number"
@@ -173,18 +189,61 @@ const Addbusiness = () => {
             <Text>Select Link Type</Text>
             <Text>Link Url</Text>
           </View>
-          <View style={[styles.selectLinkInput]}>
-            <TextInput
-              style={styles.inputSelect}
-              placeholder="Select Link Type"
-              keyboardType="numeric"
-            />
-            <TextInput
-              style={styles.inputSelect}
-              placeholder="Enter Link Url"
-              keyboardType="numeric"
-            />
-          </View>
+          
+            {linkType.map(({id,}, index) => {
+              return (
+                <View key={id} style={[styles.selectLinkInput]}>
+
+                <View>
+
+                  <Controller
+                    control={control}
+                    render={({field: {onChange, onBlur, value}}) => (
+                      <TextInput
+                        placeholder="Select Link Type"
+                        style={styles.inputSelect}
+                        onBlur={onBlur}
+                        onChangeText={value => onChange(value)}
+                        value={value}
+                      />
+                    )}
+                    name={`links[${index}].name`}
+                  />
+
+                  <Controller
+                    control={control}
+                    render={({field: {onChange, onBlur, value}}) => (
+                      <TextInput
+                        placeholder="Select Link Type"
+                        style={styles.inputSelect}
+                        onBlur={onBlur}
+                        onChangeText={value => onChange(value)}
+                        value={value}
+                      />
+                    )}
+                    name={`links[${index}].link`}
+                  />
+
+               <Button
+                onPress={() => linkRemove(index)}
+                title="Remove Link"
+                color="#05EB6D"
+                style={styles.ButtonStyle}
+              />
+
+                </View>
+
+                </View>
+              );
+            })}
+             
+          
+          <Button
+                onPress={() => linkAppend({ name: "", links : "" })}
+                title="Add New Link"
+                color="#05EB6D"
+                style={styles.ButtonStyle}
+              />
         </View>
         <View style={[styles.selectBox]}>
           <Text>
@@ -197,13 +256,40 @@ const Addbusiness = () => {
             <Text>Keywords list*</Text>
             <Text>Add Keywords</Text>
           </View>
-          <View style={[styles.selectLinkInput]}>
-            <TextInput
-              style={styles.inputSelectKeyword}
-              placeholder="Enter Keyword"
-              keyboardType="numeric"
-            />
+          {keywordType.map(({id, name,}, index) => {
+              return (
+          <View key={id} style={[styles.selectLinkInput]}>
+
+                 <Controller
+                    control={control}
+                    render={({field: {onChange, onBlur, value}}) => (
+                      <TextInput
+                      placeholder="Enter Keyword"
+                        style={styles.inputSelectKeyword}
+                        onBlur={onBlur}
+                        onChangeText={value => onChange(value)}
+                        value={value}
+                      />
+                    )}
+                    name={`keyword[${index}].name`}
+                  />
+                  
+               <Button
+                onPress={() => keywordRemove(index)}
+                title="Remove Keyword"
+                color="#05EB6D"
+                style={styles.ButtonStyle}
+              />
+
           </View>
+           );
+          })}
+          <Button
+                onPress={() => keywordAppend({name : ""})}
+                title="Add Keyword"
+                color="#05EB6D"
+                style={styles.ButtonStyle}
+              />
         </View>
         <View style={[styles.savePreviewBtn]}>
           {/* <Text style={styles.buttonStyle}>SAVE</Text>

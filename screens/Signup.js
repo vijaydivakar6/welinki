@@ -11,12 +11,11 @@ import {
   Alert,
 } from 'react-native';
 import {COLORS, icons, images} from '../constants';
-import {useForm, Controller} from 'react-hook-form';
+import {useForm, useFieldArray,Controller} from 'react-hook-form';
 import { useSelector, useDispatch  } from 'react-redux'
 
 
 import {registerUser}  from '../features/signup/singupSlice'
-
 
 const Signup = () => {
 

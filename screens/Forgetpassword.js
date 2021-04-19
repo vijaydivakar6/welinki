@@ -1,8 +1,21 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Button, Image, TextInput, ImageBackground } from 'react-native'
 import { COLORS, icons, images } from "../constants";
+import {useForm,Controller} from 'react-hook-form';
+
 
 const Forgetpassword =()=>{
+
+  
+  const {
+    control,
+    handleSubmit,
+    formState: {errors},
+  } = useForm();
+
+  const onSubmit = data => console.log(data);
+
+
   return(
     <ScrollView>
      <ImageBackground style={styles.backgroundimage} source={images.backgrounddesign}>
@@ -19,19 +32,35 @@ const Forgetpassword =()=>{
         <View style={[styles.emailandpass]}>
           <View>
             <Text style={[styles.email_text]}>Email address</Text>
-            <TextInput
-              style={{
-                height: 40,
-                borderColor: 'gray',
-                borderBottomWidth: 1,
-                marginTop: 10
-              }}
-              label="Email"
-              defaultValue="Dosamarvis@gmail.com"
-            />
+
+            <Controller
+                control={control}
+                render={({field: {onChange, onBlur, value}}) => (
+                  <TextInput
+                    style={styles.input}
+                    onBlur={onBlur}
+                    onChangeText={value => onChange(value)}
+                    value={value}
+                    label="Email"
+                    style={{
+                      height: 40,
+                      borderColor: 'gray',
+                      borderBottomWidth: 1,
+                      marginTop: 10
+                    }}
+                    rules={{required: true}}
+                  />
+                )}
+                name="email"
+                rules={{required: true}}
+                defaultValue=""
+              />
+              {errors.name && <Text>Name is required.</Text>}
           </View>
           <View style={styles.getButton} >
-            <Button title="send" color="#05EB6D"  style={styles.ButtonStyle} />
+            <Button
+             onPress={handleSubmit(onSubmit)}
+            title="send" color="#05EB6D"  style={styles.ButtonStyle} />
           </View>
         </View>
       </View>
