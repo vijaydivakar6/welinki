@@ -13,6 +13,8 @@ import {Getstarted ,Mybusiness ,Allcategories ,Allbusiness ,Viewinfoads ,Addbusi
 // import Svg, { Path } from 'react-native-svg';
 
 import { COLORS, icons } from "../constants"
+import Videoad from '../screens/Videoad';
+import Imagead from '../screens/Imagead';
 
 
 const Tab = createBottomTabNavigator();
@@ -81,11 +83,7 @@ const Tabs = () => {
                 elevation: 0
             }
         }}>
-<<<<<<< HEAD
-            <Tab.Screen name="Allbusiness" component={Forgetpassword}
-=======
-            <Tab.Screen name="Changepassword" component={Addcategory}
->>>>>>> 82eec01e51a52b5eb8facd4f4fa7af8d835b31d0
+            <Tab.Screen name="Allbusiness" component={Signup}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{

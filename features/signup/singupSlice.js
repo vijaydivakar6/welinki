@@ -4,18 +4,42 @@ import axios from 'axios';
 
 const singupSlice = createSlice({
   name: 'singup',
-  initialState : {},
+  initialState : {errors: []},
   reducers: {
-    registerUser : (state, action) => {
-      // console.log(action.payload);
-     
-      
+    registerUser :  async (state, action) => {
+      // state.errors = {name : 'Hello'};
+      console.log(state.errors);
+      try {
+        // fetch data from a url endpoint
+        const response = await axios.post(`http://192.168.0.108/api/v1/register`,{ ...action.payload});
+        const data = await response.json();
+        console.log('====================================');
+        console.log(data);
+        console.log('====================================');
+  
+      } catch (error) {
+        if (error.response.status === 422) {
+          state.errors.push(error.response.data.errors);
+        }
+        // console.log(error.response.status);
+        // console.log(error.response.data.errors); // catches both errors
+      }
 
-     axios.post(`https://we-linki.com/api/test`,{
-         ...action.payload
-     })
-     .then(success => console.log(success))
-     .catch(error => console.log(error));
+      // console.log(action.payload);
+    
+
+    //  axios.post(`http://192.168.0.108/api/v1/register`,{
+    //      ...action.payload
+    //  })
+    //  .then(success => console.log(success))
+    //  .catch(error => {
+    //   // if (error.response.status === 422) {
+  
+        
+    //     // console.log(state);
+        
+    //   // }
+    //  });
 
 
     },

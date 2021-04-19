@@ -14,7 +14,6 @@ import {COLORS, icons, images} from '../constants';
 import {useForm, useFieldArray,Controller} from 'react-hook-form';
 import { useSelector, useDispatch  } from 'react-redux'
 
-
 import {registerUser}  from '../features/signup/singupSlice'
 
 const Signup = () => {
@@ -31,6 +30,7 @@ const Signup = () => {
   } = useForm();
 
   const onSubmit = data => {
+    // console.log(data);
     dispatch(
       registerUser({
        ...data
