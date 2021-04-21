@@ -12,15 +12,15 @@ const Viewinfoads = () => {
                     <Text style={styles.allCateText}>Cuion Technologies</Text>
                     <Text style={styles.infoPara}>Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet. </Text>
                 </View>
-             
-                <View  style={styles.imgAdTitle}>
+
+                <View style={styles.imgAdTitle}>
                     <Image style={[styles.busiImg]} source={icons.imageAd} />
                     <Text>Image Ad’s</Text>
                 </View>
                 <View style={styles.imgAdSec}>
                     <ImageCarousal />
                 </View>
-                <View  style={styles.imgAdTitle}>
+                <View style={styles.imgAdTitle}>
                     <Image style={[styles.busiImg]} source={icons.videoAd} />
                     <Text>Video Ad’s</Text>
                 </View>
@@ -61,24 +61,24 @@ const styles = StyleSheet.create({
         fontFamily: 'rubik',
         letterSpacing: 0.6
     },
-    imgAdTitle:{
-        flex:1,
-        flexDirection:'row',
-        justifyContent:'flex-start',
-        alignItems:'flex-start',
-        alignContent:'flex-start',
-        marginTop:10,
+    imgAdTitle: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        alignContent: 'flex-start',
+        marginTop: 10,
         borderWidth: 1,
         borderColor: "#05EB6D",
-        padding:5,
-        width:135
+        padding: 5,
+        width: 135
     },
-    busiImg:{
-        marginRight:10
+    busiImg: {
+        marginRight: 10
     },
-    imgAdSec:{
-        marginRight:20,
-        marginLeft:20
+    imgAdSec: {
+        marginRight: 20,
+        marginLeft: 20
     }
 
 })

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, ImageBackground, Image } from "react-native";
 import { COLORS, icons, images } from "../constants";
-import  Carousalcomponent  from "../components/Carousal"
+import Carousalcomponent from "../components/Carousal"
 
 const Dashboard = () => {
   return (
@@ -18,7 +18,7 @@ const Dashboard = () => {
             />
           </View>
           <View style={[styles.CarousalStyle]}>
-            <Carousalcomponent/>
+            <Carousalcomponent />
           </View>
         </View>
       </ImageBackground>
@@ -46,10 +46,10 @@ const styles = StyleSheet.create({
     marginTop: 120,
     justifyContent: 'center',
     alignContent: 'center',
-    flex:1
+    flex: 1
   },
-  tinyLogo:{
-    width:'100%'
+  tinyLogo: {
+    width: '100%'
   },
   CarousalStyle: {
     marginTop: 10,

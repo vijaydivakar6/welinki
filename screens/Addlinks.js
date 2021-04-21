@@ -1,19 +1,25 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, ImageBackground, Image, TextInput, Button, TouchableHighlight } from "react-native";
 import { COLORS, icons, images } from "../constants";
+import LinearGradient from 'react-native-linear-gradient';
 
 const Mycontacts = () => {
     return (
         <ScrollView>
             <View style={[styles.container]} >
+                <View>
+                    <Text style={styles.pageTitle}>Add Links</Text>
+                </View>
                 <View style={styles.linktypeBox}>
                     <View style={styles.linktypeContentTop}>
                         <Image style={[styles.busiImg]} source={images.shoppingimage} />
                         <View style={styles.imgLink}>
-                            <Text style={styles.linkTitle}>Enter link name</Text>
-                            <TouchableHighlight style={styles.buttonStyle}>
-                                <Button title="SAVE" color="#05EB6D" />
-                            </TouchableHighlight>
+                            <Text style={styles.pageTitle}>Shopping</Text>
+                            <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                                <Text style={styles.buttonText}>
+                                    Add Links
+                                </Text>
+                            </LinearGradient>
                         </View>
                     </View>
                     <View style={styles.linktypeContent}>
@@ -37,10 +43,11 @@ const Mycontacts = () => {
                         />
                     </View>
                     <Text>(use link with http/https)</Text>
-                    <TouchableHighlight style={styles.buttonStyle}>
-                        <Button title="SAVE" color="#05EB6D" />
-
-                    </TouchableHighlight>
+                    <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText} >
+                            Save
+                                </Text>
+                    </LinearGradient>
                 </View>
                 <View style={[styles.socialmediaContent]}>
                     <View style={[styles.socialmediaLinks]}>
@@ -90,7 +97,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 32,
         color: '#17297C',
-        marginBottom: 11
+        marginBottom: 11,
+        fontWeight: 'bold'
     },
     container: {
         padding: 20
@@ -181,6 +189,21 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 20,
         padding: 0
-    }
+    },
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5,
+        marginTop: 10,
+        width: 140
+    },
+    buttonText: {
+        fontSize: 14,
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
+    },
 })
 export default Mycontacts;

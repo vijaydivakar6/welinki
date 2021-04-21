@@ -10,11 +10,11 @@ import {
   ImageBackground,
   Alert,
 } from 'react-native';
-import {COLORS, icons, images} from '../constants';
-import {useForm, useFieldArray,Controller} from 'react-hook-form';
-import { useSelector, useDispatch  } from 'react-redux'
-
-import {registerUser}  from '../features/signup/singupSlice'
+import { COLORS, icons, images } from '../constants';
+import { useForm, useFieldArray, Controller } from 'react-hook-form';
+import { useSelector, useDispatch } from 'react-redux'
+import LinearGradient from 'react-native-linear-gradient';
+import { registerUser } from '../features/signup/singupSlice'
 
 const Signup = () => {
 
@@ -26,14 +26,14 @@ const Signup = () => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm();
 
   const onSubmit = data => {
     // console.log(data);
     dispatch(
       registerUser({
-       ...data
+        ...data
       })
     )
   };
@@ -56,7 +56,7 @@ const Signup = () => {
               <Text style={[styles.name_text]}>Name</Text>
               <Controller
                 control={control}
-                render={({field: {onChange, onBlur, value}}) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -68,11 +68,11 @@ const Signup = () => {
                       borderBottomWidth: 1,
                       marginTop: 10,
                     }}
-                    rules={{required: true}}
+                    rules={{ required: true }}
                   />
                 )}
                 name="name"
-                rules={{required: true}}
+                rules={{ required: true }}
                 defaultValue=""
               />
               {errors.name && <Text>Name is required.</Text>}
@@ -82,7 +82,7 @@ const Signup = () => {
               <Text style={[styles.email_text]}>Email address</Text>
               <Controller
                 control={control}
-                render={({field: {onChange, onBlur, value}}) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -97,7 +97,7 @@ const Signup = () => {
                   />
                 )}
                 name="email"
-                rules={{required: true}}
+                rules={{ required: true }}
               />
               {errors.email && <Text>Email is required.</Text>}
             </View>
@@ -105,7 +105,7 @@ const Signup = () => {
               <Text style={[styles.email_text]}>Phone No</Text>
               <Controller
                 control={control}
-                render={({field: {onChange, onBlur, value}}) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -120,7 +120,7 @@ const Signup = () => {
                   />
                 )}
                 name="phone_no"
-                rules={{required: true}}
+                rules={{ required: true }}
               />
               {errors.phone_no && <Text>Phone is required.</Text>}
             </View>
@@ -128,7 +128,7 @@ const Signup = () => {
               <Text style={[styles.password_text]}>Password</Text>
               <Controller
                 control={control}
-                render={({field: {onChange, onBlur, value}}) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
                     secureTextEntry={true}
                     style={styles.input}
@@ -144,7 +144,7 @@ const Signup = () => {
                   />
                 )}
                 name="password"
-                rules={{required: true}}
+                rules={{ required: true }}
               />
               {errors.password && <Text>Password is required.</Text>}
             </View>
@@ -152,7 +152,7 @@ const Signup = () => {
               <Text style={[styles.password_text]}>Confrim Password</Text>
               <Controller
                 control={control}
-                render={({field: {onChange, onBlur, value}}) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
                     secureTextEntry={true}
                     style={styles.input}
@@ -168,20 +168,25 @@ const Signup = () => {
                   />
                 )}
                 name="confirm_password"
-                rules={{required: true}}
+                rules={{ required: true }}
               />
               {errors.confirm_password && (
                 <Text>Confirm Password is required.</Text>
               )}
             </View>
-            <View style={styles.getButton}>
+            {/* <View style={styles.getButton}>
               <Button
                 onPress={handleSubmit(onSubmit)}
                 title="Sign-up"
                 color="#05EB6D"
                 style={styles.ButtonStyle}
               />
-            </View>
+            </View> */}
+            <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+              <Text style={styles.buttonText} onPress={handleSubmit(onSubmit)}>
+                Sign-up
+                </Text>
+            </LinearGradient>
           </View>
         </View>
       </ImageBackground>
@@ -193,10 +198,10 @@ var styles = StyleSheet.create({
   backgroundimage: {
     resizeMode: 'contain',
     height: '40%',
-    width:'100%',
+    width: '100%',
     flex: 1
-},
-login_head: {
+  },
+  login_head: {
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -260,6 +265,21 @@ login_head: {
   },
   donthaveText: {
     color: '#17297C',
+  },
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+    marginTop: 22,
+  },
+  buttonText: {
+    fontSize: 18,
+    fontFamily: 'Gill Sans',
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 });
 export default Signup;

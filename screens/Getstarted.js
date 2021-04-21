@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Button, Image, TextInput, ImageBackground } from 'react-native'
 import { COLORS, icons, images } from "../constants";
+import LinearGradient from 'react-native-linear-gradient';
 
 const Getstarted = () => {
   return (
@@ -17,9 +18,11 @@ const Getstarted = () => {
             <Text style={[styles.getstartedTitle]}>Lorem ipsum sesde</Text>
             <Text style={[styles.getstartedText]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet, consectetur.</Text>
           </View>
-          <View style={styles.getButton} >
-            <Button title="Get Started" color="#05EB6D" />
-          </View>
+          <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+            <Text style={styles.buttonText} >
+              Get Started
+                </Text>
+          </LinearGradient>
         </View>
       </ImageBackground>
     </ScrollView>
@@ -29,16 +32,16 @@ const Getstarted = () => {
 const styles = StyleSheet.create({
   backgroundimage: {
     resizeMode: 'contain',
-    height: '60%',
-    width:'100%',
+    height: '70%',
+    width: '100%',
     flex: 1
   },
-  welinkilogoImg:{
-    flex:1,
-    flexDirection:'row',
-   justifyContent:'center',
-   alignContent:'center',
-   width:'100%'
+  welinkilogoImg: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center',
+    width: '100%'
   },
   girlstandingImg: {
     flex: 1,
@@ -81,7 +84,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 26
-  }
+  },
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+    marginTop: 22,
+    marginLeft: 135,
+    width: 150,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center'
+  },
+  buttonText: {
+    fontSize: 14,
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+
+  },
 
 })
 export default Getstarted;

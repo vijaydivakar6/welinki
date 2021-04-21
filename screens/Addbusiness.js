@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,11 +9,11 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import {COLORS, icons, images} from '../constants';
+import { COLORS, icons, images } from '../constants';
 import Selector from '../components/Selector';
 import ImagePickerComponent from '../components/ImagePicker';
-
-import {useForm, useFieldArray,Controller} from 'react-hook-form';
+import LinearGradient from 'react-native-linear-gradient';
+import { useForm, useFieldArray, Controller } from 'react-hook-form';
 
 const Addbusiness = () => {
 
@@ -35,32 +35,32 @@ const Addbusiness = () => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm({
-    defaultValues : { 
-      "links": [{"link": "", "name": ""}],
-      "keyword": [{"name": ""}],
+    defaultValues: {
+      "links": [{ "link": "", "name": "" }],
+      "keyword": [{ "name": "" }],
     },
   });
 
   const {
-      fields : linkType,
-      append : linkAppend, 
-      remove :  linkRemove
-    } = useFieldArray({
+    fields: linkType,
+    append: linkAppend,
+    remove: linkRemove
+  } = useFieldArray({
     control,
     name: "links",
   });
-  
+
   const {
-      fields : keywordType,
-      append : keywordAppend, 
-      remove :  keywordRemove
-    } = useFieldArray({
+    fields: keywordType,
+    append: keywordAppend,
+    remove: keywordRemove
+  } = useFieldArray({
     control,
     name: "keyword",
   });
-  
+
   const onSubmit = data => {
     console.log(data);
   };
@@ -72,7 +72,7 @@ const Addbusiness = () => {
           <Text>Company Name*</Text>
           <Controller
             control={control}
-            render={({field: {onChange, onBlur, value}}) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 placeholder="Enter Company Name"
                 // keyboardType="numeric"
@@ -91,7 +91,7 @@ const Addbusiness = () => {
           <View style={[styles.inputBoder]}>
             <Controller
               control={control}
-              render={({field: {onChange, onBlur, value}}) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <Selector
                   data={categories}
                   label="Select Category"
@@ -116,7 +116,7 @@ const Addbusiness = () => {
           <Text>Area Name*</Text>
           <Controller
             control={control}
-            render={({field: {onChange, onBlur, value}}) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 placeholder="Enter Area Name"
                 style={styles.input}
@@ -133,7 +133,7 @@ const Addbusiness = () => {
           <Text>Pin Code*</Text>
           <Controller
             control={control}
-            render={({field: {onChange, onBlur, value}}) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 placeholder="Enter Pin Code"
                 style={styles.input}
@@ -150,7 +150,7 @@ const Addbusiness = () => {
           <Text>GST Number</Text>
           <Controller
             control={control}
-            render={({field: {onChange, onBlur, value}}) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 placeholder="Enter GST Number"
                 style={styles.input}
@@ -167,7 +167,7 @@ const Addbusiness = () => {
           <Text>Mobile Number*</Text>
           <Controller
             control={control}
-            render={({field: {onChange, onBlur, value}}) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 placeholder="Enter Mobile Number*"
                 keyboardType="numeric"
@@ -189,144 +189,161 @@ const Addbusiness = () => {
             <Text>Select Link Type</Text>
             <Text>Link Url</Text>
           </View>
-          
-            {linkType.map(({id,}, index) => {
-              return (
-                <View key={id} style={[styles.selectLinkInput]}>
+
+          {linkType.map(({ id, }, index) => {
+            return (
+              <View key={id} style={[styles.selectLinkInput]}>
 
                 <View>
-                    <Text>Company Name*</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Enter Company Name"
-                        keyboardType="numeric" />
+                  <Text>Company Name*</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter Company Name"
+                    keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]} >
-                    <Text>Select Category*</Text>
-                    <View style={[styles.inputBoder]}>
-                        <Selector />
-                    </View>
+                  <Text>Select Category*</Text>
+                  <View style={[styles.inputBoder]}>
+                    <Controller
+                      control={control}
+                      render={({ field: { onChange, onBlur, value } }) => (
+                        <Selector
+                          data={categories}
+                          label="Select Category"
+                          onchange={value => {
+                            onChange(value);
+                          }}
+                          value={value}
+                        />
+                      )}
+                      name="category"
+                      defaultValue=""
+                    />
+                  </View>
                 </View>
                 <View style={[styles.imgSelect]}>
-                    <Text>Business Image/Logo*</Text>
-                    <View style={[styles.chooseFile]}>
-                        <ImagePickerComponent />
-                    </View>
+                  <Text>Business Image/Logo*</Text>
+                  <View style={[styles.chooseFile]}>
+                    <ImagePickerComponent />
+                  </View>
                 </View>
                 <View style={[styles.selectBox]}>
-                    <Text>Area Name*</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Enter Area Name"
-                        keyboardType="numeric" />
+                  <Text>Area Name*</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter Area Name"
+                    keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]}>
-                    <Text>Pin Code*</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Enter Pin Code"
-                        keyboardType="numeric" />
+                  <Text>Pin Code*</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter Pin Code"
+                    keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]}>
-                    <Text>GST Number</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Enter GST Number"
-                        keyboardType="numeric" />
+                  <Text>GST Number</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter GST Number"
+                    keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]}>
-                    <Text>Mobile Number*</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Enter Mobile Number*"
-                        keyboardType="numeric" />
+                  <Text>Mobile Number*</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Enter Mobile Number*"
+                    keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]}>
-                    <Text>Company Links  (use link with http/https)</Text>
+                  <Text>Company Links  (use link with http/https)</Text>
                 </View>
                 <View style={[styles.selectLinkBorder]}>
-                    <View style={[styles.selectLinkUrl]}>
-                        <Text>Select Link Type</Text>
-                        <Text>Link Url</Text>
-                    </View>
-                    <View style={[styles.selectLinkInput]}>
-                        <TextInput
-                            style={styles.inputSelect}
-                            placeholder="Select Link Type"
-                            keyboardType="numeric" />
-                        <TextInput
-                            style={styles.inputSelect}
-                            placeholder="Enter Link Url"
-                            keyboardType="numeric" />
-                    </View>
+                  <View style={[styles.selectLinkUrl]}>
+                    <Text>Select Link Type</Text>
+                    <Text>Link Url</Text>
+                  </View>
+                  <View style={[styles.selectLinkInput]}>
+                    <TextInput
+                      style={styles.inputSelect}
+                      placeholder="Select Link Type"
+                      keyboardType="numeric" />
+                    <TextInput
+                      style={styles.inputSelect}
+                      placeholder="Enter Link Url"
+                      keyboardType="numeric" />
+                  </View>
                 </View>
                 <View style={[styles.selectBox]}>
-                    <Text>Keywords (Your business ideal keywords which people used to find vendors like you.)</Text>
+                  <Text>Keywords (Your business ideal keywords which people used to find vendors like you.)</Text>
                 </View>
                 <View style={[styles.selectLinkBorder]}>
-                    <View style={[styles.selectLinkUrl]}>
-                        <Text>Keywords list*</Text>
-                        <Text>Add Keywords</Text>
-                    </View>
-                    <View style={[styles.selectLinkInput]}>
-                        <TextInput
-                            style={styles.inputSelectKeyword}
-                            placeholder="Enter Keyword"
-                            keyboardType="numeric" />
-                    </View>
+                  <View style={[styles.selectLinkUrl]}>
+                    <Text>Keywords list*</Text>
+                    <Text>Add Keywords</Text>
+                  </View>
+                  <View style={[styles.selectLinkInput]}>
+                    <TextInput
+                      style={styles.inputSelectKeyword}
+                      placeholder="Enter Keyword"
+                      keyboardType="numeric" />
+                  </View>
                 </View>
                 <View style={[styles.savePreviewBtn]}>
-                <Button title="SAVE" color="#05EB6D"  style={styles.buttonStyle} />
-                <Button title="PREVIEW" color="#05EB6D"  style={styles.buttonStyle} />
+                  <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                    <Text style={styles.buttonText} onPress={handleSubmit(onSubmit)}>
+                      SAVE
+                </Text>
+                  </LinearGradient>
+                  <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                    <Text style={styles.buttonText}  >
+                      PREVIEW
+                </Text>
+                  </LinearGradient>
                 </View>
 
-                  <Controller
-                    control={control}
-                    render={({field: {onChange, onBlur, value}}) => (
-                      <TextInput
-                        placeholder="Select Link Type"
-                        style={styles.inputSelect}
-                        onBlur={onBlur}
-                        onChangeText={value => onChange(value)}
-                        value={value}
-                      />
-                    )}
-                    name={`links[${index}].name`}
-                  />
+                <Controller
+                  control={control}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextInput
+                      placeholder="Select Link Type"
+                      style={styles.inputSelect}
+                      onBlur={onBlur}
+                      onChangeText={value => onChange(value)}
+                      value={value}
+                    />
+                  )}
+                  name={`links[${index}].name`}
+                />
 
-                  <Controller
-                    control={control}
-                    render={({field: {onChange, onBlur, value}}) => (
-                      <TextInput
-                        placeholder="Select Link Type"
-                        style={styles.inputSelect}
-                        onBlur={onBlur}
-                        onChangeText={value => onChange(value)}
-                        value={value}
-                      />
-                    )}
-                    name={`links[${index}].link`}
-                  />
+                <Controller
+                  control={control}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextInput
+                      placeholder="Select Link Type"
+                      style={styles.inputSelect}
+                      onBlur={onBlur}
+                      onChangeText={value => onChange(value)}
+                      value={value}
+                    />
+                  )}
+                  name={`links[${index}].link`}
+                />
+                <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                  <Text style={styles.buttonText} onPress={() => linkRemove(index)} >
+                    Remove Link
+                </Text>
+                </LinearGradient>
 
-               <Button
-                onPress={() => linkRemove(index)}
-                title="Remove Link"
-                color="#05EB6D"
-                style={styles.ButtonStyle}
-              />
+              </View>
 
-                </View>
-
-              );
-            })}
-             
-          
-          <Button
-                onPress={() => linkAppend({ name: "", links : "" })}
-                title="Add New Link"
-                color="#05EB6D"
-                style={styles.ButtonStyle}
-              />
+            );
+          })}
+          <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+            <Text style={styles.buttonText} onPress={() => linkAppend({ name: "", links: "" })} >
+              Add New Link
+                </Text>
+          </LinearGradient>
         </View>
         <View style={[styles.selectBox]}>
           <Text>
@@ -339,51 +356,50 @@ const Addbusiness = () => {
             <Text>Keywords list*</Text>
             <Text>Add Keywords</Text>
           </View>
-          {keywordType.map(({id, name,}, index) => {
-              return (
-          <View key={id} style={[styles.selectLinkInput]}>
+          {keywordType.map(({ id, name, }, index) => {
+            return (
+              <View key={id} style={[styles.selectLinkInput]}>
 
-                 <Controller
-                    control={control}
-                    render={({field: {onChange, onBlur, value}}) => (
-                      <TextInput
+                <Controller
+                  control={control}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextInput
                       placeholder="Enter Keyword"
-                        style={styles.inputSelectKeyword}
-                        onBlur={onBlur}
-                        onChangeText={value => onChange(value)}
-                        value={value}
-                      />
-                    )}
-                    name={`keyword[${index}].name`}
-                  />
-                  
-               <Button
-                onPress={() => keywordRemove(index)}
-                title="Remove Keyword"
-                color="#05EB6D"
-                style={styles.ButtonStyle}
-              />
+                      style={styles.inputSelectKeyword}
+                      onBlur={onBlur}
+                      onChangeText={value => onChange(value)}
+                      value={value}
+                    />
+                  )}
+                  name={`keyword[${index}].name`}
+                />
+                <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                  <Text style={styles.buttonText} onPress={() => keywordRemove(index)}>
+                    Remove Keyword
+                </Text>
+                </LinearGradient>
 
-          </View>
-           );
+
+              </View>
+            );
           })}
-          <Button
-                onPress={() => keywordAppend({name : ""})}
-                title="Add Keyword"
-                color="#05EB6D"
-                style={styles.ButtonStyle}
-              />
+          <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+            <Text style={styles.buttonText} onPress={() => keywordAppend({ name: "" })}>
+              Add Keyword
+                </Text>
+          </LinearGradient>
         </View>
         <View style={[styles.savePreviewBtn]}>
-          {/* <Text style={styles.buttonStyle}>SAVE</Text>
-          <Text style={styles.buttonStyle}>PREVIEW</Text> */}
-          <Button
-            onPress={handleSubmit(onSubmit)}
-            title="SAVE"
-            color="#05EB6D"
-            style={styles.buttonStyle}
-          />
-          <Button title="PREVIEW" color="#05EB6D" style={styles.buttonStyle} />
+          <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+            <Text style={styles.buttonText} onPress={handleSubmit(onSubmit)}>
+              SAVE
+                </Text>
+          </LinearGradient>
+          <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+            <Text style={styles.buttonText}  >
+              PREVIEW
+                </Text>
+          </LinearGradient>
         </View>
       </View>
     </ScrollView>
@@ -399,14 +415,14 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 1,
     padding: 10,
-    borderColor: '#31A5E5',
+    borderColor: '#2C2C2C',
   },
   selectBox: {
     marginTop: 15,
   },
   inputBoder: {
     borderWidth: 1,
-    borderColor: '#31A5E5',
+    borderColor: '#2C2C2C',
     padding: 0,
     marginTop: 10,
   },
@@ -418,13 +434,14 @@ const styles = StyleSheet.create({
   },
   selectLinkBorder: {
     borderWidth: 1,
-    borderColor: '#31A5E5',
+    borderColor: '#2C2C2C',
     padding: 10,
     marginTop: 10,
+    flex: 1,
   },
   selectLinkUrl: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     alignContent: 'center',
@@ -432,7 +449,7 @@ const styles = StyleSheet.create({
   },
   selectLinkInput: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'stretch',
     width: '100%',
   },
@@ -441,7 +458,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 1,
     padding: 10,
-    borderColor: '#31A5E5',
+    borderColor: '#2C2C2C',
     width: 175,
   },
   inputSelectKeyword: {
@@ -449,7 +466,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 1,
     padding: 10,
-    borderColor: '#31A5E5',
+    borderColor: '#2C2C2C',
     width: '100%',
   },
   savePreviewBtn: {
@@ -462,7 +479,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     marginTop: 26,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   buttonStyle: {
     width: 150,
@@ -471,6 +488,20 @@ const styles = StyleSheet.create({
     color: '#fff',
     padding: 10,
     textAlign: 'center',
+  },
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+    marginTop: 22,
+  },
+  buttonText: {
+    fontSize: 14,
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 });
 export default Addbusiness;

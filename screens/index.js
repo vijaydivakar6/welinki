@@ -19,7 +19,7 @@ import Changepassword from './Changepassword'
 import Mycontacts from './Mycontacts'
 import Addlinks from './Addlinks'
 import Addcategory from './Addcategory'
-export{
+export {
     Home,
     Dashboard,
     Login,

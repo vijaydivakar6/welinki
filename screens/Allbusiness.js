@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 32,
         color: '#17297C',
-        
+
     },
     busiCardSec: {
         marginRight: 10,

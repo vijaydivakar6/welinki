@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, ScrollView, ImageBackground, Image, TextInput, Button, TouchableHighlight } from "react-native";
 import { COLORS, icons, images } from "../constants";
 import ImagePickerComponent from "../components/ImagePicker"
+import LinearGradient from 'react-native-linear-gradient';
 
 const Mycontacts = () => {
     return (
@@ -26,10 +27,11 @@ const Mycontacts = () => {
                         <ImagePickerComponent />
                     </View>
                 </View>
-                <TouchableHighlight style={styles.buttonStyle}>
-                    <Button title="ADD" color="#05EB6D" />
-
-                </TouchableHighlight>
+                <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                    <Text style={styles.buttonText} >
+                        ADD
+                </Text>
+                </LinearGradient>
 
                 <View style={styles.linktypeBox}>
                     <View style={styles.linktypeContent}>
@@ -40,10 +42,11 @@ const Mycontacts = () => {
                         <Text style={styles.linkTitle}>Select type</Text>
                         <Text style={styles.linkTitle}>Enter link Url</Text>
                     </View>
-                    <TouchableHighlight style={styles.buttonStyle}>
-                        <Button title="SAVE" color="#05EB6D" />
-
-                    </TouchableHighlight>
+                    <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText} >
+                            SAVE
+                </Text>
+                    </LinearGradient>
                 </View>
             </View>
         </ScrollView>
@@ -67,7 +70,7 @@ const styles = StyleSheet.create({
         marginTop: 12,
         borderWidth: 1,
         padding: 10,
-        borderColor: "#31A5E5",
+        borderColor: "#2C2C2C",
     },
     pageTitleTop: {
         marginTop: 10,
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
     },
     inputBoder: {
         borderWidth: 1,
-        borderColor: "#31A5E5",
+        borderColor: "#2C2C2C",
         padding: 0,
         marginTop: 10
     },
@@ -88,15 +91,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderBottomWidth: 1,
         borderBottomColor: "#3F3D56"
-        
+
     },
-    linktypeBox:{
-    backgroundColor:'#FBF2F2',
-    marginTop:32,
-    padding:10,
- 
+    linktypeBox: {
+        backgroundColor: '#FBF2F2',
+        marginTop: 32,
+        padding: 10,
+
     },
-    linkTitle:{
+    linkTitle: {
         color: '#3F3D56',
         fontSize: 14,
         lineHeight: 32,
@@ -116,6 +119,21 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 20,
         padding: 0
-    }
+    },
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5,
+        marginTop: 22,
+        width: 140
+    },
+    buttonText: {
+        fontSize: 14,
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
+    },
 })
 export default Mycontacts;

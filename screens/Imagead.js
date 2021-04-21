@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, ImageBackground, Image, TextInput, 
 import { COLORS, icons, images } from "../constants";
 import ImagePickerComponent from "../components/ImagePicker"
 import DatePickerComponent from "../components/DatePicker";
-
+import LinearGradient from 'react-native-linear-gradient';
 const Imagead = () => {
     return (
         <ScrollView>
@@ -34,10 +34,10 @@ const Imagead = () => {
                     </View>
                 </View>
                 <View style={styles.desCription}>
-                <Text>Description</Text>
+                    <Text>Description</Text>
                 </View>
                 <View style={styles.textAreaContainer} >
-              
+
                     <TextInput
                         style={styles.textArea}
                         underlineColorAndroid="transparent"
@@ -48,8 +48,16 @@ const Imagead = () => {
                     />
                 </View>
                 <View style={[styles.savePreviewBtn]}>
-                <Button title="SAVE" color="#05EB6D"  style={styles.buttonStyle} />
-                <Button title="PREVIEW" color="#05EB6D"  style={styles.buttonStyle} />
+                    <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText} >
+                            SAVE
+                </Text>
+                    </LinearGradient>
+                    <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                        <Text style={styles.buttonText} >
+                            PREVIEW
+                </Text>
+                    </LinearGradient>
                 </View>
 
             </View>
@@ -74,14 +82,14 @@ const styles = StyleSheet.create({
         marginTop: 12,
         borderWidth: 1,
         padding: 10,
-        borderColor: "#31A5E5",
+        borderColor: "#2C2C2C",
     },
     selectBox: {
         marginTop: 15
     },
     inputBoder: {
         borderWidth: 1,
-        borderColor: "#31A5E5",
+        borderColor: "#2C2C2C",
         padding: 0,
         marginTop: 10
     },
@@ -93,21 +101,21 @@ const styles = StyleSheet.create({
     },
     selectLinkBorder: {
         borderWidth: 1,
-        borderColor: "#31A5E5",
+        borderColor: "#2C2C2C",
         padding: 10,
         marginTop: 10
     },
     textAreaContainer: {
         borderWidth: 1,
         padding: 5,
-        marginTop:10
+        marginTop: 10
     },
     textArea: {
         height: 70,
         justifyContent: "flex-start"
     },
-    desCription:{
-        marginTop:10
+    desCription: {
+        marginTop: 10
     },
     savePreviewBtn: {
         fontSize: 18,
@@ -115,17 +123,27 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         color: '#ffffff',
         marginTop: 26,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        
-      },
-      buttonStyle:{
-         width:150,
-          backgroundColor:'#05EB6D',
-          marginVertical: 8,
-          color:'#fff',
-          padding:10,
-          textAlign:'center'
-      }
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'flex-start',
+
+    },
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5,
+        marginTop: 10,
+        marginRight: 20,
+        marginRight: 25
+
+    },
+    buttonText: {
+        fontSize: 14,
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
+    },
 })
 export default Imagead;

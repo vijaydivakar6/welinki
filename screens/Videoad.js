@@ -9,17 +9,17 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import {COLORS, icons, images} from '../constants';
+import { COLORS, icons, images } from '../constants';
 import ImagePickerComponent from '../components/ImagePicker';
 import DatePickerComponent from '../components/DatePicker';
-
-import {useForm, useFieldArray, Controller} from 'react-hook-form';
+import LinearGradient from 'react-native-linear-gradient';
+import { useForm, useFieldArray, Controller } from 'react-hook-form';
 
 const Youtubead = () => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm();
 
   const onSubmit = data => console.log(data);
@@ -35,7 +35,7 @@ const Youtubead = () => {
           <Text>Ad’s Title*</Text>
           <Controller
             control={control}
-            render={({field: {onChange, onBlur, value}}) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 placeholder="Enter the title"
                 style={styles.input}
@@ -44,11 +44,11 @@ const Youtubead = () => {
                 value={value}
                 label="name"
                 style={styles.input}
-                rules={{required: true}}
+                rules={{ required: true }}
               />
             )}
             name="name"
-            rules={{required: true}}
+            rules={{ required: true }}
             defaultValue=""
           />
           {errors.name && <Text>Name is required.</Text>}
@@ -79,7 +79,7 @@ const Youtubead = () => {
         <View style={styles.textAreaContainer}>
           <Controller
             control={control}
-            render={({field: {onChange, onBlur, value}}) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <TextInput
                 style={styles.textArea}
                 underlineColorAndroid="transparent"
@@ -89,26 +89,29 @@ const Youtubead = () => {
                 onChangeText={value => onChange(value)}
                 value={value}
                 label="name"
-                rules={{required: true}}
+                rules={{ required: true }}
               />
             )}
             name="description"
-            rules={{required: true}}
+            rules={{ required: true }}
             defaultValue=""
           />
           {errors.name && <Text>Name is required.</Text>}
         </View>
 
         <View style={[styles.savePreviewBtn]}>
-          <Button
-            onPress={handleSubmit(onSubmit)}
-            title="SAVE"
-            color="#05EB6D"
-            style={styles.buttonStyle}
-          />
-          <Button title="PREVIEW" color="#05EB6D" style={styles.buttonStyle} />
+          <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+            <Text style={styles.buttonText} onPress={handleSubmit(onSubmit)}>
+              SAVE
+                </Text>
+          </LinearGradient>
+          <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+            <Text style={styles.buttonText} onPress={handleSubmit(onSubmit)}>
+              PREVIEW
+                </Text>
+          </LinearGradient>
         </View>
-        
+
       </View>
     </ScrollView>
   );
@@ -129,14 +132,14 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 1,
     padding: 10,
-    borderColor: '#31A5E5',
+    borderColor: '#2C2C2C',
   },
   selectBox: {
     marginTop: 15,
   },
   inputBoder: {
     borderWidth: 1,
-    borderColor: '#31A5E5',
+    borderColor: '#2C2C2C',
     padding: 0,
     marginTop: 10,
   },
@@ -148,7 +151,7 @@ const styles = StyleSheet.create({
   },
   selectLinkBorder: {
     borderWidth: 1,
-    borderColor: '#31A5E5',
+    borderColor: '#2C2C2C',
     padding: 10,
     marginTop: 10,
   },
@@ -183,6 +186,21 @@ const styles = StyleSheet.create({
   },
   chooseFile: {
     marginTop: 10,
+  },
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5,
+    marginTop: 10,
+    marginRight: 25
+  },
+  buttonText: {
+    fontSize: 14,
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
   },
 });
 export default Youtubead;

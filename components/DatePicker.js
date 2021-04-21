@@ -34,12 +34,16 @@ const datePicker = () => {
       <View style={[styles.selectStartDate]}>
         <Text>From Date*</Text>
         <Text> {date.toString()} </Text>
+        <View style={[styles.datePickStyle]}>
         <Button onPress={showDatepicker} title=" Enter start date" />
+        </View>
       </View>
       <View style={[styles.selectExpiryDate]}>
         <Text>Expiry Date*</Text>
         <Text> {date.toString()} </Text>
+        <View style={[styles.datePickStyle]}>
         <Button onPress={showDatepicker} title=" Enter expiry date" />
+        </View>
       </View>
       {show && (
         <DateTimePicker
@@ -57,10 +61,16 @@ const datePicker = () => {
 
 const styles = StyleSheet.create({
   selectStartDate:{
-    marginTop:12
+    marginTop:12,
+    
   },
   selectExpiryDate:{
     marginTop:12
+  },
+  datePickStyle:{
+    borderWidth: 1,
+    borderColor: '#2C2C2C',
+    padding:10
   }
 
 })

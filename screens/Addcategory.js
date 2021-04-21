@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, ImageBackground, Image, TextInput, 
 import { Directions } from "react-native-gesture-handler";
 import { COLORS, icons, images } from "../constants";
 import ImagePickerComponent from "../components/ImagePicker"
+import LinearGradient from 'react-native-linear-gradient';
 
 const Addcategory = () => {
     return (
@@ -28,9 +29,10 @@ const Addcategory = () => {
                         <View style={[styles.chooseFile]}>
                             <ImagePickerComponent />
                         </View>
-                        <TouchableHighlight style={styles.buttonStyle}>
-                            <Button title="SAVE" color="#05EB6D" />
-                        </TouchableHighlight>
+                        <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                            <Text style={styles.buttonText} >
+                                SAVE</Text>
+                        </LinearGradient>
                     </View>
                     <View style={styles.selectDefaultImageSec}>
                         <Text style={styles.selectImgTitle}>Select default image</Text>
@@ -71,15 +73,15 @@ const Addcategory = () => {
                     </View>
                 </View>
                 <View style={styles.pagButtonSec}>
-                <TouchableHighlight style={styles.pagButton}>
-                <Button title="1" color="#05EB6D"  style={styles.buttonStyle} />
-                </TouchableHighlight>
-                <TouchableHighlight style={styles.pagButton}>
-                <Button title="2" color="#05EB6D"  style={styles.buttonStyle} />
-                </TouchableHighlight>
-                <TouchableHighlight style={styles.pagButton}>
-                <Button title="3" color="#05EB6D"  style={styles.buttonStyle} />
-                </TouchableHighlight>
+                    <TouchableHighlight style={styles.pagButton}>
+                        <Button title="1" color="#05EB6D" style={styles.buttonStyle} />
+                    </TouchableHighlight>
+                    <TouchableHighlight style={styles.pagButton}>
+                        <Button title="2" color="#05EB6D" style={styles.buttonStyle} />
+                    </TouchableHighlight>
+                    <TouchableHighlight style={styles.pagButton}>
+                        <Button title="3" color="#05EB6D" style={styles.buttonStyle} />
+                    </TouchableHighlight>
                 </View>
             </View>
         </ScrollView>
@@ -126,8 +128,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 32
     },
-    addCatIconTop:{
-       marginTop:10
+    addCatIconTop: {
+        marginTop: 10
     },
     addCatIcon: {
         width: 32,
@@ -249,15 +251,29 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 0
     },
-    pagButtonSec:{
-        flexDirection:'row',
-        justifyContent:'center',
-        marginTop:50
+    pagButtonSec: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 50
     },
-    pagButton:{
-        paddingRight:5,
-        paddingLeft:5,
-        borderRadius:50,
-    }
+    pagButton: {
+        paddingRight: 5,
+        paddingLeft: 5,
+        borderRadius: 50,
+    },
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5,
+        marginLeft: 50
+    },
+    buttonText: {
+        fontSize: 14,
+        textAlign: 'center',
+        margin: 10,
+        color: '#ffffff',
+        backgroundColor: 'transparent',
+    },
 })
 export default Addcategory;

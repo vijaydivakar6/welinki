@@ -104,23 +104,26 @@ const styles = StyleSheet.create({
     allCateSec: {
         flexDirection: 'row',
         alignContent: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     allCateText: {
-        fontSize: 14,
+        fontSize: 20,
         lineHeight: 32,
-        color: '#17297C'
+        color: '#17297C',
+        fontWeight: 'bold'
     },
-    containerIcon:{
+    containerIcon: {
         flexDirection: 'row',
         alignContent: 'center',
         justifyContent: 'space-evenly',
-        textAlign:'center',
-        paddingTop:10,
-        paddingBottom:10
+        alignItems: 'center',
+        textAlign: 'center',
+        paddingTop: 10,
+        paddingBottom: 10
     },
-    catText:{
-        textAlign:'center'
+    catText: {
+        textAlign: 'center'
     },
 
 })
