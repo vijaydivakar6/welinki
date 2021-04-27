@@ -83,7 +83,7 @@ const Tabs = () => {
                 elevation: 0
             }
         }}>
-            <Tab.Screen name="Allbusiness" component={Addlinks}
+            <Tab.Screen name="Allbusiness" component={Dashboard}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{

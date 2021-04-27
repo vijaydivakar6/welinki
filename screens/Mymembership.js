@@ -57,7 +57,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 32,
         color: '#17297C',
-        marginBottom: 11
+        marginBottom: 11,
+        fontWeight: 'bold',
+        letterSpacing: 0.6
     },
     container: {
         padding: 20,
@@ -78,14 +80,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 10,
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderColor: "#C4C4C4",
     },
     contentTitle: {
-        fontSize: 14,
+        fontSize: 16,
         lineHeight: 32,
         color: '#17297C',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        letterSpacing: 1
     },
     savePreviewBtn: {
         fontSize: 18,
@@ -113,11 +116,13 @@ const styles = StyleSheet.create({
         marginTop: 22,
     },
     buttonText: {
-        fontSize: 18,
+        fontSize: 14,
         textAlign: 'center',
         margin: 10,
         color: '#ffffff',
         backgroundColor: 'transparent',
+        letterSpacing: 1,
+        fontWeight: '900'
     },
 
 })

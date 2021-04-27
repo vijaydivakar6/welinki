@@ -13,7 +13,7 @@ const Mybusiness = () => {
                     <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
                         <Text style={styles.buttonText} >
                             Add Company
-                </Text>
+                        </Text>
                     </LinearGradient>
                 </View>
             </View>
@@ -31,12 +31,15 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 32,
         color: '#17297C',
-
+        fontWeight: 'bold',
+        letterSpacing: 0.6
     },
     noCompanyText: {
         fontSize: 14,
         lineHeight: 26,
         color: '#2C2C2C',
+        letterSpacing: 1,
+        marginTop:10
     },
     buttonStyle: {
         width: 200,
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         borderRadius: 5,
         marginTop: 22,
-        width: 140
+        width: 160
     },
     buttonText: {
         fontSize: 14,
@@ -56,6 +59,7 @@ const styles = StyleSheet.create({
         margin: 10,
         color: '#ffffff',
         backgroundColor: 'transparent',
+        letterSpacing: 1
     },
 
 })

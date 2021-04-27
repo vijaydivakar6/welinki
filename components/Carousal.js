@@ -66,13 +66,16 @@ var styles = StyleSheet.create({
     textAlign: 'center' , 
     color:'#17297C' , 
     fontWeight:'900' ,
-    marginBottom:10 
+    marginBottom:10 ,
+    lineHeight:32,
+    letterSpacing:1
   },
   secondText:{
     fontSize: 14,
-    lineHeight: 30 ,
+    lineHeight: 26 ,
     color:'#2C2C2C' ,
     textAlign: 'center', 
+    letterSpacing:1
   }
  });
 

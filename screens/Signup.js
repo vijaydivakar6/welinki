@@ -197,7 +197,7 @@ const Signup = () => {
 var styles = StyleSheet.create({
   backgroundimage: {
     resizeMode: 'contain',
-    height: '40%',
+    height: '48%',
     width: '100%',
     flex: 1
   },
@@ -225,11 +225,13 @@ var styles = StyleSheet.create({
     width: '100%',
     padding: 20,
     marginTop: 100,
+    backgroundColor:'transparent'
   },
   name_text: {
     fontSize: 14,
     color: '#7E7979',
     marginTop: 22,
+    letterSpacing:1
   },
   email_text: {
     fontSize: 14,
@@ -272,14 +274,15 @@ var styles = StyleSheet.create({
     paddingRight: 15,
     borderRadius: 5,
     marginTop: 22,
+    width:150
   },
   buttonText: {
-    fontSize: 18,
-    fontFamily: 'Gill Sans',
+    fontSize: 16,
     textAlign: 'center',
     margin: 10,
     color: '#ffffff',
     backgroundColor: 'transparent',
+    letterSpacing:1,
   },
 });
 export default Signup;

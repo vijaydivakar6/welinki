@@ -39,7 +39,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 32,
         color: '#17297C',
-        marginBottom: 11
+        marginBottom: 11,
+        fontWeight:'bold',
+        letterSpacing:0.6,
     },
     container: {
         padding: 20
@@ -47,13 +49,13 @@ const styles = StyleSheet.create({
     input: {
         height: 55,
         marginTop: 12,
-        borderWidth: 1,
+        borderWidth: 0.5,
         padding: 10,
-        borderColor: "#2C2C2C",
+        borderColor: "#4C4C4C",
     },
     inputBoder: {
-        borderWidth: 1,
-        borderColor: "#2C2C2C",
+        borderWidth: 0.5,
+        borderColor: "#4C4C4C",
         padding: 0,
         marginTop: 10
     },
@@ -64,14 +66,15 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         borderRadius: 5,
         marginTop: 22,
-        width: 140
+        width: 120,
     },
     buttonText: {
         fontSize: 14,
         textAlign: 'center',
-        margin: 10,
+        margin: 5,
         color: '#ffffff',
         backgroundColor: 'transparent',
+        letterSpacing:1
     },
 })
 export default Changepassword;

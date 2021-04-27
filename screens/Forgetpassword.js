@@ -80,11 +80,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 200
+    marginTop: 230
   },
   welcome_text: {
     fontSize: 22,
     color: '#fff',
+    letterSpacing:0.6,
+    lineHeight:32
   },
   welinki_logo: {
     flex: 1,
@@ -92,6 +94,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 25
+  },
+  forgot_textSec:{
+  marginTop:42
   },
   emailandpass: {
     flex: 1,
@@ -101,6 +106,7 @@ const styles = StyleSheet.create({
   email_text: {
     fontSize: 14,
     color: '#2C2C2C',
+    letterSpacing:0.6
   },
   getButton: {
     fontSize: 18,
@@ -125,7 +131,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 26,
     paddingRight: 40,
-    paddingLeft: 40
+    paddingLeft: 40,
+    letterSpacing:1,
+    color:'#2c2c2c'
   },
   linearGradient: {
     flex: 1,
@@ -140,6 +148,7 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#ffffff',
     backgroundColor: 'transparent',
+    letterSpacing:1
   },
 
 })

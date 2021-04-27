@@ -135,6 +135,9 @@ var styles = StyleSheet.create({
   welcome_text: {
     fontSize: 22,
     color: '#fff',
+    lineHeight:32,
+    letterSpacing:0.6,
+    fontWeight:'bold'
   },
   welinki_logo: {
     justifyContent: 'center',
@@ -148,20 +151,24 @@ var styles = StyleSheet.create({
     padding: 20,
   },
   email_text: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#2C2C2C',
     marginTop: 22,
+    letterSpacing:0.6
   },
   password_text: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#2C2C2C',
     marginTop: 22,
+    letterSpacing:0.6
   },
   forgotSec: {
     marginTop: 10,
   },
   forgotText: {
     color: '#17297C',
+    fontSize:12,
+    letterSpacing:0.6
   },
   getButton: {
     // flex: 1,
@@ -184,6 +191,7 @@ var styles = StyleSheet.create({
     paddingRight: 15,
     borderRadius: 5,
     marginTop: 22,
+    width:150
   },
   buttonText: {
     fontSize: 18,
@@ -192,12 +200,15 @@ var styles = StyleSheet.create({
     margin: 10,
     color: '#ffffff',
     backgroundColor: 'transparent',
+    letterSpacing:1
   },
   donthaveSec: {
     marginTop: 20,
   },
   donthaveText: {
     color: '#17297C',
+    letterSpacing:1,
+    fontSize:16
   }
 });
 export default Login;

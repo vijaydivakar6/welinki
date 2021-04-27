@@ -19,8 +19,9 @@ const Addcategory = () => {
                         <TextInput
                             style={{
                                 height: 40,
-                                borderColor: '#2C2C2C',
-                                borderBottomWidth: 1,
+                                borderColor: '#4C4C4C',
+                                borderBottomWidth: 0.1,
+                                letterSpacing: 1
                             }}
                             placeholder="Enter Category Name "
                         />
@@ -31,7 +32,7 @@ const Addcategory = () => {
                         </View>
                         <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
                             <Text style={styles.buttonText} >
-                                SAVE</Text>
+                                Add</Text>
                         </LinearGradient>
                     </View>
                     <View style={styles.selectDefaultImageSec}>
@@ -50,7 +51,7 @@ const Addcategory = () => {
                         <Image style={[styles.busiImg]} source={images.businessimg} />
                     </View>
                     <View style={styles.businessCard}>
-                        <Text style={styles.businessTitle}>Cuion Technologies</Text>
+                        <Text style={styles.businessTitle}>Shopping</Text>
                         <View style={styles.viewLinks}>
                             <Image style={[styles.addCatIconBtm]} source={icons.editicon} />
                             <Image style={[styles.addCatIconBtm]} source={icons.deleteicon} />
@@ -64,7 +65,7 @@ const Addcategory = () => {
                         <Image style={[styles.busiImg]} source={images.businessimg} />
                     </View>
                     <View style={styles.businessCard}>
-                        <Text style={styles.businessTitle}>Cuion Technologies</Text>
+                        <Text style={styles.businessTitle}>Shopping</Text>
                         <View style={styles.viewLinks}>
                             <Image style={[styles.addCatIconBtm]} source={icons.editicon} />
                             <Image style={[styles.addCatIconBtm]} source={icons.deleteicon} />
@@ -74,13 +75,13 @@ const Addcategory = () => {
                 </View>
                 <View style={styles.pagButtonSec}>
                     <TouchableHighlight style={styles.pagButton}>
-                        <Button title="1" color="#05EB6D" style={styles.buttonStyle} />
+                        <Text style={styles.pagButtonText}>1</Text>
                     </TouchableHighlight>
                     <TouchableHighlight style={styles.pagButton}>
-                        <Button title="2" color="#05EB6D" style={styles.buttonStyle} />
+                        <Text style={styles.pagButtonText}>2</Text>
                     </TouchableHighlight>
                     <TouchableHighlight style={styles.pagButton}>
-                        <Button title="3" color="#05EB6D" style={styles.buttonStyle} />
+                        <Text style={styles.pagButtonText}>3</Text>
                     </TouchableHighlight>
                 </View>
             </View>
@@ -121,12 +122,15 @@ const styles = StyleSheet.create({
     myCategoryTitle: {
         color: '#17297C',
         fontSize: 20,
-        lineHeight: 32
+        lineHeight: 32,
+        letterSpacing: 0.6,
+        fontWeight: 'bold'
     },
     myCategoryAddCat: {
         color: '#17297C',
         fontSize: 16,
-        lineHeight: 32
+        lineHeight: 32,
+        fontWeight: 'bold'
     },
     addCatIconTop: {
         marginTop: 10
@@ -134,18 +138,18 @@ const styles = StyleSheet.create({
     addCatIcon: {
         width: 32,
         height: 24,
-        borderRightColor: '#3F3D56',
-        borderRightWidth: 1
+        borderColor: '#4C4C4C',
+        borderRightWidth: 1,
     },
     busiCardSec: {
-        marginRight: 10,
-        marginLeft: 40,
+        marginRight: 0,
+        marginLeft: 20,
         marginTop: 20
     },
     busiImg: {
         position: 'absolute',
         top: 15,
-        zIndex: 99
+        zIndex: 9,
     },
     businessCard: {
         backgroundColor: '#ffffff',
@@ -158,7 +162,8 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         paddingLeft: 30,
         paddingBottom: 20,
-        paddingRight: 30
+        paddingRight: 30,
+
     },
     businessTitle: {
         fontWeight: 'bold',
@@ -175,10 +180,10 @@ const styles = StyleSheet.create({
     },
     viewLinks: {
         flexDirection: 'row',
-        alignContent: 'flex-start',
-        alignItems: 'flex-start',
-        justifyContent: 'space-evenly',
-        marginTop: 20
+        marginTop: 20,
+    },
+    addCatIconBtm: {
+        marginRight: 10
     },
     inputBoder: {
         borderWidth: 1,
@@ -222,13 +227,14 @@ const styles = StyleSheet.create({
     selectDefaultImageSec: {
         marginTop: 10,
         backgroundColor: '#fff',
-        padding: 15,
+        padding: 10,
         borderRadius: 10
     },
     selectImgTitle: {
         color: '#3F3D56',
         fontSize: 14,
-
+        lineHeight: 32,
+        letterSpacing: 1,
     },
     chooseCategoryPic: {
         display: 'flex',
@@ -254,26 +260,37 @@ const styles = StyleSheet.create({
     pagButtonSec: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 50
+        marginTop: 20
     },
     pagButton: {
-        paddingRight: 5,
-        paddingLeft: 5,
-        borderRadius: 50,
+        height: 32,
+        width: 32,
+        borderRadius: 70,
+        backgroundColor: "transparent",
+        marginTop: 20,
+        marginLeft: 10,
+        borderWidth: 3,
+        borderColor: '#17297C',
+
+    },
+    pagButtonText: {
+        color: '#000',
+        textAlign: 'center'
     },
     linearGradient: {
         flex: 1,
         paddingLeft: 15,
         paddingRight: 15,
         borderRadius: 5,
-        marginLeft: 50
+        marginLeft: 100,
     },
     buttonText: {
         fontSize: 14,
         textAlign: 'center',
-        margin: 10,
+        margin: 5,
         color: '#ffffff',
         backgroundColor: 'transparent',
+        letterSpacing: 1,
     },
 })
 export default Addcategory;

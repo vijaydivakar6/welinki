@@ -68,8 +68,11 @@ const Addbusiness = () => {
   return (
     <ScrollView>
       <View style={[styles.container]}>
+      <View>
+          <Text style={styles.pageTitle}>My Business</Text>
+        </View>
         <View>
-          <Text>Company Name*</Text>
+          <Text style={[styles.inputTitle]}>Company Name*</Text>
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -87,7 +90,7 @@ const Addbusiness = () => {
           />
         </View>
         <View style={[styles.selectBox]}>
-          <Text>Select Category*</Text>
+          <Text style={[styles.inputTitle]}>Select Category*</Text>
           <View style={[styles.inputBoder]}>
             <Controller
               control={control}
@@ -107,13 +110,13 @@ const Addbusiness = () => {
           </View>
         </View>
         <View style={[styles.imgSelect]}>
-          <Text>Business Image/Logo*</Text>
+          <Text style={[styles.inputTitle]}>Business Image/Logo*</Text>
           <View style={[styles.chooseFile]}>
             <ImagePickerComponent />
           </View>
         </View>
         <View style={[styles.selectBox]}>
-          <Text>Area Name*</Text>
+          <Text style={[styles.inputTitle]}>Area Name*</Text>
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -130,7 +133,7 @@ const Addbusiness = () => {
           />
         </View>
         <View style={[styles.selectBox]}>
-          <Text>Pin Code*</Text>
+          <Text style={[styles.inputTitle]}>Pin Code*</Text>
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -147,7 +150,7 @@ const Addbusiness = () => {
           />
         </View>
         <View style={[styles.selectBox]}>
-          <Text>GST Number</Text>
+          <Text style={[styles.inputTitle]}>GST Number</Text>
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -164,7 +167,7 @@ const Addbusiness = () => {
           />
         </View>
         <View style={[styles.selectBox]}>
-          <Text>Mobile Number*</Text>
+          <Text style={[styles.inputTitle]}>Mobile Number*</Text>
           <Controller
             control={control}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -182,12 +185,12 @@ const Addbusiness = () => {
           />
         </View>
         <View style={[styles.selectBox]}>
-          <Text>Company Links (use link with http/https)</Text>
+          <Text style={[styles.inputTitle]}>Company Links (use link with http/https)</Text>
         </View>
         <View style={[styles.selectLinkBorder]}>
           <View style={[styles.selectLinkUrl]}>
-            <Text>Select Link Type</Text>
-            <Text>Link Url</Text>
+            <Text style={[styles.inputTitle]}>Select Link Type</Text>
+            <Text style={[styles.inputTitle]}>Link Url</Text>
           </View>
 
           {linkType.map(({ id, }, index) => {
@@ -195,14 +198,14 @@ const Addbusiness = () => {
               <View key={id} style={[styles.selectLinkInput]}>
 
                 <View>
-                  <Text>Company Name*</Text>
+                  <Text style={[styles.inputTitle]}>Company Name*</Text>
                   <TextInput
                     style={styles.input}
                     placeholder="Enter Company Name"
                     keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]} >
-                  <Text>Select Category*</Text>
+                  <Text style={[styles.inputTitle]}>Select Category*</Text>
                   <View style={[styles.inputBoder]}>
                     <Controller
                       control={control}
@@ -222,46 +225,46 @@ const Addbusiness = () => {
                   </View>
                 </View>
                 <View style={[styles.imgSelect]}>
-                  <Text>Business Image/Logo*</Text>
+                  <Text style={[styles.inputTitle]}>Business Image/Logo*</Text>
                   <View style={[styles.chooseFile]}>
                     <ImagePickerComponent />
                   </View>
                 </View>
                 <View style={[styles.selectBox]}>
-                  <Text>Area Name*</Text>
+                  <Text style={[styles.inputTitle]}>Area Name*</Text>
                   <TextInput
                     style={styles.input}
                     placeholder="Enter Area Name"
                     keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]}>
-                  <Text>Pin Code*</Text>
+                  <Text style={[styles.inputTitle]}>Pin Code*</Text>
                   <TextInput
                     style={styles.input}
                     placeholder="Enter Pin Code"
                     keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]}>
-                  <Text>GST Number</Text>
+                  <Text style={[styles.inputTitle]}>GST Number</Text>
                   <TextInput
                     style={styles.input}
                     placeholder="Enter GST Number"
                     keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]}>
-                  <Text>Mobile Number*</Text>
+                  <Text style={[styles.inputTitle]}>Mobile Number*</Text>
                   <TextInput
                     style={styles.input}
                     placeholder="Enter Mobile Number*"
                     keyboardType="numeric" />
                 </View>
                 <View style={[styles.selectBox]}>
-                  <Text>Company Links  (use link with http/https)</Text>
+                  <Text style={[styles.inputTitle]}>Company Links  (use link with http/https)</Text>
                 </View>
                 <View style={[styles.selectLinkBorder]}>
                   <View style={[styles.selectLinkUrl]}>
-                    <Text>Select Link Type</Text>
-                    <Text>Link Url</Text>
+                    <Text style={[styles.inputTitle]}>Select Link Type</Text>
+                    <Text style={[styles.inputTitle]}>Link Url</Text>
                   </View>
                   <View style={[styles.selectLinkInput]}>
                     <TextInput
@@ -279,8 +282,8 @@ const Addbusiness = () => {
                 </View>
                 <View style={[styles.selectLinkBorder]}>
                   <View style={[styles.selectLinkUrl]}>
-                    <Text>Keywords list*</Text>
-                    <Text>Add Keywords</Text>
+                    <Text style={[styles.inputTitle]}>Keywords list*</Text>
+                    <Text style={[styles.inputTitle]}>Add Keywords</Text>
                   </View>
                   <View style={[styles.selectLinkInput]}>
                     <TextInput
@@ -353,8 +356,8 @@ const Addbusiness = () => {
         </View>
         <View style={[styles.selectLinkBorder]}>
           <View style={[styles.selectLinkUrl]}>
-            <Text>Keywords list*</Text>
-            <Text>Add Keywords</Text>
+            <Text style={[styles.inputTitle]}>Keywords list*</Text>
+            <Text style={[styles.inputTitle]}>Add Keywords</Text>
           </View>
           {keywordType.map(({ id, name, }, index) => {
             return (
@@ -407,6 +410,14 @@ const Addbusiness = () => {
 };
 
 const styles = StyleSheet.create({
+  pageTitle: {
+    fontSize: 20,
+    lineHeight: 32,
+    color: '#17297C',
+    marginBottom: 11,
+    fontWeight:'bold',
+    letterSpacing:0.6
+  },
   container: {
     padding: 20,
   },
@@ -495,6 +506,7 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     borderRadius: 5,
     marginTop: 22,
+    marginRight:22
   },
   buttonText: {
     fontSize: 14,
@@ -503,5 +515,11 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     backgroundColor: 'transparent',
   },
+  inputTitle:{
+    color:'#17297C',
+    lineHeight:26,
+    fontSize:14,
+    letterSpacing:0.2,
+  }
 });
 export default Addbusiness;

@@ -59,16 +59,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#17297C',
     fontWeight: '900',
-    marginBottom: 10
+    marginBottom: 10,
+    letterSpacing:1
   },
   getstartedText: {
     fontSize: 14,
-    lineHeight: 30,
+    lineHeight: 26,
     color: '#2C2C2C',
     textAlign: 'center',
     paddingTop: 10,
     paddingRight: 25,
-    paddingLeft: 25
+    paddingLeft: 25,
+    letterSpacing:1
   },
   getButton: {
     flex: 1,
@@ -91,6 +93,7 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     borderRadius: 5,
     marginTop: 22,
+    marginBottom:22,
     marginLeft: 135,
     width: 150,
     flex: 1,
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
     margin: 10,
     color: '#ffffff',
     backgroundColor: 'transparent',
-
+   letterSpacing:1
   },
 
 })

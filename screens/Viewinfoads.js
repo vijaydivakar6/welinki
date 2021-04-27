@@ -15,14 +15,14 @@ const Viewinfoads = () => {
 
                 <View style={styles.imgAdTitle}>
                     <Image style={[styles.busiImg]} source={icons.imageAd} />
-                    <Text>Image Ad’s</Text>
+                    <Text style={styles.imgAdTitleAd}>Image Ad’s</Text>
                 </View>
                 <View style={styles.imgAdSec}>
                     <ImageCarousal />
                 </View>
                 <View style={styles.imgAdTitle}>
                     <Image style={[styles.busiImg]} source={icons.videoAd} />
-                    <Text>Video Ad’s</Text>
+                    <Text  style={styles.imgAdTitleAd}>Video Ad’s</Text>
                 </View>
                 <View style={styles.imgAdSec}>
                     <VideoCarousal />
@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
         marginTop: 26,
         fontWeight: '500',
         fontFamily: 'rubik',
-        letterSpacing: 0.6
+        letterSpacing: 0.6,
+        fontWeight:'bold'
     },
     infoPara: {
         fontSize: 14,
@@ -59,7 +60,8 @@ const styles = StyleSheet.create({
         color: '#2C2C2C',
         fontWeight: '500',
         fontFamily: 'rubik',
-        letterSpacing: 0.6
+        letterSpacing: 1,
+        marginTop:10
     },
     imgAdTitle: {
         flex: 1,
@@ -70,8 +72,14 @@ const styles = StyleSheet.create({
         marginTop: 10,
         borderWidth: 1,
         borderColor: "#05EB6D",
-        padding: 5,
-        width: 135
+        padding: 10,
+        width: 135,
+       borderRadius:5
+    },
+    imgAdTitleAd:{
+       letterSpacing:0.6,
+       color:'#17297C',
+       fontWeight:'900',
     },
     busiImg: {
         marginRight: 10

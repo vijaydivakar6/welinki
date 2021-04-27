@@ -49,6 +49,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     justifyContent: 'center',
+    marginTop:50
   },
   serImg: {
     alignContent: 'center',
@@ -61,6 +62,7 @@ var styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     lineHeight: 32,
+    letterSpacing:0.6
   },
   vendorTextPara: {
     fontSize: 16,
@@ -69,10 +71,10 @@ var styles = StyleSheet.create({
     fontWeight: '500',
     marginBottom: 10,
     lineHeight: 26,
-    paddingTop: 10,
     paddingBottom: 50,
     paddingRight: 50,
-    paddingLeft: 50
+    paddingLeft: 50,
+    letterSpacing:1
   },
   userTitle: {
     fontSize: 24,
@@ -82,6 +84,7 @@ var styles = StyleSheet.create({
     marginBottom: 10,
     lineHeight: 32,
     paddingTop: 10,
+    letterSpacing:0.6
   },
   userTextPara: {
     fontSize: 16,
@@ -93,7 +96,8 @@ var styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 50,
     paddingRight: 50,
-    paddingLeft: 50
+    paddingLeft: 50,
+    letterSpacing:1
   },
 
 });

@@ -111,7 +111,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 32,
         color: '#17297C',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        letterSpacing:0.6,
+        marginTop:25
     },
     containerIcon: {
         flexDirection: 'row',
@@ -119,8 +121,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         textAlign: 'center',
-        paddingTop: 10,
-        paddingBottom: 10
+        marginTop:29
     },
     catText: {
         textAlign: 'center'

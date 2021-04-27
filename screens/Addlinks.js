@@ -27,7 +27,8 @@ const Mycontacts = () => {
                             style={{
                                 height: 40,
                                 borderColor: '#2C2C2C',
-                                borderBottomWidth: 1,
+                                borderBottomWidth: 0.5,
+                                letterSpacing: 1
                             }}
                             placeholder="Enter link name"
                         />
@@ -37,12 +38,13 @@ const Mycontacts = () => {
                             style={{
                                 height: 40,
                                 borderColor: '#2C2C2C',
-                                borderBottomWidth: 1,
+                                borderBottomWidth: 0.1,
+                                letterSpacing: 1
                             }}
                             placeholder="Enter link Url"
                         />
                     </View>
-                    <Text>(use link with http/https)</Text>
+                    <Text style={styles.useLink}>(use link with http/https)</Text>
                     <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
                         <Text style={styles.buttonText} >
                             Save
@@ -83,7 +85,19 @@ const Mycontacts = () => {
                         </View>
                     </View>
                 </View>
-
+                <View style={[styles.busiCardSec]}>
+                    <View>
+                        <Image style={[styles.busiImg1]} source={images.businessimg} />
+                    </View>
+                    <View style={styles.businessCard}>
+                        <Text style={styles.businessTitle}>Shopping</Text>
+                        <View style={styles.viewLinks}>
+                            <Image style={[styles.addCatIconBtm]} source={icons.editicon} />
+                            <Image style={[styles.addCatIconBtm]} source={icons.deleteicon} />
+                            <Image style={[styles.addCatIconBtm]} source={icons.eyeicon} />
+                        </View>
+                    </View>
+                </View>
 
             </View>
         </ScrollView>
@@ -98,7 +112,8 @@ const styles = StyleSheet.create({
         lineHeight: 32,
         color: '#17297C',
         marginBottom: 11,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        letterSpacing: 0.6
     },
     container: {
         padding: 20
@@ -106,9 +121,9 @@ const styles = StyleSheet.create({
     input: {
         height: 55,
         marginTop: 12,
-        borderWidth: 1,
+        borderWidth: 0.5,
         padding: 10,
-        borderColor: "#31A5E5",
+        borderColor: "#31A5E5"
     },
     pageTitleTop: {
         marginTop: 10,
@@ -118,7 +133,7 @@ const styles = StyleSheet.create({
 
     },
     inputBoder: {
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderColor: "#31A5E5",
         padding: 0,
         marginTop: 10
@@ -129,13 +144,13 @@ const styles = StyleSheet.create({
     },
     linktypeContent: {
         flex: 1,
-        borderBottomWidth: 1,
+        borderBottomWidth: 0.5,
         borderBottomColor: "#3F3D56"
 
     },
     linktypeBox: {
         backgroundColor: '#FBF2F2',
-        marginTop: 32,
+        marginTop: 10,
         padding: 10,
 
     },
@@ -148,6 +163,7 @@ const styles = StyleSheet.create({
         color: '#3F3D56',
         fontSize: 16,
         lineHeight: 32,
+        letterSpacing: 0.6,
     },
     socialmediaContent: {
         marginTop: 50
@@ -162,7 +178,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingTop: 5,
         paddingBottom: 5,
-        borderBottomWidth: 1,
+        borderBottomWidth: 0.5,
         borderBottomColor: "#3F3D56",
         alignContent: 'center',
         alignItems: 'center'
@@ -196,14 +212,74 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         borderRadius: 5,
         marginTop: 10,
-        width: 140
+        width: 120,
     },
     buttonText: {
         fontSize: 14,
         textAlign: 'center',
-        margin: 10,
+        margin: 5,
         color: '#ffffff',
         backgroundColor: 'transparent',
+        letterSpacing: 1
     },
+    busiCardSec: {
+        marginRight: 10,
+        marginLeft: 40,
+        marginTop: 50
+    },
+    busiImg1: {
+        position: 'absolute',
+        top: 10,
+        zIndex: 9,
+        elevation: 20,
+    },
+    businessCard: {
+        backgroundColor: '#ffffff',
+        borderRadius: 10,
+        marginRight: 30,
+        marginLeft: 50,
+        flex: 1,
+        justifyContent: 'space-between',
+        flexDirection: 'column',
+        paddingTop: 20,
+        paddingLeft: 30,
+        paddingBottom: 20,
+        paddingRight: 30,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 8,
+        },
+        shadowOpacity: 0.44,
+        shadowRadius: 10.32,
+        elevation: 10,
+    },
+    businessTitle: {
+        fontWeight: 'bold',
+        color: '#17297C',
+        letterSpacing: 1,
+        fontSize: 16,
+        fontFamily: 'Rubik'
+    },
+    businessText: {
+        fontWeight: '500',
+        color: '#17297C',
+        letterSpacing: 1,
+        fontSize: 14
+    },
+    viewLinks: {
+        flexDirection: 'row',
+        marginTop: 10
+    },
+    useLink: {
+        marginTop: 10,
+        color: '#3F3D56',
+        fontSize: 14,
+        letterSpacing: 1,
+        lineHeight: 32
+    },
+    addCatIconBtm: {
+        marginRight: 15
+    }
 })
 export default Mycontacts;

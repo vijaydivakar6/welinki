@@ -52,7 +52,7 @@ import { COLORS, icons, images } from "../constants";
                   ref={ref => this.carousel = ref}
                   data={this.state.carouselItems}
                   sliderWidth={370}
-                  itemWidth={180}
+                  itemWidth={200}
                   renderItem={this._renderItem}
                   onSnapToItem = { index => this.setState({activeIndex:index}) } />
             </View>
@@ -66,11 +66,13 @@ var styles = StyleSheet.create({
     fontSize: 18 ,
     textAlign: 'center' , 
     color:'#17297C' , 
-    fontWeight:'900' ,
+    fontWeight:'600' ,
+    letterSpacing:0.6,
+    marginTop:10
   },
   secondText:{
     fontSize: 14,
-    lineHeight: 30 ,
+    lineHeight: 20 ,
     color:'#2C2C2C' ,
     textAlign: 'center', 
   },

@@ -14,12 +14,12 @@ const Mycontacts = () => {
                 <View >
                     <Text style={styles.pageTitleTop}>Name*</Text>
                     <TextInput
-                        style={styles.input} placeholder="Enter old Password" />
+                        style={styles.input} />
                 </View>
                 <View >
                     <Text style={styles.pageTitleTop}>Phone*</Text>
                     <TextInput
-                        style={styles.input} placeholder="Enter new Password" />
+                        style={styles.input}  />
                 </View>
                 <View >
                     <Text style={styles.pageTitleTop}>Contact Image*</Text>
@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 32,
         color: '#17297C',
-        marginBottom: 11
+        marginBottom: 11,
+        fontWeight:'bold',
+        letterSpacing:0.6
     },
     container: {
         padding: 20
@@ -68,20 +70,20 @@ const styles = StyleSheet.create({
     input: {
         height: 55,
         marginTop: 12,
-        borderWidth: 1,
+        borderWidth: 0.5,
         padding: 10,
-        borderColor: "#2C2C2C",
+        borderColor: "#4C4C4C",
     },
     pageTitleTop: {
         marginTop: 10,
         color: '#17297C',
         fontSize: 14,
         lineHeight: 26,
-
+        letterSpacing:0.6,
     },
     inputBoder: {
         borderWidth: 1,
-        borderColor: "#2C2C2C",
+        borderColor: "#4C4C4C",
         padding: 0,
         marginTop: 10
     },
@@ -89,20 +91,23 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderBottomWidth: 1,
-        borderBottomColor: "#3F3D56"
+        borderBottomWidth: 0.5,
+        borderBottomColor: "#4C4C4C"
 
     },
     linktypeBox: {
         backgroundColor: '#FBF2F2',
         marginTop: 32,
-        padding: 10,
+        padding: 15,
+        borderRadius:20
 
     },
     linkTitle: {
         color: '#3F3D56',
         fontSize: 14,
         lineHeight: 32,
+        letterSpacing:1,
+        color:'#4c4c4c'
     },
     savePreviewBtn: {
         fontSize: 18,
@@ -112,6 +117,9 @@ const styles = StyleSheet.create({
         marginTop: 26,
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    chooseFile:{
+     marginTop:10
     },
     buttonStyle: {
         height: 40,
@@ -126,14 +134,15 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         borderRadius: 5,
         marginTop: 22,
-        width: 140
+        width: 100
     },
     buttonText: {
         fontSize: 14,
         textAlign: 'center',
-        margin: 10,
+        margin: 5,
         color: '#ffffff',
         backgroundColor: 'transparent',
+        letterSpacing:1,
     },
 })
 export default Mycontacts;
