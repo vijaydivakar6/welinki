@@ -27,7 +27,7 @@ const  App =({navigation}) =>{
         >
       {/* <Stack.Screen name="Login" component={Tabs} /> */}
       <Stack.Screen name="Home" component={Sidebar} />
-        </Stack.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
     </Provider>
   );

@@ -1,8 +1,8 @@
-// import axios from 'axios';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const instance =  axios.create({
-//   baseURL : 'http://13.127..200:8556/api'
+//   baseURL : 'http://192.168.0.108:3000/'
 // });
 
 
@@ -27,3 +27,25 @@
 
 
 // export default instance;
+
+// axios.defaults.baseURL = 'http://192.168.0.108:3000'
+
+const instance =  axios.create({
+  baseURL : 'http://192.168.0.108:3000/'
+});
+
+
+instance.interceptors.request.use(
+  async config => {
+    const token = await AsyncStorage.getItem('token')
+    if (token) {
+      config.headers.Authorization = "Bearer "+token
+    }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+);
+
+export default instance;
