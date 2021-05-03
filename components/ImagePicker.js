@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text,StyleSheet, Image ,Button } from 'react-native';
+import { View, Text,StyleSheet, Image ,Button ,TouchableOpacity} from 'react-native';
 // import ImagePicker from 'react-native-image-picker';
 import {launchImageLibrary} from 'react-native-image-picker'
 
@@ -34,9 +34,11 @@ export default class ImagePickerComponent extends React.Component {
                      style={{ width:300,height:300}}
                     />
                 )}
-                <View style={[styles.chooseButton]}>
-                <Button title="Choose Photo" onPress={this.handleChoosePhoto} style={{backgroundColor: 'transparent'}}  />
-                </View>
+       
+                <TouchableOpacity style={[styles.chooseButton]} onPress={this.handleChoosePhoto} >
+                <Text  style={[styles.chooseButtonText]}>Choose Photo</Text>
+                </TouchableOpacity>
+             
             </View>
             </View>
         );
@@ -46,9 +48,13 @@ export default class ImagePickerComponent extends React.Component {
 const styles = StyleSheet.create({
     chooseButton:{
         width:'100%',
-        height: '100%',
+        height: 55,
         borderWidth:1,
         borderColor: "#C4C4C4",
-        padding:10
+        padding:15,
+        color:'#3F3D56'
+    },
+    chooseButtonText:{
+        color:'#3F3D56'
     }
 });

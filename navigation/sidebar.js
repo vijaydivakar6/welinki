@@ -7,7 +7,7 @@ import { Home, Dashboard, Login, Getstarted ,Signup, Forgetpassword ,Uservendorl
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Tabs from './tabs';
 import { DrawerContent } from '../screens/Drawercontent';
-
+import LinearGradient from 'react-native-linear-gradient';
 const Drawer = createDrawerNavigator();
 
 const sideBar = () => {
@@ -18,7 +18,15 @@ const sideBar = () => {
           headerStyle:{
             backgroundColor:'#16d09b',
             color:'#fff'
-          }
+          },
+          headerBackground: (
+            <LinearGradient
+              colors={['#a13388', '#10356c']}
+              style={{ flex: 1 }}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+            />
+          ),
         }}>
         <Drawer.Screen name="Allcategories" component={Tabs} />
         <Drawer.Screen name="Dashboard" component={Dashboard} />

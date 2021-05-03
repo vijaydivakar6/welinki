@@ -426,14 +426,14 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 1,
     padding: 10,
-    borderColor: '#2C2C2C',
+    borderColor: '#C4C4C4',
   },
   selectBox: {
     marginTop: 15,
   },
   inputBoder: {
     borderWidth: 1,
-    borderColor: '#2C2C2C',
+    borderColor: '#C4C4C4',
     padding: 0,
     marginTop: 10,
   },
@@ -445,7 +445,7 @@ const styles = StyleSheet.create({
   },
   selectLinkBorder: {
     borderWidth: 1,
-    borderColor: '#2C2C2C',
+    borderColor: '#C4C4C4',
     padding: 10,
     marginTop: 10,
     flex: 1,
@@ -469,7 +469,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 1,
     padding: 10,
-    borderColor: '#2C2C2C',
+    borderColor: '#C4C4C4',
     width: 175,
   },
   inputSelectKeyword: {
@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderWidth: 1,
     padding: 10,
-    borderColor: '#2C2C2C',
+    borderColor: '#C4C4C4',
     width: '100%',
   },
   savePreviewBtn: {
