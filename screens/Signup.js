@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -9,19 +9,37 @@ import {
   TextInput,
   ImageBackground,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
-import { COLORS, icons, images } from '../constants';
-import { useForm, useFieldArray, Controller } from 'react-hook-form';
-import { useSelector, useDispatch } from 'react-redux'
-import LinearGradient from 'react-native-linear-gradient';
-import { registerUser } from '../features/signup/singupSlice'
 
-const Signup = () => {
+import { COLORS, icons, images } from '../constants';
+import { useForm, watch, Controller } from 'react-hook-form';
+import LinearGradient from 'react-native-linear-gradient';
+import { useSelector, useDispatch  } from 'react-redux'
+import Selector from '../components/Selector';
+import { useNavigation } from '@react-navigation/native';
+import {signupUser}  from '../features/signup/singupSlice'
+
+import client from '../API/api';
+
+function Signup({formHelp : { register} }) {
+  const navigation = useNavigation(); 
+// const Signup = ({navigation ,formHelp : { register} }) => {
+
+  // const dispatch = useDispatch()
 
   // const singup = useSelector(state => state.singup)
-  //  console.log(singup);
 
-  const dispatch = useDispatch()
+  const [countries, setcountries] = useState([]);
+  const [stateCollection, setstateCollection] = useState([]);
+  const [isIndia, setisIndia] = useState(false);
+  const [errorsCollection, seterrorsCollection] = useState({});
+
+   useEffect(() => {
+      client.get(`/vendor/countries`)
+      .then(({data :{data}}) => setcountries(data.map(el =>  ({ label : el.name, value : el.id}))))
+      .catch(error => console.error(error))
+    })
 
   const {
     control,
@@ -30,13 +48,45 @@ const Signup = () => {
   } = useForm();
 
   const onSubmit = data => {
-    // console.log(data);
-    dispatch(
-      registerUser({
-        ...data
-      })
-    )
-  };
+     console.log('====================================');
+     console.log('Clicked');
+     console.log('====================================');
+
+    
+
+    // console.log('====================================');
+    // console.log(JSON.stringify(data));
+    // console.log('====================================');
+    // client.post('/vendor/register', {
+    //    name:data.name,
+    //    email : data.email,
+    //    mobile : data.mobile,
+    //    country_id : String(data.country_id),
+    //    state_id : String(data.state_id),
+    //    password : data.password,
+    //    password_confirmation : data.password_confirmation,
+    // })
+    // .then(response => console.log(response))
+    // .catch(error => {
+    //   if(error.response.status === 422) {
+    //      seterrorsCollection(error.response.data.errors)
+    //       console.log(error.response.data.errors);
+    //   } else {
+    //     console.error(error);
+    //   }
+    // })
+  }
+ 
+  const countryOnChange = (value) => {
+     if(value == 76){
+       setisIndia(true)
+       client.get(`/vendor/states`)
+       .then(({data :{data}}) => setstateCollection(data.map(el =>  ({ label : el.name, value : el.id}))))
+       .catch(error => console.error(error))
+     } else {
+      setisIndia(false)
+     }
+  }
 
   return (
     <ScrollView>
@@ -51,12 +101,15 @@ const Signup = () => {
           <View style={[styles.signup_banner]}>
             <Image source={images.signup_img} />
           </View>
-          <View style={[styles.emailandpass]}>
+
+   
+           
+            <View style={[styles.emailandpass]}>
             <View>
               <Text style={[styles.name_text]}>Name</Text>
               <Controller
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({ field:  { onChange, onBlur, value } }) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -68,14 +121,13 @@ const Signup = () => {
                       borderBottomWidth: 1,
                       marginTop: 10,
                     }}
-                    rules={{ required: true }}
-                  />
+  
+                  />  
                 )}
                 name="name"
-                rules={{ required: true }}
                 defaultValue=""
               />
-              {errors.name && <Text>Name is required.</Text>}
+              {errorsCollection.name && <Text style={{color:'red'}}>{errorsCollection.name[0]}</Text>}
             </View>
 
             <View>
@@ -97,9 +149,8 @@ const Signup = () => {
                   />
                 )}
                 name="email"
-                rules={{ required: true }}
               />
-              {errors.email && <Text>Email is required.</Text>}
+             {errorsCollection.email && <Text style={{color:'red'}}>{errorsCollection.email[0]}</Text>}
             </View>
             <View>
               <Text style={[styles.email_text]}>Phone No</Text>
@@ -119,11 +170,62 @@ const Signup = () => {
                     }}
                   />
                 )}
-                name="phone_no"
-                rules={{ required: true }}
+                name="mobile"
               />
-              {errors.phone_no && <Text>Phone is required.</Text>}
+               {errorsCollection.mobile && <Text style={{color:'red'}}>{errorsCollection.mobile[0]}</Text>}
             </View>
+            
+            <View style={[styles.email_text]}>
+          <Text>Select Country*</Text>
+
+          <View style={[styles.input]}>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Selector
+                  data={countries}
+                  label="Select Country"
+                  onchange={value => {
+                    onChange(value);
+                    countryOnChange(value);
+                  }}
+                  value={value}
+                />
+              )}
+              name="country_id"
+              defaultValue=""
+            />
+          {errorsCollection.country_id && <Text style={{color:'red'}}>{errorsCollection.country_id[0]}</Text>}
+          </View>
+
+        </View>
+        {
+          isIndia &&
+          <View style={[styles.email_text]}>
+          <Text>Select State*</Text>
+
+          <View style={[styles.input]}>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Selector
+                  data={stateCollection}
+                  label="Select State"
+                  onchange={value => {
+                    onChange(value);
+                  }}
+                  value={value}
+                />
+              )}
+              name="state_id"
+              defaultValue=""
+            />
+                {errorsCollection.state_id && <Text style={{color:'red'}}>{errorsCollection.state_id[0]}</Text>}
+          </View>
+    
+        </View>
+        }
+
             <View>
               <Text style={[styles.password_text]}>Password</Text>
               <Controller
@@ -144,9 +246,8 @@ const Signup = () => {
                   />
                 )}
                 name="password"
-                rules={{ required: true }}
               />
-              {errors.password && <Text>Password is required.</Text>}
+               {errorsCollection.password && <Text style={{color:'red'}}>{errorsCollection.password[0]}</Text>}
             </View>
             <View>
               <Text style={[styles.password_text]}>Confrim Password</Text>
@@ -167,12 +268,9 @@ const Signup = () => {
                     }}
                   />
                 )}
-                name="confirm_password"
-                rules={{ required: true }}
+                name="password_confirmation"
               />
-              {errors.confirm_password && (
-                <Text>Confirm Password is required.</Text>
-              )}
+               {errorsCollection.password_confirmation && <Text style={{color:'red'}}>{errorsCollection.password_confirmation[0]}</Text>}
             </View>
             {/* <View style={styles.getButton}>
               <Button
@@ -182,12 +280,28 @@ const Signup = () => {
                 style={styles.ButtonStyle}
               />
             </View> */}
-            <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
-              <Text style={styles.buttonText} onPress={handleSubmit(onSubmit)}>
-                Sign-up
-                </Text>
-            </LinearGradient>
+
+            {/* {
+               !countries.length > 0 ?
+               <ActivityIndicator style={{marginTop:10}} size="large" color="#000" /> :
+               <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+               <Text style={styles.buttonText} onPress={() => navigation.navigate('profile')}>
+                 Sign-up
+               </Text>
+             </LinearGradient>
+            } */}
+           
+           <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+               <Text style={styles.buttonText} onPress={() => navigation.navigate('Mycontacts')}>
+                 Sign-up
+               </Text>
+             </LinearGradient>
           </View>
+
+    
+
+          
+
         </View>
       </ImageBackground>
     </ScrollView>
@@ -283,6 +397,12 @@ var styles = StyleSheet.create({
     color: '#ffffff',
     backgroundColor: 'transparent',
     letterSpacing:1,
+  },
+  inputBoder: {
+    borderWidth: 1,
+    borderColor: '#2C2C2C',
+    padding: 0,
+    marginTop: 10,
   },
 });
 export default Signup;

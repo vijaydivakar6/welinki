@@ -1,51 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 // import Api from '../API/api';
 
+
+export const signupUser = createAsyncThunk('user/signup',async  (signup) => {
+  console.log(signup);
+   const response = await axios.get(`http://192.168.0.108:3000/categories`);
+  return response.data;
+})
+
 const singupSlice = createSlice({
   name: 'singup',
-  initialState : {errors: []},
+  initialState : { 
+    posts: {},
+    status: 'idle',
+    error: null
+  },
   reducers: {
-    registerUser :  async (state, action) => {
-      // state.errors = {name : 'Hello'};
-      console.log(state.errors);
-      try {
-        // fetch data from a url endpoint
-        const response = await axios.post(`http://192.168.0.108/api/v1/register`,{ ...action.payload});
-        const data = await response.json();
-        console.log('====================================');
-        console.log(data);
-        console.log('====================================');
-  
-      } catch (error) {
-        if (error.response.status === 422) {
-          state.errors.push(error.response.data.errors);
-        }
-        // console.log(error.response.status);
-        // console.log(error.response.data.errors); // catches both errors
-      }
-
-      // console.log(action.payload);
-    
-
-    //  axios.post(`http://192.168.0.108/api/v1/register`,{
-    //      ...action.payload
-    //  })
-    //  .then(success => console.log(success))
-    //  .catch(error => {
-    //   // if (error.response.status === 422) {
-  
-        
-    //     // console.log(state);
-        
-    //   // }
-    //  });
-
-
+    registerUser :  (state, action) => {
+      console.log(action.payload);
     },
+  },
+  extraReducers: {
+    [signupUser.pending]: (state, action) => {
+      state.status = 'loading'
+    },
+    [signupUser.fulfilled]: (state, action) => {
+      state.status = 'succeeded'
+      // Add any fetched posts to the array
+      state.posts = action.payload;
+    },
+    [signupUser.rejected]: (state, action) => {
+      state.status = 'failed'
+      state.error = action.error.message
+    }
   }
 })
 
 export const { registerUser } = singupSlice.actions
+
+
 
 export default singupSlice.reducer

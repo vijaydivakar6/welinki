@@ -9,12 +9,11 @@ import {
 
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 
-import {Getstarted ,Mybusiness ,Allcategories ,Allbusiness ,Viewinfoads ,Addbusiness ,Youtubead, Login,Signup, Forgetpassword ,Dashboard,Addlinks} from "../screens"
+import {Getstarted ,Mybusiness ,Allcategories ,Allbusiness ,Viewinfoads ,Addbusiness ,Youtubead, Login, Forgetpassword ,Dashboard,Addlinks, Signup} from "../screens"
 // import Svg, { Path } from 'react-native-svg';
 
 import { COLORS, icons } from "../constants"
-import Videoad from '../screens/Videoad';
-import Imagead from '../screens/Imagead';
+import singupUseForm from '../container/signup/singupUseForm';
 
 
 const Tab = createBottomTabNavigator();
@@ -83,7 +82,8 @@ const Tabs = () => {
                 elevation: 0
             }
         }}>
-            <Tab.Screen name="Allbusiness" component={Addbusiness}
+            <Tab.Screen name="Allbusiness" 
+             children={() => <Signup formHelp={singupUseForm()} />}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{
@@ -100,7 +100,7 @@ const Tabs = () => {
                     // )
                 }}
             />
-            <Tab.Screen name="All Ad's" component={Allbusiness}
+            <Tab.Screen name="Allads" component={Allbusiness}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_ad} resizeMode="contain" style={{
@@ -135,7 +135,7 @@ const Tabs = () => {
                 }}
             />
 
-            <Tab.Screen name="Profile" component={Getstarted}
+            <Tab.Screen name="profile" component={Getstarted}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_profile} resizeMode="contain" style={{
