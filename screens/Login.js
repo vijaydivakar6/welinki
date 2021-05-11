@@ -1,24 +1,75 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, Button, Image, TextInput, ImageBackground } from 'react-native'
-import { COLORS, icons, images } from "../constants";
-import { useForm, Controller } from 'react-hook-form';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Button,
+  Image,
+  TextInput,
+  ImageBackground,
+  ActivityIndicator,
+} from 'react-native';
+import {COLORS, icons, images} from '../constants';
+import {useForm, Controller} from 'react-hook-form';
 import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import client from '../API/api';
 
 const Login = () => {
-
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
   } = useForm();
 
+  const [loader, setLoader] = useState(false);
+  const [errorsCollection, seterrorsCollection] = useState({});
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    console.log('====================================');
+    console.log('Clicked', data);
+    console.log('====================================');
+
+    setLoader(true);
+
+    client
+      .post('/vendor/login', {
+        email: data.email,
+        password: data.password,
+        role: 'vendor',
+      })
+      .then(async ({data}) => {
+        setLoader(false);
+        try {
+          await AsyncStorage.setItem('token', data.token);
+        } catch (e) {
+          console.error(e); // saving error
+        }
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+        setLoader(true);
+        if (error.response.status === 422) {
+          setLoader(false);
+          seterrorsCollection(error.response.data.errors);
+          console.log(error.response.data.errors);
+        } else {
+          setLoader(true);
+          console.error(error);
+        }
+      });
+    console.log(data);
+  };
 
   return (
     <ScrollView>
-      <ImageBackground style={styles.backgroundimage} source={images.backgrounddesign}>
-        <View style={[styles.container]} >
+      <ImageBackground
+        style={styles.backgroundimage}
+        source={images.backgrounddesign}>
+        <View style={[styles.container]}>
           <View style={[styles.login_head]}>
             <Image source={icons.leftarrow} />
             <Text style={[styles.login_text]}>Login</Text>
@@ -34,7 +85,7 @@ const Login = () => {
               <Text style={[styles.email_text]}>Email address</Text>
               <Controller
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -45,23 +96,23 @@ const Login = () => {
                       height: 40,
                       borderColor: 'gray',
                       borderBottomWidth: 1,
-                      marginTop: 10
+                      marginTop: 10,
                     }}
-                    rules={{ required: true }}
                   />
                 )}
                 name="email"
-                rules={{ required: true }}
                 defaultValue=""
               />
-              {errors.name && <Text>Name is required.</Text>}
+              {errorsCollection.email && (
+                <Text style={{color: 'red'}}>{errorsCollection.email[0]}</Text>
+              )}
             </View>
             <View>
               <Text style={[styles.password_text]}>Password</Text>
 
               <Controller
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -73,19 +124,20 @@ const Login = () => {
                       height: 40,
                       borderColor: 'gray',
                       borderBottomWidth: 1,
-                      marginTop: 10
+                      marginTop: 10,
                     }}
-                    rules={{ required: true }}
                   />
                 )}
                 name="password"
-                rules={{ required: true }}
                 defaultValue=""
               />
-              {errors.name && <Text>Name is required.</Text>}
+             
+             {errorsCollection.password && (
+                <Text style={{color: 'red'}}>{errorsCollection.password[0]}</Text>
+              )}
 
             </View>
-            <View style={styles.forgotSec} >
+            <View style={styles.forgotSec}>
               <Text style={styles.forgotText}>Forgot Password</Text>
             </View>
             {/* <View style={styles.getButton} >
@@ -93,33 +145,51 @@ const Login = () => {
                  onPress={handleSubmit(onSubmit)}
             title="Login" color="#05EB6D"  style={styles.ButtonStyle} />
           </View> */}
-            <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
-              <Text style={styles.buttonText} onPress={handleSubmit(onSubmit)}>
-                Login
+
+            {loader ? (
+              <ActivityIndicator
+                style={{marginTop: 10}}
+                size="large"
+                color="#000"
+              />
+            ) : (
+              <LinearGradient
+                start={{x: 0.0, y: 0.25}}
+                end={{x: 0.9, y: 1.0}}
+                colors={['#31A5E5', '#05EB6D']}
+                style={styles.linearGradient}>
+                <Text
+                  style={styles.buttonText}
+                  onPress={handleSubmit(onSubmit)}>
+                  Login
                 </Text>
-            </LinearGradient>
+              </LinearGradient>
+            )}
+
             <View style={styles.donthaveSec}>
-              <Text style={styles.donthaveText}>Don’t have account? Signup</Text>
+              <Text style={styles.donthaveText}>
+                Don’t have account? Signup
+              </Text>
             </View>
           </View>
         </View>
       </ImageBackground>
     </ScrollView>
-  )
-}
+  );
+};
 
 var styles = StyleSheet.create({
   backgroundimage: {
     resizeMode: 'contain',
     height: '60%',
-    flex: 1
+    flex: 1,
   },
   login_head: {
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20
+    padding: 20,
   },
   login_text: {
     color: '#fff',
@@ -130,14 +200,14 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 200
+    marginTop: 200,
   },
   welcome_text: {
     fontSize: 22,
     color: '#fff',
-    lineHeight:32,
-    letterSpacing:0.6,
-    fontWeight:'bold'
+    lineHeight: 32,
+    letterSpacing: 0.6,
+    fontWeight: 'bold',
   },
   welinki_logo: {
     justifyContent: 'center',
@@ -154,21 +224,21 @@ var styles = StyleSheet.create({
     fontSize: 16,
     color: '#2C2C2C',
     marginTop: 22,
-    letterSpacing:0.6
+    letterSpacing: 0.6,
   },
   password_text: {
     fontSize: 16,
     color: '#2C2C2C',
     marginTop: 22,
-    letterSpacing:0.6
+    letterSpacing: 0.6,
   },
   forgotSec: {
     marginTop: 10,
   },
   forgotText: {
     color: '#17297C',
-    fontSize:12,
-    letterSpacing:0.6
+    fontSize: 12,
+    letterSpacing: 0.6,
   },
   getButton: {
     // flex: 1,
@@ -180,7 +250,6 @@ var styles = StyleSheet.create({
     paddingRight: 20,
     height: 45,
     marginTop: 26,
-
   },
   ButtonStyle: {
     width: '100%',
@@ -191,7 +260,7 @@ var styles = StyleSheet.create({
     paddingRight: 15,
     borderRadius: 5,
     marginTop: 22,
-    width:150
+    width: 150,
   },
   buttonText: {
     fontSize: 18,
@@ -200,15 +269,15 @@ var styles = StyleSheet.create({
     margin: 10,
     color: '#ffffff',
     backgroundColor: 'transparent',
-    letterSpacing:1
+    letterSpacing: 1,
   },
   donthaveSec: {
     marginTop: 20,
   },
   donthaveText: {
     color: '#17297C',
-    letterSpacing:1,
-    fontSize:16
-  }
+    letterSpacing: 1,
+    fontSize: 16,
+  },
 });
 export default Login;

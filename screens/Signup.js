@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -12,19 +12,20 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import { COLORS, icons, images } from '../constants';
-import { useForm, watch, Controller } from 'react-hook-form';
+import {COLORS, icons, images} from '../constants';
+import {useForm, watch, Controller} from 'react-hook-form';
 import LinearGradient from 'react-native-linear-gradient';
-import { useSelector, useDispatch  } from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux';
 import Selector from '../components/Selector';
-import { useNavigation } from '@react-navigation/native';
-import {signupUser}  from '../features/signup/singupSlice'
+import {useNavigation} from '@react-navigation/native';
+import {signupUser} from '../features/signup/singupSlice';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import client from '../API/api';
 
-function Signup({formHelp : { register} }) {
-  const navigation = useNavigation(); 
-// const Signup = ({navigation ,formHelp : { register} }) => {
+function Signup({formHelp: {register}}) {
+  const navigation = useNavigation();
+  // const Signup = ({navigation ,formHelp : { register} }) => {
 
   // const dispatch = useDispatch()
 
@@ -33,60 +34,87 @@ function Signup({formHelp : { register} }) {
   const [countries, setcountries] = useState([]);
   const [stateCollection, setstateCollection] = useState([]);
   const [isIndia, setisIndia] = useState(false);
+  const [loader, setLoader] = useState(false);
   const [errorsCollection, seterrorsCollection] = useState({});
 
-   useEffect(() => {
-      client.get(`/vendor/countries`)
-      .then(({data :{data}}) => setcountries(data.map(el =>  ({ label : el.name, value : el.id}))))
-      .catch(error => console.error(error))
-    })
+  useEffect(() => {
+    setLoader(true);
+    client
+      .get(`/vendor/countries`)
+      .then(({data: {data}}) => {
+        setLoader(false);
+        setcountries(data.map(el => ({label: el.name, value: el.id})));
+      })
+      .catch(error => {
+        setLoader(true);
+        console.error(error);
+      });
+  },[]);
+
+  const countryOnChange = value => {
+    if (value == 76) {
+      setLoader(true);
+      setisIndia(true);
+      client
+        .get(`/vendor/states`)
+        .then(({data: {data}}) => {
+          setLoader(false);
+          setstateCollection(data.map(el => ({label: el.name, value: el.id})));
+        })
+        .catch(error => {
+          setLoader(true);
+          console.error(error);
+        });
+    } else {
+      setisIndia(false);
+    }
+  }
 
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
   } = useForm();
 
-  const onSubmit = data => {
-     console.log('====================================');
-     console.log('Clicked');
-     console.log('====================================');
+  const onSubmit = (data) => {
+    seterrorsCollection({})
+    console.log('====================================');
+    console.log('Clicked', data);
+    console.log('====================================');
 
-    
-
-    // console.log('====================================');
-    // console.log(JSON.stringify(data));
-    // console.log('====================================');
-    // client.post('/vendor/register', {
-    //    name:data.name,
-    //    email : data.email,
-    //    mobile : data.mobile,
-    //    country_id : String(data.country_id),
-    //    state_id : String(data.state_id),
-    //    password : data.password,
-    //    password_confirmation : data.password_confirmation,
-    // })
-    // .then(response => console.log(response))
-    // .catch(error => {
-    //   if(error.response.status === 422) {
-    //      seterrorsCollection(error.response.data.errors)
-    //       console.log(error.response.data.errors);
-    //   } else {
-    //     console.error(error);
-    //   }
-    // })
-  }
- 
-  const countryOnChange = (value) => {
-     if(value == 76){
-       setisIndia(true)
-       client.get(`/vendor/states`)
-       .then(({data :{data}}) => setstateCollection(data.map(el =>  ({ label : el.name, value : el.id}))))
-       .catch(error => console.error(error))
-     } else {
-      setisIndia(false)
-     }
-  }
+    setLoader(true);
+    client
+      .post('/vendor/register', {
+        name: data.name,
+        email: data.email,
+        mobile: data.mobile,
+        country_id: String(data.country_id),
+        state_id: String(data.state_id),
+        password: data.password,
+        password_confirmation: data.password_confirmation,
+        role: 'vendor',
+      })
+      .then(async ({data}) => {
+        setLoader(false);
+        try {
+          await AsyncStorage.setItem('token', data.token)
+        } catch (e) {
+          console.error(e);  // saving error
+        }
+        // console.log(data);
+      })
+      .catch(error => {
+        setLoader(true);
+        if (error.response.status === 422) {
+          setLoader(false);
+          seterrorsCollection(error.response.data.errors);
+          console.log(error.response.data.errors);
+        } else {
+          setLoader(true);
+          console.error(error);
+        }
+      });
+  };
 
   return (
     <ScrollView>
@@ -102,14 +130,12 @@ function Signup({formHelp : { register} }) {
             <Image source={images.signup_img} />
           </View>
 
-   
-           
-            <View style={[styles.emailandpass]}>
+          <View style={[styles.emailandpass]}>
             <View>
               <Text style={[styles.name_text]}>Name</Text>
               <Controller
                 control={control}
-                render={({ field:  { onChange, onBlur, value } }) => (
+                render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -121,20 +147,21 @@ function Signup({formHelp : { register} }) {
                       borderBottomWidth: 1,
                       marginTop: 10,
                     }}
-  
-                  />  
+                  />
                 )}
                 name="name"
                 defaultValue=""
               />
-              {errorsCollection.name && <Text style={{color:'red'}}>{errorsCollection.name[0]}</Text>}
+              {errorsCollection.name && (
+                <Text style={{color: 'red'}}>{errorsCollection.name[0]}</Text>
+              )}
             </View>
 
             <View>
               <Text style={[styles.email_text]}>Email address</Text>
               <Controller
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -150,13 +177,15 @@ function Signup({formHelp : { register} }) {
                 )}
                 name="email"
               />
-             {errorsCollection.email && <Text style={{color:'red'}}>{errorsCollection.email[0]}</Text>}
+              {errorsCollection.email && (
+                <Text style={{color: 'red'}}>{errorsCollection.email[0]}</Text>
+              )}
             </View>
             <View>
               <Text style={[styles.email_text]}>Phone No</Text>
               <Controller
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -172,65 +201,72 @@ function Signup({formHelp : { register} }) {
                 )}
                 name="mobile"
               />
-               {errorsCollection.mobile && <Text style={{color:'red'}}>{errorsCollection.mobile[0]}</Text>}
+              {errorsCollection.mobile && (
+                <Text style={{color: 'red'}}>{errorsCollection.mobile[0]}</Text>
+              )}
             </View>
-            
+
             <View style={[styles.email_text]}>
-          <Text>Select Country*</Text>
+              <Text>Select Country*</Text>
 
-          <View style={[styles.input]}>
-            <Controller
-              control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Selector
-                  data={countries}
-                  label="Select Country"
-                  onchange={value => {
-                    onChange(value);
-                    countryOnChange(value);
-                  }}
-                  value={value}
+              <View style={[styles.input]}>
+                <Controller
+                  control={control}
+                  render={({field: {onChange, onBlur, value}}) => (
+                    <Selector
+                      data={countries}
+                      label="Select Country"
+                      onchange={value => {
+                        onChange(value);
+                        countryOnChange(value);
+                      }}
+                      value={value}
+                    />
+                  )}
+                  name="country_id"
+                  defaultValue=""
                 />
-              )}
-              name="country_id"
-              defaultValue=""
-            />
-          {errorsCollection.country_id && <Text style={{color:'red'}}>{errorsCollection.country_id[0]}</Text>}
-          </View>
+                {errorsCollection.country_id && (
+                  <Text style={{color: 'red'}}>
+                    {errorsCollection.country_id[0]}
+                  </Text>
+                )}
+              </View>
+            </View>
+            {isIndia && (
+              <View style={[styles.email_text]}>
+                <Text>Select State*</Text>
 
-        </View>
-        {
-          isIndia &&
-          <View style={[styles.email_text]}>
-          <Text>Select State*</Text>
-
-          <View style={[styles.input]}>
-            <Controller
-              control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Selector
-                  data={stateCollection}
-                  label="Select State"
-                  onchange={value => {
-                    onChange(value);
-                  }}
-                  value={value}
-                />
-              )}
-              name="state_id"
-              defaultValue=""
-            />
-                {errorsCollection.state_id && <Text style={{color:'red'}}>{errorsCollection.state_id[0]}</Text>}
-          </View>
-    
-        </View>
-        }
+                <View style={[styles.input]}>
+                  <Controller
+                    control={control}
+                    render={({field: {onChange, onBlur, value}}) => (
+                      <Selector
+                        data={stateCollection}
+                        label="Select State"
+                        onchange={value => {
+                          onChange(value);
+                        }}
+                        value={value}
+                      />
+                    )}
+                    name="state_id"
+                    defaultValue=""
+                  />
+                  {errorsCollection.state_id && (
+                    <Text style={{color: 'red'}}>
+                      {errorsCollection.state_id[0]}
+                    </Text>
+                  )}
+                </View>
+              </View>
+            )}
 
             <View>
               <Text style={[styles.password_text]}>Password</Text>
               <Controller
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     secureTextEntry={true}
                     style={styles.input}
@@ -247,13 +283,18 @@ function Signup({formHelp : { register} }) {
                 )}
                 name="password"
               />
-               {errorsCollection.password && <Text style={{color:'red'}}>{errorsCollection.password[0]}</Text>}
+              {errorsCollection.password && (
+                <Text style={{color: 'red'}}>
+                  {errorsCollection.password[0]}
+                </Text>
+              )}
             </View>
+
             <View>
               <Text style={[styles.password_text]}>Confrim Password</Text>
               <Controller
                 control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
+                render={({field: {onChange, onBlur, value}}) => (
                   <TextInput
                     secureTextEntry={true}
                     style={styles.input}
@@ -270,7 +311,11 @@ function Signup({formHelp : { register} }) {
                 )}
                 name="password_confirmation"
               />
-               {errorsCollection.password_confirmation && <Text style={{color:'red'}}>{errorsCollection.password_confirmation[0]}</Text>}
+              {errorsCollection.password_confirmation && (
+                <Text style={{color: 'red'}}>
+                  {errorsCollection.password_confirmation[0]}
+                </Text>
+              )}
             </View>
             {/* <View style={styles.getButton}>
               <Button
@@ -290,30 +335,42 @@ function Signup({formHelp : { register} }) {
                </Text>
              </LinearGradient>
             } */}
-           
-           <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
-               <Text style={styles.buttonText} onPress={() => navigation.navigate('Mycontacts')}>
-                 Sign-up
-               </Text>
-             </LinearGradient>
+
+            {loader ? (
+              <ActivityIndicator
+                style={{marginTop: 10}}
+                size="large"
+                color="#000"
+              />
+            ) : (
+              <LinearGradient
+                start={{x: 0.0, y: 0.25}}
+                end={{x: 0.9, y: 1.0}}
+                colors={['#31A5E5', '#05EB6D']}
+                style={styles.linearGradient}>
+                <Text
+                  style={styles.buttonText}
+                  onPress={handleSubmit(onSubmit)}
+
+                  //  onPress={() => navigation.navigate('Mycontacts')}
+                >
+                  Sign-up
+                </Text>
+              </LinearGradient>
+            )}
           </View>
-
-    
-
-          
-
         </View>
       </ImageBackground>
     </ScrollView>
   );
-};
+}
 
 var styles = StyleSheet.create({
   backgroundimage: {
     resizeMode: 'contain',
     height: '48%',
     width: '100%',
-    flex: 1
+    flex: 1,
   },
   login_head: {
     flex: 1,
@@ -339,13 +396,13 @@ var styles = StyleSheet.create({
     width: '100%',
     padding: 20,
     marginTop: 100,
-    backgroundColor:'transparent'
+    backgroundColor: 'transparent',
   },
   name_text: {
     fontSize: 14,
     color: '#7E7979',
     marginTop: 22,
-    letterSpacing:1
+    letterSpacing: 1,
   },
   email_text: {
     fontSize: 14,
@@ -388,7 +445,7 @@ var styles = StyleSheet.create({
     paddingRight: 15,
     borderRadius: 5,
     marginTop: 22,
-    width:150
+    width: 150,
   },
   buttonText: {
     fontSize: 16,
@@ -396,7 +453,7 @@ var styles = StyleSheet.create({
     margin: 10,
     color: '#ffffff',
     backgroundColor: 'transparent',
-    letterSpacing:1,
+    letterSpacing: 1,
   },
   inputBoder: {
     borderWidth: 1,

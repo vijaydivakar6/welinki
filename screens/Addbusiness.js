@@ -14,6 +14,7 @@ import Selector from '../components/Selector';
 import ImagePickerComponent from '../components/ImagePicker';
 import LinearGradient from 'react-native-linear-gradient';
 import { useForm, useFieldArray, Controller } from 'react-hook-form';
+import axios from 'axios';
 
 const Addbusiness = () => {
 
@@ -62,6 +63,13 @@ const Addbusiness = () => {
   });
 
   const onSubmit = data => {
+
+    axios.post('http://46a6bdb24dfe.ngrok.io/vendor/business/store',{
+      ...data
+    })
+    .then(response => console.log(response))
+    .catch(error => console.log(error.response))
+
     console.log(data);
   };
 
@@ -71,6 +79,7 @@ const Addbusiness = () => {
       <View>
           <Text style={styles.pageTitle}>My Business</Text>
         </View>
+
         <View>
           <Text style={[styles.inputTitle]}>Company Name*</Text>
           <Controller
@@ -89,6 +98,7 @@ const Addbusiness = () => {
             defaultValue=""
           />
         </View>
+
         <View style={[styles.selectBox]}>
           <Text style={[styles.inputTitle]}>Select Category*</Text>
           <View style={[styles.inputBoder]}>
@@ -109,12 +119,16 @@ const Addbusiness = () => {
             />
           </View>
         </View>
+
+
         <View style={[styles.imgSelect]}>
           <Text style={[styles.inputTitle]}>Business Image/Logo*</Text>
           <View style={[styles.chooseFile]}>
             <ImagePickerComponent />
           </View>
         </View>
+
+
         <View style={[styles.selectBox]}>
           <Text style={[styles.inputTitle]}>Area Name*</Text>
           <Controller
@@ -132,6 +146,7 @@ const Addbusiness = () => {
             defaultValue=""
           />
         </View>
+
         <View style={[styles.selectBox]}>
           <Text style={[styles.inputTitle]}>Pin Code*</Text>
           <Controller
@@ -149,6 +164,7 @@ const Addbusiness = () => {
             defaultValue=""
           />
         </View>
+
         <View style={[styles.selectBox]}>
           <Text style={[styles.inputTitle]}>GST Number</Text>
           <Controller
@@ -166,6 +182,7 @@ const Addbusiness = () => {
             defaultValue=""
           />
         </View>
+
         <View style={[styles.selectBox]}>
           <Text style={[styles.inputTitle]}>Mobile Number*</Text>
           <Controller
@@ -184,6 +201,8 @@ const Addbusiness = () => {
             defaultValue=""
           />
         </View>
+
+
         <View style={[styles.selectBox]}>
           <Text style={[styles.inputTitle]}>Company Links (use link with http/https)</Text>
         </View>
@@ -196,114 +215,6 @@ const Addbusiness = () => {
           {linkType.map(({ id, }, index) => {
             return (
               <View key={id} style={[styles.selectLinkInput]}>
-
-                <View>
-                  <Text style={[styles.inputTitle]}>Company Name*</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Enter Company Name"
-                    keyboardType="numeric" />
-                </View>
-                <View style={[styles.selectBox]} >
-                  <Text style={[styles.inputTitle]}>Select Category*</Text>
-                  <View style={[styles.inputBoder]}>
-                    <Controller
-                      control={control}
-                      render={({ field: { onChange, onBlur, value } }) => (
-                        <Selector
-                          data={categories}
-                          label="Select Category"
-                          onchange={value => {
-                            onChange(value);
-                          }}
-                          value={value}
-                        />
-                      )}
-                      name="category"
-                      defaultValue=""
-                    />
-                  </View>
-                </View>
-                <View style={[styles.imgSelect]}>
-                  <Text style={[styles.inputTitle]}>Business Image/Logo*</Text>
-                  <View style={[styles.chooseFile]}>
-                    <ImagePickerComponent />
-                  </View>
-                </View>
-                <View style={[styles.selectBox]}>
-                  <Text style={[styles.inputTitle]}>Area Name*</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Enter Area Name"
-                    keyboardType="numeric" />
-                </View>
-                <View style={[styles.selectBox]}>
-                  <Text style={[styles.inputTitle]}>Pin Code*</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Enter Pin Code"
-                    keyboardType="numeric" />
-                </View>
-                <View style={[styles.selectBox]}>
-                  <Text style={[styles.inputTitle]}>GST Number</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Enter GST Number"
-                    keyboardType="numeric" />
-                </View>
-                <View style={[styles.selectBox]}>
-                  <Text style={[styles.inputTitle]}>Mobile Number*</Text>
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Enter Mobile Number*"
-                    keyboardType="numeric" />
-                </View>
-                <View style={[styles.selectBox]}>
-                  <Text style={[styles.inputTitle]}>Company Links  (use link with http/https)</Text>
-                </View>
-                <View style={[styles.selectLinkBorder]}>
-                  <View style={[styles.selectLinkUrl]}>
-                    <Text style={[styles.inputTitle]}>Select Link Type</Text>
-                    <Text style={[styles.inputTitle]}>Link Url</Text>
-                  </View>
-                  <View style={[styles.selectLinkInput]}>
-                    <TextInput
-                      style={styles.inputSelect}
-                      placeholder="Select Link Type"
-                      keyboardType="numeric" />
-                    <TextInput
-                      style={styles.inputSelect}
-                      placeholder="Enter Link Url"
-                      keyboardType="numeric" />
-                  </View>
-                </View>
-                <View style={[styles.selectBox]}>
-                  <Text>Keywords (Your business ideal keywords which people used to find vendors like you.)</Text>
-                </View>
-                <View style={[styles.selectLinkBorder]}>
-                  <View style={[styles.selectLinkUrl]}>
-                    <Text style={[styles.inputTitle]}>Keywords list*</Text>
-                    <Text style={[styles.inputTitle]}>Add Keywords</Text>
-                  </View>
-                  <View style={[styles.selectLinkInput]}>
-                    <TextInput
-                      style={styles.inputSelectKeyword}
-                      placeholder="Enter Keyword"
-                      keyboardType="numeric" />
-                  </View>
-                </View>
-                <View style={[styles.savePreviewBtn]}>
-                  <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
-                    <Text style={styles.buttonText} onPress={handleSubmit(onSubmit)}>
-                      SAVE
-                </Text>
-                  </LinearGradient>
-                  <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
-                    <Text style={styles.buttonText}  >
-                      PREVIEW
-                </Text>
-                  </LinearGradient>
-                </View>
 
                 <Controller
                   control={control}
@@ -342,6 +253,7 @@ const Addbusiness = () => {
 
             );
           })}
+
           <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
             <Text style={styles.buttonText} onPress={() => linkAppend({ name: "", links: "" })} >
               Add New Link

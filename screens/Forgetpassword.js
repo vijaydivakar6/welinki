@@ -1,11 +1,13 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, Button, Image, TextInput, ImageBackground } from 'react-native'
+import React, {useState} from "react";
+import { View, Text, StyleSheet, ScrollView, Button, Image, TextInput, ImageBackground, ActivityIndicator,Alert  } from 'react-native'
 import { COLORS, icons, images } from "../constants";
 import { useForm, Controller } from 'react-hook-form';
 import LinearGradient from 'react-native-linear-gradient';
 
-const Forgetpassword = () => {
+import client from '../API/api';
 
+
+const Forgetpassword = () => {
 
   const {
     control,
@@ -13,7 +15,42 @@ const Forgetpassword = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = data => console.log(data);
+
+  const [loader, setLoader] = useState(false);
+  const [errorsCollection, seterrorsCollection] = useState({});
+
+  const onSubmit = data => {    
+    console.log('====================================');
+    console.log('Clicked', data);
+    console.log('====================================');
+
+    setLoader(true);
+
+    client
+      .post('/vendor/reset_password', {
+        email: data.email,
+        role: 'vendor',
+      })
+      .then(async ({data}) => {
+        setLoader(false);
+        Alert.alert('Success',data.msg)
+        console.log(data);
+      })
+      .catch(error => {
+        // console.log(error);
+        setLoader(true);
+        if (error.response.status === 422) {
+          setLoader(false);
+          seterrorsCollection(error.response.data.errors);
+          console.log(error.response.data.errors);
+        } else {
+          setLoader(true);
+          console.error(error);
+        }
+      });
+    console.log(data);
+  
+  };
 
 
   return (
@@ -47,21 +84,31 @@ const Forgetpassword = () => {
                       borderColor: 'gray',
                       borderBottomWidth: 1,
                       marginTop: 10
-                    }}
-                    rules={{ required: true }}
-                  />
+                    }}                  />
                 )}
                 name="email"
                 rules={{ required: true }}
                 defaultValue=""
               />
-              {errors.name && <Text>Name is required.</Text>}
-            </View>
-            <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
+                {errorsCollection.email && (
+                <Text style={{color: 'red'}}>{errorsCollection.email[0]}</Text>)}
+                </View>
+
+            {
+              loader ?
+              <ActivityIndicator
+              style={{marginTop: 10}}
+              size="large"
+              color="#000"
+             />
+              :
+              (<LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
               <Text style={styles.buttonText} onPress={handleSubmit(onSubmit)}>
                 Send
                 </Text>
-            </LinearGradient>
+            </LinearGradient>)
+            }
+       
           </View>
         </View>
       </ImageBackground>

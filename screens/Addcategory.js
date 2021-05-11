@@ -1,11 +1,23 @@
-import React from "react";
+import React, {useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, ImageBackground, Image, TextInput, Button, TouchableHighlight } from "react-native";
 import { Directions } from "react-native-gesture-handler";
 import { COLORS, icons, images } from "../constants";
 import ImagePickerComponent from "../components/ImagePicker"
 import LinearGradient from 'react-native-linear-gradient';
+import client from '../API/api';
 
 const Addcategory = () => {
+
+     const [categories,setcategories] = useState([]);
+
+     useEffect(() => {
+ 
+        client.get('/categories')
+         .then(({data :{data}}) => setcategories(data))
+         .catch(error => console.error(error))
+     },[]);
+
+
     return (
         <ScrollView>
             <View style={[styles.container]} >
