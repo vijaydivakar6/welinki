@@ -31,7 +31,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // axios.defaults.baseURL = 'http://192.168.0.108:3000'
 
 const instance =  axios.create({
-  baseURL : 'http://1ab15f697ed4.ngrok.io'
+  baseURL : 'http://07cd23f6d2c8.ngrok.io'
 });
 
 

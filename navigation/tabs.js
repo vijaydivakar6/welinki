@@ -100,7 +100,7 @@ const Tabs = () => {
                     // )
                 }}
             />
-            <Tab.Screen name="Allads" component={Allbusiness}
+            <Tab.Screen name="Allads" component={Allcategories}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_ad} resizeMode="contain" style={{
