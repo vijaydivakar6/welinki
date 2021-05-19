@@ -31,7 +31,7 @@ const Forgetpassword = () => {
         email: data.email,
         role: 'vendor',
       })
-      .then(async ({data}) => {
+      .then(({data}) => {
         setLoader(false);
         Alert.alert('Success',data.msg)
         console.log(data);
@@ -79,12 +79,7 @@ const Forgetpassword = () => {
                     onChangeText={value => onChange(value)}
                     value={value}
                     label="Email"
-                    style={{
-                      height: 40,
-                      borderColor: 'gray',
-                      borderBottomWidth: 1,
-                      marginTop: 10
-                    }}                  />
+                                 />
                 )}
                 name="email"
                 rules={{ required: true }}

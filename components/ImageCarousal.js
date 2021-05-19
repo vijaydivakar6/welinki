@@ -7,7 +7,6 @@ import Carousel from 'react-native-snap-carousel';
 import { COLORS, icons, images } from "../constants";
 
  class ImageCarousal extends Component {
-
  
     constructor(props){
         super(props);
