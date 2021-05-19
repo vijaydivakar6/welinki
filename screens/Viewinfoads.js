@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, ImageBackground, Image } from "react-native";
 import { COLORS, icons, images } from "../constants";
 import ImageCarousal from "../components/ImageCarousal";
 import VideoCarousal from "../components/VideoCarousal";
+import client from '../API/api';
+import axios from "axios";
+
+
 
 const Viewinfoads = () => {
+
+    const [loader, setLoader] = useState(false);
+
+    useEffect(() => {
+        console.log('added');
+        setLoader(true);
+        axios
+          .get(`http://3dd8e1a82b4e.ngrok.io/vendor/business`)
+          .then(({data: {data}}) => {
+               console.log(data,'dsdsds');
+          })
+          .catch(error => {
+            setLoader(true);
+            console.log(error);
+            console.log(data,'error');
+          });
+      }, []);
+
     return (
         <ScrollView>
             <View style={[styles.container]} >

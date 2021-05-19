@@ -20,6 +20,7 @@ import Mycontacts from './Mycontacts'
 import Addlinks from './Addlinks'
 import Addcategory from './Addcategory'
 import Viewdetails from './Viewdetails'
+import Listcollection from './Listcollection'
 export {
     Home,
     Dashboard,
@@ -42,5 +43,6 @@ export {
     Mycontacts,
     Addlinks,
     Addcategory,
-    Viewdetails
+    Viewdetails,
+    Listcollection
 }

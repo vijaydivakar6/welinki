@@ -22,6 +22,7 @@ import axios from 'axios';
 const Addbusiness = () => {
   const [loader, setLoader] = useState(false);
   const [allCategories, setAllCategories] = useState([]);
+  const [business, setBusiness] = useState([]);
   const [categories, setcategories] = useState([]);
   const [subcategories, setSubCategories] = useState([]);
   const [imageFile, setImageFile] = useState({});
@@ -33,6 +34,36 @@ const Addbusiness = () => {
     mediaType: 'photo',
     quality: 1,
   });
+
+  const getBusiness = () => {
+    client
+      .get('/vendor/business/store')
+      .then(({data: {data}}) => {
+        console.log(data, 'data');
+        setBusiness(data);
+        
+        let {name,category_parent_id,area_name,mobile_number_1,pincode,email_1,gst_number,business_links,business_keywords} = data;
+
+
+        setValue('form', {
+          name,
+          category_parent_id,
+          area_name,
+          mobile_number_1,
+          pincode,
+          email_1,
+          gst_number,
+        });
+
+        setValue('form.keywords', business_keywords); 
+        setValue('form.links', business_links); 
+
+
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   const getAllCategories = () => {
     client
@@ -56,16 +87,24 @@ const Addbusiness = () => {
 
   useEffect(() => {
     getAllCategories();
+    getBusiness();
   }, []);
+
+
+  // useEffect(() => {
+  //   linkAppend({})
+  // }, [linkType])
 
   const {
     control,
     handleSubmit,
+    reset,
+    setValue,
     formState: {errors},
   } = useForm({
     defaultValues: {
-      links: [{link: '', name: ''}],
-      keyword: [{name: ''}],
+      links: [{id : null,link: '', name: ''}],
+      keyword: [{id :null, name: ''}],
     },
   });
 
@@ -75,7 +114,7 @@ const Addbusiness = () => {
     remove: linkRemove,
   } = useFieldArray({
     control,
-    name: 'links',
+    name: 'form.links',
   });
 
   const {
@@ -84,173 +123,52 @@ const Addbusiness = () => {
     remove: keywordRemove,
   } = useFieldArray({
     control,
-    name: 'keyword',
+    name: 'form.keywords',
   });
 
   const onSubmit = async ({form}) => {
-    console.log(imageFile);
 
-    const formData = new FormData();
 
-    // {
-    //   fieldname: 'image',
-    //   originalname: 'download.jpeg',
-    //   encoding: '7bit',
-    //   mimetype: 'image/jpeg',
-    //   destination: '/Users/supriyas/Desktop/Projects/we-linki/public/storage/business',
-    //   filename: '1620909510753.jpeg',
-    //   path: '/Users/supriyas/Desktop/Projects/we-linki/public/storage/business/1620909510753.jpeg',
-    //   size: 10244
-    // }
+    console.log('clicked',form);
 
-    formData.append('image', {
-      name: imageFile.fileName,
-      type: imageFile.type,
-      uri:
-        Platform.OS === 'android'
-          ? imageFile.uri
-          : imageFile.uri.replace('file://', ''),
-    });
-   
-    formData.append('data', JSON.stringify({
-      name: 'supriya',
-      category_parent_id: 8,
-      area_name: 'banga',
-      pincode: '56001098',
-      gst_number: '098765430980998',
-      mobile_number_1: '9078654321',
-      email_1: 'ashfak@cui.in',
-      links: [ { type: 'http:', link: 'https://www.npmjs.com' } ],
-      keywords: [ { name: 'juhf' } ],
-      category_children_id: ''
-    }))
+        console.log(keywordType);
 
-    client
-      .post(
-        '/vendor/business/store',
-        formData,
-        {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'multipart/form-data',
-          },
-        },
-      )
-      .then(data => {
-        // setLoader(false);
+    // const formData = new FormData();
 
-        console.log(data);
+    // formData.append('image', {
+    //   name: imageFile.fileName,
+    //   type: imageFile.type,
+    //   uri:
+    //     Platform.OS === 'android'
+    //       ? imageFile.uri
+    //       : imageFile.uri.replace('file://', ''),
+    // });
 
-        // reset();
-      })
-      .catch(error => {
-        console.log(error);
-        if (error.response.status === 422) {
-          setLoader(false);
-          seterrorsCollection(error.response.data.errors);
-          console.log(error.response.data.errors);
-        } else {
-          Alert.alert('Error', 'Please try again, Something went wrong');
-          setLoader(false);
-          console.error(error);
-        }
-      });
-
-    // axios({
-    //   url: 'http://a923ffcba35a.ngrok.io/vendor/business/store',
-    //   method: 'POST',
-    //   data: formData,
-
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'multipart/form-data',
-    //   },
-    // })
-    //   .then(function (response) {
-    //     console.log('response :', response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     console.log('error from image :');
-    //   });
-
-    // try {
-    //   let formData = new FormData();
-
-    //   formData.append('name', form.name);
-
-    //   formData.append('image', {
-    //     name: imageFile.fileName,
-    //     type: imageFile.type,
-    //     uri: Platform.OS === 'android' ? imageFile.uri : imageFile.uri.replace('file://', ''),
-    //   });
-
-    //   const newTdata = await axios.post(
-    //     'http://f13ebb1b5a9f.ngrok.io/vendor/business/store',
-    //     {
-    //       formData,
-    //     },
-    //     {
-    //       headers: {
-    //         "Content-Type": undefined
-    //     },
-    //     }
-    //   );
-
-    //   console.log(newTdata);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    // formData.append('image', imageFile.uri);
-
-    //   for (const key in form) {
-    //     if (key === 'field') {
-    //       formData.append(key, form[key][1]);
-    //     } else {
-    //       formData.append(key, form[key]);
-    //     }
-    //   }
-
-    //   console.log('formData', formData);
-
-    //   client
-    //     .post(
-    //       '/vendor/business/store',
-    //       {formData},
-    //       {
-    //         headers: {
-    //           'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2)
-    //         }
-    //       }
-    //     )
-    //     .then(data => {
-    //       // setLoader(false);
-
-    //       console.log(data);
-
-    //       // reset();
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //       if (error.response.status === 422) {
-    //         setLoader(false);
-    //         seterrorsCollection(error.response.data.errors);
-    //         console.log(error.response.data.errors);
-    //       } else {
-    //         Alert.alert('Error', 'Please try again, Something went wrong');
-    //         setLoader(false);
-    //         console.error(error);
-    //       }
-    //     });
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    // formData.append(
+    //   'data',
+    //   JSON.stringify({
+    //     name: 'supriya',
+    //     category_parent_id: 8,
+    //     area_name: 'banga',
+    //     pincode: '56001098',
+    //     gst_number: '098765430980998',
+    //     mobile_number_1: '9078654321',
+    //     email_1: 'ashfak@cui.in',
+    //     links: [{type: 'http:', link: 'https://www.npmjs.com'}],
+    //     keywords: [{name: 'juhf'}],
+    //     category_children_id: '',
+    //   }),
+    // );
 
     // client
-    //   .post('/update/profile', {...formData})
-    //   .then(({data}) => {
-    //     setLoader(false);
+    //   .post('/vendor/business/store', formData, {
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   })
+    //   .then(data => {
+    //     // setLoader(false);
 
     //     console.log(data);
 
@@ -269,14 +187,7 @@ const Addbusiness = () => {
     //     }
     //   });
 
-    // axios
-    //   .post('http://46a6bdb24dfe.ngrok.io/vendor/business/store', {
-    //     ...data,
-    //   })
-    //   .then(response => console.log(response))
-    //   .catch(error => console.log(error.response));
-
-    // console.log(data);
+   
   };
 
   const handleChoosePhoto = value => {
@@ -506,9 +417,10 @@ const Addbusiness = () => {
             <Text style={[styles.inputTitle]}>Link Url</Text>
           </View>
 
-          {linkType.map(({id}, index) => {
+          {linkType.map(({id,type,link}, index) => {
             return (
-              <View key={id} style={[styles.selectLinkInput]}>
+              <View key={index} style={[styles.selectLinkInput]}>
+
                 <View>
                   <Controller
                     control={control}
@@ -518,7 +430,7 @@ const Addbusiness = () => {
                         style={styles.inputSelect}
                         onBlur={onBlur}
                         onChangeText={value => onChange(value)}
-                        value={value}
+                        value={type || value}
                       />
                     )}
                     name={`form.links[${index}].type`}
@@ -534,7 +446,7 @@ const Addbusiness = () => {
                         style={styles.inputSelect}
                         onBlur={onBlur}
                         onChangeText={value => onChange(value)}
-                        value={value}
+                        value={link || value}
                       />
                     )}
                     name={`form.links[${index}].link`}
@@ -563,7 +475,7 @@ const Addbusiness = () => {
             style={styles.linearGradient}>
             <Text
               style={styles.buttonText}
-              onPress={() => linkAppend({name: '', links: ''})}>
+              onPress={() => linkAppend({id : null, name: '', links: ''})}>
               Add New Link
             </Text>
           </LinearGradient>
@@ -574,6 +486,7 @@ const Addbusiness = () => {
             vendors like you.)
           </Text>
         </View>
+
         <View style={[styles.selectLinkBorder]}>
           <View style={[styles.selectLinkUrl]}>
             <Text style={[styles.inputTitle]}>Keywords list*</Text>
@@ -581,7 +494,8 @@ const Addbusiness = () => {
           </View>
           {keywordType.map(({id, name}, index) => {
             return (
-              <View key={id} style={[styles.selectLinkInput]}>
+              <View key={index} style={[styles.selectLinkInput]}>
+
                 <Controller
                   control={control}
                   render={({field: {onChange, onBlur, value}}) => (
@@ -591,10 +505,12 @@ const Addbusiness = () => {
                       onBlur={onBlur}
                       onChangeText={value => onChange(value)}
                       value={value}
+                      defaultValue={name}
                     />
                   )}
                   name={`form.keywords[${index}].name`}
                 />
+
                 <LinearGradient
                   start={{x: 0.0, y: 0.25}}
                   end={{x: 0.9, y: 1.0}}
@@ -616,11 +532,12 @@ const Addbusiness = () => {
             style={styles.linearGradient}>
             <Text
               style={styles.buttonText}
-              onPress={() => keywordAppend({name: ''})}>
+              onPress={() => keywordAppend({name: null, id : null})}>
               Add Keyword
             </Text>
           </LinearGradient>
         </View>
+
         <View style={[styles.savePreviewBtn]}>
           <LinearGradient
             start={{x: 0.0, y: 0.25}}
