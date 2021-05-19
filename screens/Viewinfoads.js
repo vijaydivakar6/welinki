@@ -23,7 +23,7 @@ const Viewinfoads = () => {
           .catch(error => {
             setLoader(true);
             console.log(error);
-            console.log(data,'error');
+            // console.log(data,'error');
           });
       }, []);
 
