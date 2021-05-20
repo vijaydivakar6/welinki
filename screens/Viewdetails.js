@@ -12,6 +12,9 @@ import {
 } from 'react-native';
 import {COLORS, icons, images} from '../constants';
 import client from '../API/api';
+import { COLORS, icons, images } from '../constants';
+import SingleCarousal from '../components/Singlecarousal'
+import SinglevideoPlayer from '../components/Singlevideoplayer'
 
 const Viewdetails = () => {
   const [loader, setLoader] = useState(false);
@@ -48,6 +51,19 @@ const Viewdetails = () => {
             <Text style={styles.videosubTitle}>Handy Clutches</Text>
             <Text style={styles.pageText}> {video.description} </Text>
           </View>
+            <View>
+                <Text style={styles.pageTitle}>Video Ads</Text>
+                <Text style={styles.pageText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet. </Text>
+                
+            </View>
+            <View style={styles.SingleCarousalImg}>
+                <SingleCarousal/>
+                <SinglevideoPlayer/>
+            </View>
+            <View>
+                <Text style={styles.videosubTitle}>Handy Clutches</Text>
+                <Text style={styles.pageText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet.  Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet.   </Text>
+            </View>
         </View>
       )}
     </ScrollView>
@@ -55,6 +71,7 @@ const Viewdetails = () => {
 };
 
 const styles = StyleSheet.create({
+<<<<<<< HEAD
   pageTitle: {
     fontSize: 20,
     lineHeight: 32,
@@ -78,6 +95,40 @@ const styles = StyleSheet.create({
     color: '#2C2C2C',
     fontSize: 14,
     lineHeight: 28,
+=======
+    pageTitle: {
+        fontSize: 20,
+        lineHeight: 32,
+        color: '#17297C',
+        marginBottom: 11,
+        fontWeight:'900',
+        letterSpacing:1
+      },
+      container: {
+        padding: 20,
+      },
+      videosubTitle:{
+        fontSize: 16,
+        lineHeight: 32,
+        color: '#17297C',
+        marginBottom: 11,
+        marginTop:28,
+        letterSpacing:1
+      },
+      pageText:{
+          color:'#2C2C2C',
+          fontSize:14,
+          lineHeight:28,
+        
+          letterSpacing:1
+
+      },
+      SingleCarousalImg:{
+          marginTop:20,
+       
+      }
+
+>>>>>>> bbe28494e0503ea5c92a266c85ccfc931e7c8225
 
     letterSpacing: 1,
   },

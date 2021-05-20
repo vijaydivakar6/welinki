@@ -9,7 +9,11 @@ import {
 
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 
+<<<<<<< HEAD
 import {Viewdetails,Listcollection,Mymembership,Getstarted ,Mybusiness ,Allcategories ,Changepassword,Allbusiness ,Viewinfoads ,Addbusiness , Login, Forgetpassword ,Dashboard,Addlinks, Signup,Editprofile} from "../screens"
+=======
+import {Viewdetails,Mymembership,Getstarted ,Mybusiness ,Allcategories ,Changepassword,Allbusiness ,Viewinfoads ,Addbusiness ,Youtubead, Login, Forgetpassword ,Dashboard,Addlinks, Signup,Editprofile} from "../screens"
+>>>>>>> bbe28494e0503ea5c92a266c85ccfc931e7c8225
 // import Svg, { Path } from 'react-native-svg';
 
 import { COLORS, icons } from "../constants"
@@ -101,7 +105,7 @@ const Tabs = () => {
                     // )
                 }}
             />
-            <Tab.Screen name="Allads" component={Allbusiness}
+            <Tab.Screen name="Allads" component={Allcategories}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_ad} resizeMode="contain" style={{

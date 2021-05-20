@@ -173,12 +173,13 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   busiImg: {
-    width: 50,
-    height: 50,
+    width: 70,
+    height: 70,
     position: 'absolute',
     top: 30,
     zIndex: 9,
     elevation: 20,
+    borderRadius:10
   },
   businessCard: {
     backgroundColor: '#ffffff',
