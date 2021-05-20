@@ -7,15 +7,15 @@ import Tabs from './navigation/tabs'
 import Sidebar from './navigation/sidebar'
 import {Home}from './screens'
 import { Dashboard }from './screens'
-import { Provider } from 'react-redux'
-import store from './store/store';
+// import { Provider } from 'react-redux'
+// import store from './store/store';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const  App =({navigation}) =>{
+const  App = ({navigation}) => {
   return (
     <Provider store={store}>
          <NavigationContainer>
