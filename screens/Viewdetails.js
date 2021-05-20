@@ -10,7 +10,8 @@ import {
     Button,
 } from 'react-native';
 import { COLORS, icons, images } from '../constants';
-
+import SingleCarousal from '../components/Singlecarousal'
+import SinglevideoPlayer from '../components/Singlevideoplayer'
 
 const Viewdetails = () => {
     return (
@@ -20,6 +21,10 @@ const Viewdetails = () => {
                 <Text style={styles.pageTitle}>Video Ads</Text>
                 <Text style={styles.pageText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet. </Text>
                 
+            </View>
+            <View style={styles.SingleCarousalImg}>
+                <SingleCarousal/>
+                <SinglevideoPlayer/>
             </View>
             <View>
                 <Text style={styles.videosubTitle}>Handy Clutches</Text>
@@ -58,6 +63,10 @@ const styles = StyleSheet.create({
         
           letterSpacing:1
 
+      },
+      SingleCarousalImg:{
+          marginTop:20,
+       
       }
 
 
