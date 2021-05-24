@@ -41,9 +41,18 @@ const Addbusiness = () => {
       .then(({data: {data}}) => {
         console.log(data, 'data');
         setBusiness(data);
-        
-        let {name,category_parent_id,area_name,mobile_number_1,pincode,email_1,gst_number,business_links,business_keywords} = data;
 
+        let {
+          name,
+          category_parent_id,
+          area_name,
+          mobile_number_1,
+          pincode,
+          email_1,
+          gst_number,
+          business_links,
+          business_keywords,
+        } = data;
 
         setValue('form', {
           name,
@@ -55,10 +64,8 @@ const Addbusiness = () => {
           gst_number,
         });
 
-        setValue('form.keywords', business_keywords); 
-        setValue('form.links', business_links); 
-
-
+        setValue('form.keywords', business_keywords);
+        setValue('form.links', business_links);
       })
       .catch(error => {
         console.log(error);
@@ -90,7 +97,6 @@ const Addbusiness = () => {
     getBusiness();
   }, []);
 
-
   // useEffect(() => {
   //   linkAppend({})
   // }, [linkType])
@@ -103,8 +109,8 @@ const Addbusiness = () => {
     formState: {errors},
   } = useForm({
     defaultValues: {
-      links: [{id : null,link: '', name: ''}],
-      keyword: [{id :null, name: ''}],
+      links: [{id: null, link: '', name: ''}],
+      keyword: [{id: null, name: ''}],
     },
   });
 
@@ -127,67 +133,52 @@ const Addbusiness = () => {
   });
 
   const onSubmit = async ({form}) => {
+    console.log('clicked', form);
 
+    const formData = new FormData();
 
-    console.log('clicked',form);
+    if (imageFile?.uri) {
+      formData.append('image', {
+        name: imageFile.fileName,
+        type: imageFile.type,
+        uri:
+          Platform.OS === 'android'
+            ? imageFile.uri
+            : imageFile.uri.replace('file://', ''),
+      });
+    }
 
-        console.log(keywordType);
+    formData.append(
+      'data',
+      JSON.stringify(form),
+    );
 
-    // const formData = new FormData();
+    client
+      .post('/vendor/business/store', formData, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(data => {
+        // setLoader(false);
 
-    // formData.append('image', {
-    //   name: imageFile.fileName,
-    //   type: imageFile.type,
-    //   uri:
-    //     Platform.OS === 'android'
-    //       ? imageFile.uri
-    //       : imageFile.uri.replace('file://', ''),
-    // });
+        console.log(data);
 
-    // formData.append(
-    //   'data',
-    //   JSON.stringify({
-    //     name: 'supriya',
-    //     category_parent_id: 8,
-    //     area_name: 'banga',
-    //     pincode: '56001098',
-    //     gst_number: '098765430980998',
-    //     mobile_number_1: '9078654321',
-    //     email_1: 'ashfak@cui.in',
-    //     links: [{type: 'http:', link: 'https://www.npmjs.com'}],
-    //     keywords: [{name: 'juhf'}],
-    //     category_children_id: '',
-    //   }),
-    // );
-
-    // client
-    //   .post('/vendor/business/store', formData, {
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //   })
-    //   .then(data => {
-    //     // setLoader(false);
-
-    //     console.log(data);
-
-    //     // reset();
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //     if (error.response.status === 422) {
-    //       setLoader(false);
-    //       seterrorsCollection(error.response.data.errors);
-    //       console.log(error.response.data.errors);
-    //     } else {
-    //       Alert.alert('Error', 'Please try again, Something went wrong');
-    //       setLoader(false);
-    //       console.error(error);
-    //     }
-    //   });
-
-   
+        // reset();
+      })
+      .catch(error => {
+        console.log(error);
+        if (error.response.status === 422) {
+          setLoader(false);
+          seterrorsCollection(error.response.data.errors);
+          console.log(error.response.data.errors);
+        } else {
+          Alert.alert('Error', 'Please try again, Something went wrong');
+          setLoader(false);
+          console.error(error);
+        }
+      });
   };
 
   const handleChoosePhoto = value => {
@@ -200,7 +191,6 @@ const Addbusiness = () => {
         <View>
           <Text style={styles.pageTitle}>My Business</Text>
         </View>
-
         <View>
           <Text style={[styles.inputTitle]}>Company Name*</Text>
           <Controller
@@ -253,7 +243,7 @@ const Addbusiness = () => {
           )}
         </View>
 
-        {subcategories?.length > 0 && (
+        {(business && subcategories?.length > 0) && (
           <View style={[styles.selectBox]}>
             <Text style={[styles.inputTitle]}>Select Sub Category*</Text>
             <View style={[styles.inputBoder]}>
@@ -417,10 +407,9 @@ const Addbusiness = () => {
             <Text style={[styles.inputTitle]}>Link Url</Text>
           </View>
 
-          {linkType.map(({id,type,link}, index) => {
+          {linkType.map((item, index) => {
             return (
               <View key={index} style={[styles.selectLinkInput]}>
-
                 <View>
                   <Controller
                     control={control}
@@ -430,10 +419,11 @@ const Addbusiness = () => {
                         style={styles.inputSelect}
                         onBlur={onBlur}
                         onChangeText={value => onChange(value)}
-                        value={type || value}
+                        value={value}
                       />
                     )}
                     name={`form.links[${index}].type`}
+                    defaultValue={item.type}
                   />
                 </View>
 
@@ -446,10 +436,11 @@ const Addbusiness = () => {
                         style={styles.inputSelect}
                         onBlur={onBlur}
                         onChangeText={value => onChange(value)}
-                        value={link || value}
+                        value={value}
                       />
                     )}
                     name={`form.links[${index}].link`}
+                    defaultValue={item.link}
                   />
                 </View>
 
@@ -475,7 +466,7 @@ const Addbusiness = () => {
             style={styles.linearGradient}>
             <Text
               style={styles.buttonText}
-              onPress={() => linkAppend({id : null, name: '', links: ''})}>
+              onPress={() => linkAppend({id: null, type: '', link: ''})}>
               Add New Link
             </Text>
           </LinearGradient>
@@ -492,10 +483,9 @@ const Addbusiness = () => {
             <Text style={[styles.inputTitle]}>Keywords list*</Text>
             <Text style={[styles.inputTitle]}>Add Keywords</Text>
           </View>
-          {keywordType.map(({id, name}, index) => {
+          {keywordType.map((item, index) => {
             return (
               <View key={index} style={[styles.selectLinkInput]}>
-
                 <Controller
                   control={control}
                   render={({field: {onChange, onBlur, value}}) => (
@@ -505,10 +495,10 @@ const Addbusiness = () => {
                       onBlur={onBlur}
                       onChangeText={value => onChange(value)}
                       value={value}
-                      defaultValue={name}
                     />
                   )}
                   name={`form.keywords[${index}].name`}
+                  defaultValue={item.name}
                 />
 
                 <LinearGradient
@@ -532,7 +522,7 @@ const Addbusiness = () => {
             style={styles.linearGradient}>
             <Text
               style={styles.buttonText}
-              onPress={() => keywordAppend({name: null, id : null})}>
+              onPress={() => keywordAppend({name: null, id: null})}>
               Add Keyword
             </Text>
           </LinearGradient>
