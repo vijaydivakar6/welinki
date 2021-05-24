@@ -21,6 +21,7 @@ import Addlinks from './Addlinks'
 import Addcategory from './Addcategory'
 import Viewdetails from './Viewdetails'
 import Listcollection from './Listcollection'
+import Payment from './Payment'
 export {
     Home,
     Dashboard,
@@ -44,5 +45,6 @@ export {
     Addlinks,
     Addcategory,
     Viewdetails,
-    Listcollection
+    Listcollection,
+    Payment
 }
