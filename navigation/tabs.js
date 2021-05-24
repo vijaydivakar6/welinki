@@ -84,7 +84,7 @@ const Tabs = () => {
             }
         }}>
             <Tab.Screen name="Mymembership" 
-             children={() => <Payment formHelp={singupUseForm()} />}
+             children={() => <Getstarted formHelp={singupUseForm()} />}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{
