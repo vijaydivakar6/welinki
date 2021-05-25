@@ -1,43 +1,70 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, Button, Image, TextInput, ImageBackground } from 'react-native'
-import { COLORS, icons, images } from "../constants";
+import React from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Button,
+  Image,
+  TextInput,
+  ImageBackground,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import {COLORS, icons, images} from '../constants';
 
-const Uservendorlogin = () => {
+const Uservendorlogin = ({navigation}) => {
   return (
     <ScrollView>
-      <ImageBackground style={styles.backgroundimage} source={images.backgrounddesign}>
+      <ImageBackground
+        style={styles.backgroundimage}
+        source={images.backgrounddesign}>
         <View style={[styles.container]}>
-          <View style={[styles.vendorImg]}>
-            <Image style={[styles.vendorIcon]} source={images.vendoricon} />
-          </View>
-          <View style={styles.vendorText}>
-            <Text style={[styles.vendorTitle]}>Vendor</Text>
-            <Text style={[styles.vendorTextPara]}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et
-              rhoncus risus consectetur.
-        </Text>
-          </View>
-          <View style={[styles.userImg]}>
-            <Image source={images.usericon} />
-          </View>
-          <View style={styles.userText}>
-            <Text style={[styles.userTitle]}>User</Text>
-            <Text style={[styles.userTextPara]}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et
-              rhoncus risus consectetur.
-        </Text>
-          </View>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('Login', {
+                isVendor: true,
+              })
+            }>
+            <View>
+              <View style={[styles.vendorImg]}>
+                <Image style={[styles.vendorIcon]} source={images.vendoricon} />
+              </View>
+              <View style={styles.vendorText}>
+                <Text style={[styles.vendorTitle]}>Vendor</Text>
+                <Text style={[styles.vendorTextPara]}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et
+                  rhoncus risus consectetur.
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => Alert.alert('Error', 'Please try after sometime')}>
+            <View>
+              <View style={[styles.userImg]}>
+                <Image source={images.usericon} />
+              </View>
+              <View style={styles.userText}>
+                <Text style={[styles.userTitle]}>User</Text>
+                <Text style={[styles.userTextPara]}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et
+                  rhoncus risus consectetur.
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </ScrollView>
-  )
-}
+  );
+};
 
 var styles = StyleSheet.create({
   backgroundimage: {
     resizeMode: 'contain',
     height: '60%',
-    flex: 1
+    flex: 1,
   },
   vendorImg: {
     marginTop: 50,
@@ -49,7 +76,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     justifyContent: 'center',
-    marginTop:50
+    marginTop: 50,
   },
   serImg: {
     alignContent: 'center',
@@ -62,7 +89,7 @@ var styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     lineHeight: 32,
-    letterSpacing:0.6
+    letterSpacing: 0.6,
   },
   vendorTextPara: {
     fontSize: 16,
@@ -74,7 +101,7 @@ var styles = StyleSheet.create({
     paddingBottom: 50,
     paddingRight: 50,
     paddingLeft: 50,
-    letterSpacing:1
+    letterSpacing: 1,
   },
   userTitle: {
     fontSize: 24,
@@ -84,7 +111,7 @@ var styles = StyleSheet.create({
     marginBottom: 10,
     lineHeight: 32,
     paddingTop: 10,
-    letterSpacing:0.6
+    letterSpacing: 0.6,
   },
   userTextPara: {
     fontSize: 16,
@@ -97,9 +124,8 @@ var styles = StyleSheet.create({
     paddingBottom: 50,
     paddingRight: 50,
     paddingLeft: 50,
-    letterSpacing:1
+    letterSpacing: 1,
   },
-
 });
 
 export default Uservendorlogin;

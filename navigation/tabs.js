@@ -84,7 +84,7 @@ const Tabs = () => {
             }
         }}>
             <Tab.Screen name="Allbusiness" 
-             children={() => <Allbusiness formHelp={singupUseForm()} />}
+             children={() => <Allcategories formHelp={singupUseForm()} />}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{

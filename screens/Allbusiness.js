@@ -13,7 +13,6 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import {COLORS, icons, images} from '../constants';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import client from '../API/api';
@@ -42,10 +41,9 @@ const Item = ({name,onPress, email, mobile_number, image}) => (
   </TouchableOpacity>
 );
 
-const Allbusiness = () => {
-
-  const navigation = useNavigation();
-
+const Allbusiness = ({ route, navigation }) => {
+ 
+   const {category_parent_id} = route.params;
   
   const [loader, setLoader] = useState(false);
   const [business, setBusiness] = useState([]);
@@ -57,7 +55,7 @@ const Allbusiness = () => {
     setLoader(true);
     console.log('page', page);
     client
-      .get('/vendor/business', {
+      .get(`/vendor/business/${category_parent_id}`, {
         params: {page},
       })
       .then(({data: {data}}) => {
@@ -88,7 +86,9 @@ const Allbusiness = () => {
       email={item.email}
       mobile_number={item.mobile_number}
       image={item.image}
-      onPress={() => { navigation.navigate('Mycontacts');console.log(item.id)}}
+      onPress={() => navigation.navigate('Viewinfoads',{
+        business_id : item.id
+      })}
     />
   );
 

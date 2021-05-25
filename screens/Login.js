@@ -9,6 +9,7 @@ import {
   TextInput,
   ImageBackground,
   ActivityIndicator,
+  TouchableOpacity
 } from 'react-native';
 import {COLORS, icons, images} from '../constants';
 import {useForm, Controller} from 'react-hook-form';
@@ -17,7 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import client from '../API/api';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const {
     control,
     handleSubmit,
@@ -71,7 +72,9 @@ const Login = () => {
         source={images.backgrounddesign}>
         <View style={[styles.container]}>
           <View style={[styles.login_head]}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={icons.leftarrow} />
+            </TouchableOpacity>
             <Text style={[styles.login_text]}>Login</Text>
           </View>
           <View style={[styles.welcome_bk]}>
@@ -138,7 +141,7 @@ const Login = () => {
 
             </View>
             <View style={styles.forgotSec}>
-              <Text style={styles.forgotText}>Forgot Password</Text>
+              <Text onPress={() => navigation.navigate('Forgetpassword')} style={styles.forgotText}>Forgot Password</Text>
             </View>
             {/* <View style={styles.getButton} >
             <Button
@@ -167,7 +170,7 @@ const Login = () => {
             )}
 
             <View style={styles.donthaveSec}>
-              <Text style={styles.donthaveText}>
+              <Text onPress={() =>  navigation.navigate('Signup')} style={styles.donthaveText}>
                 Don’t have account? Signup
               </Text>
             </View>

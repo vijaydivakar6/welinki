@@ -14,14 +14,18 @@ import VideoCarousal from '../components/VideoCarousal';
 import client from '../API/api';
 import axios from 'axios';
 
-const Viewinfoads = () => {
+const Viewinfoads = ({ route, navigation }) => {
+
+  const {business_id} = route.params;
+
+
   const [loader, setLoader] = useState(false);
   const [business, setBusiness] = useState([]);
 
   useEffect(() => {
     setLoader(true);
     client
-      .get('/vendor/business/view/57')
+      .get(`/vendor/business/view/${business_id}`)
       .then(({data: {data}}) => {
         setLoader(false);
         setBusiness(data);
