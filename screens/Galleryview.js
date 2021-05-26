@@ -15,11 +15,11 @@ import {COLORS, icons, images} from '../constants';
 import SingleCarousal from '../components/Singlecarousal';
 import SinglevideoPlayer from '../components/Singlevideoplayer';
 
-const Viewdetails = () => {
+const Galleryview = () => {
   const [loader, setLoader] = useState(false);
-  const [video, setVideo] = useState({});
+  const [gallery, setGallery] = useState({});
 
-  // /vendor/gallery/view/2
+  //   /vendor/gallery/view/2
 
   useEffect(() => {
     console.log('loaded');
@@ -28,7 +28,7 @@ const Viewdetails = () => {
       .get('/vendor/gallery/view/2')
       .then(({data: {data}}) => {
         console.log(data);
-        setVideo(data);
+        setGallery(data);
         setLoader(false);
       })
       .catch(error => {
@@ -45,20 +45,19 @@ const Viewdetails = () => {
       ) : (
         <View style={[styles.container]}>
           <View>
-            <Text style={styles.pageTitle}> {video.name}</Text>
+            <Text style={styles.pageTitle}> {gallery.name}</Text>
             {/* <Text style={styles.pageText}>{video.description}</Text> */}
           </View>
-         
 
           <View style={styles.SingleCarousalImg}>
-            {
-              video?.video &&
-              <SingleCarousal url={video.video} />
-            }
+            {/* <SingleCarousal /> */}
+
+            {gallery?.galleryphotos && 
+            <SingleCarousal url={gallery.galleryphotos.map(({name}) => name)} />}
           </View>
           <View>
             {/* <Text style={styles.videosubTitle}>Handy Clutches</Text> */}
-            <Text style={styles.pageText}> {video.description} </Text>
+            <Text style={styles.pageText}> {gallery.description} </Text>
           </View>
         </View>
       )}
@@ -122,4 +121,4 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-export default Viewdetails;
+export default Galleryview;

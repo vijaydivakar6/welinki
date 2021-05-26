@@ -11,21 +11,21 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import client from '../API/api';
-import {COLORS, icons, images} from '../constants';
-import SingleCarousal from '../components/Singlecarousal';
-import SinglevideoPlayer from '../components/Singlevideoplayer';
 
-const Viewdetails = () => {
+import { YouTubeStandaloneAndroid } from 'react-native-youtube';
+
+
+const Youtubeview = () => {
   const [loader, setLoader] = useState(false);
   const [video, setVideo] = useState({});
 
-  // /vendor/gallery/view/2
+  //   /vendor/gallery/view/2
 
   useEffect(() => {
     console.log('loaded');
     setLoader(true);
     client
-      .get('/vendor/gallery/view/2')
+      .get('/vendor/youtube/view/2')
       .then(({data: {data}}) => {
         console.log(data);
         setVideo(data);
@@ -38,6 +38,9 @@ const Viewdetails = () => {
       });
   }, []);
 
+
+
+
   return (
     <ScrollView>
       {loader ? (
@@ -48,13 +51,9 @@ const Viewdetails = () => {
             <Text style={styles.pageTitle}> {video.name}</Text>
             {/* <Text style={styles.pageText}>{video.description}</Text> */}
           </View>
-         
 
           <View style={styles.SingleCarousalImg}>
-            {
-              video?.video &&
-              <SingleCarousal url={video.video} />
-            }
+          
           </View>
           <View>
             {/* <Text style={styles.videosubTitle}>Handy Clutches</Text> */}
@@ -122,4 +121,4 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-export default Viewdetails;
+export default Youtubeview;

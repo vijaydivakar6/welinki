@@ -13,6 +13,7 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {COLORS, icons, images} from '../constants';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import client from '../API/api';
@@ -42,6 +43,9 @@ const Item = ({name,onPress, email, mobile_number, image}) => (
 );
 
 const Allbusiness = () => {
+
+  const navigation = useNavigation();
+
   
   const [loader, setLoader] = useState(false);
   const [business, setBusiness] = useState([]);
@@ -84,7 +88,7 @@ const Allbusiness = () => {
       email={item.email}
       mobile_number={item.mobile_number}
       image={item.image}
-      onPress={() => console.log(item.id)}
+      onPress={() => { navigation.navigate('Mycontacts');console.log(item.id)}}
     />
   );
 
