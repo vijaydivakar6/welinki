@@ -33,7 +33,7 @@ const Payment = () => {
   
   return (
     <View>
-      <Text>Hai</Text>
+      <Text>Hai </Text>
     </View>
   )
 
