@@ -3,9 +3,13 @@ import { View, Text, StyleSheet, ScrollView, Button, Image, TextInput, ImageBack
 import { COLORS, icons, images } from "../constants";
 import LinearGradient from 'react-native-linear-gradient';
 
+
 const Getstarted = () => {
   return (
     <ScrollView>
+      <View>
+          
+            </View>
       <ImageBackground style={styles.backgroundimage} source={images.backgrounddesign}>
         <View style={[styles.container]} >
           <View style={[styles.welinkilogoImg]}>

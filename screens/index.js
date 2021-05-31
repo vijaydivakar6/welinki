@@ -21,7 +21,8 @@ import Addlinks from './Addlinks'
 import Addcategory from './Addcategory'
 import Viewdetails from './Viewdetails'
 import Listcollection from './Listcollection'
-import Payment from './Payment'
+import Galleryview from './Galleryview'
+import Youtubeview from './Youtubeview'
 export {
     Home,
     Dashboard,
@@ -46,5 +47,6 @@ export {
     Addcategory,
     Viewdetails,
     Listcollection,
-    Payment
+    Galleryview,
+    Youtubeview
 }

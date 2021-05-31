@@ -29,9 +29,9 @@ const ImagePickerComponent = ({options, onchange,style}) => {
           alignItems: 'flex-start',
           justifyContent: 'flex-start',
         }}>
-        {photo && (
+        {/* {photo && (
           <Image source={{uri: photo.uri}} style={{...style}} />
-        )}
+        )} */}
 
         <TouchableOpacity
           style={[styles.chooseButton]}

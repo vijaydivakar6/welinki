@@ -1,87 +1,91 @@
-import React, { Component } from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {
-  Text, 
+  Text,
   View,
-  SafeAreaView ,StyleSheet ,Image } from 'react-native';
+  SafeAreaView,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
-import { COLORS, icons, images } from "../constants";
+import {COLORS, icons, images} from '../constants';
 
- class ImageCarousal extends Component {
- 
-    constructor(props){
-        super(props);
-        this.state = {
-          activeIndex:0,
-          carouselItems: [
-          {
-              title:"Handy Clutches",
-              text: "Lorem ipsum dolor sit ametdolor",
-          },
-          {
-            title:"Handy Clutches",
-            text: "Lorem ipsum dolor sit ametdolor",
-          },
-          {
-            title:"Handy Clutches",
-            text: "Lorem ipsum dolor sit ametdolor",
-          }
-        ]
-      }
-    }
+export default function ImageCarousal({data}) {
+  useEffect(() => {
+    console.log(data, 'props');
+    setCarouselItems(data);
 
-    _renderItem({item,index}){
-        return (
-          <View  style={styles.imgAdContent}>
-            <Image style={[styles.busiImg]} source={images.businessimg} />
-            <Text style={styles.firstTitleText }>{item.title}</Text>
-            <Text style={styles.secondText}>{item.text}</Text>
-          </View>
+    console.log('carouselItems', carouselItems);
+  }, []);
 
-        )
-    }
+  const [activeIndex, setactiveIndex] = useState(0);
 
-    render() {
-        return (
-          <SafeAreaView style={{flex: 1 }}>
-            <View style={{ flex: 1, flexDirection:'column', justifyContent: 'center', alignItems:'center' ,width:'100%' }}>
-                <Carousel
-                  layout={"default"}
-                  loop={true}
-             autoplay={true}
-                  ref={ref => this.carousel = ref}
-                  data={this.state.carouselItems}
-                  sliderWidth={370}
-                  itemWidth={200}
-                  renderItem={this._renderItem}
-                  onSnapToItem = { index => this.setState({activeIndex:index}) } />
-            </View>
-          </SafeAreaView>
-        );
-    }
+  const [carouselItems, setCarouselItems] = useState([]);
+
+  const _renderItem = ({item, index}) => {
+    return (
+      <TouchableOpacity onPress={() => console.log(item.id)}>
+        <View style={styles.imgAdContent}>
+          <Image style={[styles.busiImg]} source={{uri: item.image}} />
+          <Text style={styles.firstTitleText}>{item.name}</Text>
+          <Text style={styles.secondText}>{item.description}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+        }}>
+    
+          <Carousel
+            layout={'default'}
+            loop={true}
+            autoplay={true}
+            // ref={ref => (this.carousel = ref)}
+            data={carouselItems}
+            sliderWidth={370}
+            itemWidth={200}
+            renderItem={_renderItem}
+            onSnapToItem={index => setactiveIndex(index)}
+          />
+      </View>
+    </SafeAreaView>
+  );
 }
 
 var styles = StyleSheet.create({
-  firstTitleText:{
-    fontSize: 18 ,
-    textAlign: 'center' , 
-    color:'#17297C' , 
-    fontWeight:'600' ,
-    letterSpacing:0.6,
-    marginTop:10
+  firstTitleText: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: '#17297C',
+    fontWeight: '600',
+    letterSpacing: 0.6,
+    marginTop: 10,
   },
-  secondText:{
+  secondText: {
     fontSize: 14,
-    lineHeight: 20 ,
-    color:'#2C2C2C' ,
-    textAlign: 'center', 
+    lineHeight: 20,
+    color: '#2C2C2C',
+    textAlign: 'center',
   },
   imgAdContent: {
     flex: 1,
     alignItems: 'center',
     padding: 20,
-    width:'100%'
-}, 
- });
+    width: '100%',
+  },
+  busiImg: {
+    width: 150,
+    height: 150,
+  },
+});
 
-
- export default ImageCarousal;
+// export default ImageCarousal;
