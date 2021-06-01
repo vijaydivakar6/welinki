@@ -30,9 +30,8 @@ const App = () => {
   const [loader, setLoader] = useState(false);
 
   useLayoutEffect(() => {
-      console.log('useLayoutEffect');
-      
-  },[])
+    console.log('useLayoutEffect');
+  }, []);
 
   useEffect(async () => {
     console.log('useEffecffff');
@@ -60,7 +59,7 @@ const App = () => {
       >
         {isAuth ? (
           <>
-           <Stack.Screen name="Tab" component={Tab} />
+            <Tab/>
             {/* <Stack.Screen name="Allcategories" component={Allcategories} />
             <Stack.Screen name="Allbusiness" component={Allbusiness} />
             <Stack.Screen name="Viewinfoads" component={Viewinfoads} /> */}

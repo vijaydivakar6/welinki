@@ -83,8 +83,8 @@ const Tabs = () => {
                 elevation: 0
             }
         }}>
-            <Tab.Screen name="Allbusiness" 
-             children={() => <Allcategories formHelp={singupUseForm()} />}
+            <Tab.Screen name="Allcategories" 
+             children={() => <Allcategories />}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{
@@ -101,7 +101,7 @@ const Tabs = () => {
                     // )
                 }}
             />
-            <Tab.Screen name="Allads" component={Allcategories}
+            <Tab.Screen name="Allbusiness" component={Allbusiness}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_ad} resizeMode="contain" style={{
@@ -118,7 +118,7 @@ const Tabs = () => {
                     // )
                 }}
             />
-            <Tab.Screen name="All Business" component={Viewinfoads}
+            <Tab.Screen name="Viewinfoads" component={Viewinfoads}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_building} resizeMode="contain" style={{
