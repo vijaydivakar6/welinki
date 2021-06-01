@@ -23,6 +23,7 @@ import Viewdetails from './Viewdetails'
 import Listcollection from './Listcollection'
 import Galleryview from './Galleryview'
 import Youtubeview from './Youtubeview'
+import Payment from './Payment'
 export {
     Home,
     Dashboard,
@@ -48,5 +49,6 @@ export {
     Viewdetails,
     Listcollection,
     Galleryview,
-    Youtubeview
+    Youtubeview,
+    Payment
 }
