@@ -50,5 +50,4 @@ export {
     Listcollection,
     Galleryview,
     Youtubeview,
-    Contactlinks
 }

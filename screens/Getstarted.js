@@ -3,8 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Button, Image, TextInput, ImageBack
 import { COLORS, icons, images } from "../constants";
 import LinearGradient from 'react-native-linear-gradient';
 
-
-const Getstarted = () => {
+const Getstarted = ({navigation}) => {
   return (
     <ScrollView>
       <View>
@@ -23,7 +22,9 @@ const Getstarted = () => {
             <Text style={[styles.getstartedText]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit Ut et rhoncus risus. Lorem ipsum dolor sit amet, consectetur.</Text>
           </View>
           <LinearGradient start={{ x: 0.0, y: 0.25 }} end={{ x: 0.90, y: 1.0 }} colors={['#31A5E5', '#05EB6D']} style={styles.linearGradient}>
-            <Text style={styles.buttonText} >
+            <Text 
+            onPress={() => navigation.navigate('Uservendorlogin')}
+            style={styles.buttonText}>
               Get Started
                 </Text>
           </LinearGradient>

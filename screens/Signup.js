@@ -10,6 +10,7 @@ import {
   ImageBackground,
   Alert,
   ActivityIndicator,
+  TouchableOpacity
 } from 'react-native';
 
 import {COLORS, icons, images} from '../constants';
@@ -23,8 +24,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import client from '../API/api';
 
-function Signup({formHelp: {register}}) {
-  const navigation = useNavigation();
+function Signup({navigation}) {
+  // const navigation = useNavigation();
   // const Signup = ({navigation ,formHelp : { register} }) => {
 
   // const dispatch = useDispatch()
@@ -123,7 +124,9 @@ function Signup({formHelp: {register}}) {
         source={images.backgrounddesign}>
         <View style={[styles.container]}>
           <View style={[styles.login_head]}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={icons.leftarrow} />
+            </TouchableOpacity>
             <Text style={[styles.login_text]}>Signup</Text>
           </View>
           <View style={[styles.signup_banner]}>

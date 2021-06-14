@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -11,19 +10,20 @@ import {
   ActivityIndicator,
   FlatList,
   Dimensions,
-  width
+  width,
+  TouchableOpacity
 } from 'react-native';
-import { COLORS, icons, images } from '../constants';
+import {COLORS, icons, images} from '../constants';
 import client from '../API/api';
 
-const Allcategories = () => {
+const Allcategories = ({navigation}) => {
   const [loader, setLoader] = useState(false);
   const [categories, setcategories] = useState([]);
   useEffect(() => {
     setLoader(true);
     client
       .get('/categories')
-      .then(({ data: { data } }) => {
+      .then(({data: {data}}) => {
         setLoader(false);
         setcategories(data);
         console.log(data);
@@ -39,27 +39,40 @@ const Allcategories = () => {
       <View style={styles.allCateSec}>
         <Text style={styles.allCateText}>All Categories</Text>
       </View>
-      <View style={{ flex: 1, flexDirection: 'row', flexWrap: "wrap", alignItems: 'center', justifyContent: 'center' }} >
-        {
-          loader ?
-            <ActivityIndicator
-              style={{ marginTop: 10 }}
-              size="large"
-              color="#000"
-              style={[styles.loaderStyle]} />
-            : (categories.map((el, index) => (
-              <View key={index} style={[styles.containerIconSec]} >
-                <View style={[styles.containerIcon]} >
-                  <Image style={[styles.catImg]} source={{
-                    uri: el.image
-                  }} />
-                  <Text onPress={() => Alert.alert('clicked')} style={[styles.catText]}>{el.name}</Text>
-                </View>
-              </View>)
-            ))
-
-        }
-
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        {loader ? (
+          <ActivityIndicator
+            style={{marginTop: 10}}
+            size="large"
+            color="#000"
+            style={[styles.loaderStyle]}
+          />
+        ) : (
+          categories.map((el, index) => (
+            <View key={index} style={[styles.containerIconSec]}>
+              <View style={[styles.containerIcon]}>
+                <TouchableOpacity onPress={() => navigation.navigate('Allbusiness',{
+                  category_parent_id : el.id
+                })}>
+                  <Image
+                    style={[styles.catImg]}
+                    source={{
+                      uri: el.image,
+                    }}
+                  />
+                  <Text style={[styles.catText]}>{el.name}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          ))
+        )}
       </View>
     </ScrollView>
   );
@@ -86,18 +99,17 @@ const styles = StyleSheet.create({
   },
   containerIconSec: {
     padding: 20,
-    marginTop: 29
+    marginTop: 29,
   },
   loaderStyle: {
     alignContent: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   containerIcon: {
     alignContent: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
-  }
-
+    alignItems: 'center',
+  },
 });
 export default Allcategories;
