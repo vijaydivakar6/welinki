@@ -9,7 +9,7 @@ import {
 
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 
-import {Youtubeview,Galleryview,Viewdetails,Listcollection,Mymembership,Getstarted ,Mybusiness ,Allcategories ,Changepassword,Allbusiness ,Viewinfoads ,Addbusiness , Login, Forgetpassword ,Dashboard,Addlinks, Signup,Editprofile} from "../screens"
+import {Contactlinks,Youtubeview,Galleryview,Viewdetails,Listcollection,Mymembership,Getstarted ,Mybusiness ,Allcategories ,Changepassword,Allbusiness ,Viewinfoads ,Addbusiness , Login, Forgetpassword ,Dashboard,Addlinks, Signup,Editprofile} from "../screens"
 // import Svg, { Path } from 'react-native-svg';
 
 import { COLORS, icons } from "../constants"
@@ -31,7 +31,7 @@ const Tabs = () => {
             }
         }}>
             <Tab.Screen name="Allbusiness" 
-             children={() => <Getstarted formHelp={singupUseForm()} />}
+             children={() => <Contactlinks formHelp={singupUseForm()} />}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{
