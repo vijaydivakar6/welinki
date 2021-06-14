@@ -42,6 +42,7 @@ const Login = ({navigation}) => {
         role: 'vendor',
       })
       .then(async ({data}) => {
+        
         setLoader(false);
         try {
           await AsyncStorage.setItem('token', data.token);
@@ -58,7 +59,7 @@ const Login = ({navigation}) => {
           seterrorsCollection(error.response.data.errors);
           console.log(error.response.data.errors);
         } else {
-          setLoader(true);
+          setLoader(false);
           console.error(error);
         }
       });

@@ -48,5 +48,5 @@ export {
     Viewdetails,
     Listcollection,
     Galleryview,
-    Youtubeview
+    Youtubeview,
 }

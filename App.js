@@ -57,12 +57,13 @@ const App = () => {
         }}
         // initialRouteName={'Getstarted'}
       >
-        {isAuth ? (
+        <Stack.Screen name="tab" component={Tab} />
+        {/* {isAuth ? (
           <>
             <Tab/>
-            {/* <Stack.Screen name="Allcategories" component={Allcategories} />
+            <Stack.Screen name="Allcategories" component={Allcategories} />
             <Stack.Screen name="Allbusiness" component={Allbusiness} />
-            <Stack.Screen name="Viewinfoads" component={Viewinfoads} /> */}
+            <Stack.Screen name="Viewinfoads" component={Viewinfoads} />
           </>
         ) : (
           <>
@@ -72,7 +73,7 @@ const App = () => {
             <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="Forgetpassword" component={Forgetpassword} />
           </>
-        )}
+        )} */}
       </Stack.Navigator>
     </NavigationContainer>
   );

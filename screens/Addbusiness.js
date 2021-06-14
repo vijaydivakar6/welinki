@@ -12,13 +12,11 @@ import {
   Platform,
   ActivityIndicator,
 } from 'react-native';
-import {COLORS, icons, images} from '../constants';
 import Selector from '../components/Selector';
 import ImagePickerComponent from '../components/ImagePicker';
 import LinearGradient from 'react-native-linear-gradient';
 import {useForm, useFieldArray, Controller} from 'react-hook-form';
 import client from '../API/api';
-import axios from 'axios';
 
 const Addbusiness = () => {
   const [loader, setLoader] = useState(false);
