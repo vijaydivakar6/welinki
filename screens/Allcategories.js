@@ -45,7 +45,7 @@ const Allcategories = ({navigation}) => {
           flexDirection: 'row',
           flexWrap: 'wrap',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'space-evenly',
         }}>
         {loader ? (
           <ActivityIndicator
@@ -111,5 +111,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  catText:{
+    textAlign:'center'
+  }
 });
 export default Allcategories;

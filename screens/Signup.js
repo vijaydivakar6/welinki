@@ -210,9 +210,9 @@ function Signup({navigation}) {
             </View>
 
             <View style={[styles.email_text]}>
-              <Text>Select Country*</Text>
+              <Text style={[styles.select_text]}>Select Country*</Text>
 
-              <View style={[styles.input]}>
+              <View style={[styles.selectorBorder]}>
                 <Controller
                   control={control}
                   render={({field: {onChange, onBlur, value}}) => (
@@ -224,11 +224,11 @@ function Signup({navigation}) {
                         countryOnChange(value);
                       }}
                       value={value}
-                    />
+                      />
                   )}
                   name="country_id"
                   defaultValue=""
-                />
+                    />
                 {errorsCollection.country_id && (
                   <Text style={{color: 'red'}}>
                     {errorsCollection.country_id[0]}
@@ -464,5 +464,13 @@ var styles = StyleSheet.create({
     padding: 0,
     marginTop: 10,
   },
+  selectorBorder:{
+    borderBottomWidth: 0.9,
+    borderColor: '#2C2C2C',
+  },
+  select_text:{
+    fontSize: 14,
+    color: '#2C2C2C',
+  }
 });
 export default Signup;

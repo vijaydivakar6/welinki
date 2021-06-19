@@ -108,6 +108,7 @@ const Allbusiness = ({ route, navigation }) => {
   };
 
   return (
+    <ScrollView>
     <View style={[styles.container]}>
       <View style={styles.allCateSec}>
         <Text style={styles.allCateText}>All Business Listings</Text>
@@ -125,6 +126,7 @@ const Allbusiness = ({ route, navigation }) => {
         />
       </SafeAreaView>
     </View>
+    </ScrollView>
   );
 };
 

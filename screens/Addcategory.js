@@ -302,6 +302,7 @@ const Addcategory = () => {
   };
 
   return (
+    <ScrollView>
     <View>
       <View style={[styles.container]}>
         <View style={[styles.myCategorySec]}>
@@ -318,13 +319,11 @@ const Addcategory = () => {
               control={control}
               render={({field: {onChange, onBlur, value}}) => (
                 <TextInput
-                  // style={styles.input}
                   placeholder="Enter Category Name "
-                  // keyboardType="numeric"
                   style={{
-                    height: 80,
+                    height: 50,
                     borderColor: '#4C4C4C',
-                    borderBottomWidth: 0.1,
+                    borderBottomWidth: 0.5,
                     letterSpacing: 1,
                   }}
                   onBlur={onBlur}
@@ -431,6 +430,7 @@ const Addcategory = () => {
         </View> */}
       </View>
     </View>
+    </ScrollView>
   );
 };
 
@@ -444,13 +444,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
   },
-  input: {
-    height: 55,
-    marginTop: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderColor: '#31A5E5',
-  },
   pageTitleTop: {
     marginTop: 10,
     color: '#17297C',
@@ -458,7 +451,6 @@ const styles = StyleSheet.create({
     lineHeight: 26,
   },
   myCategorySec: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -493,6 +485,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 15,
     zIndex: 9,
+    height:70,
+    width:70,
+    borderRadius:10,
+    borderColor:'#0FD9DD',
+    borderWidth: 2,
   },
   businessCard: {
     backgroundColor: '#ffffff',
@@ -577,11 +574,9 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   chooseCategoryPic: {
-    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 17,
   },
   savePreviewBtn: {
     fontSize: 18,
@@ -636,8 +631,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   imageStyle: {
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
   },
 });
 

@@ -23,20 +23,11 @@ const ImagePickerComponent = ({options, onchange,style}) => {
 
   return (
     <View style={[styles.imgPicker]}>
-      <View
-        style={{
-          flex: 3,
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start',
-        }}>
-        {/* {photo && (
-          <Image source={{uri: photo.uri}} style={{...style}} />
-        )} */}
-
+      <View>
         <TouchableOpacity
           style={[styles.chooseButton]}
           onPress={handleChoosePhoto}>
-          <Text style={[styles.chooseButtonText]}>Choose Photo</Text>
+          <Text style={[styles.chooseButtonText]}>Add Category picture</Text>
         </TouchableOpacity>
       </View>
     </View>

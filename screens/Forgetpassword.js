@@ -69,7 +69,7 @@ const Forgetpassword = () => {
           <View style={[styles.emailandpass]}>
             <View>
               <Text style={[styles.email_text]}>Email address</Text>
-
+              <View style={[styles.selectorBorder]}>
               <Controller
                 control={control}
                 render={({ field: { onChange, onBlur, value } }) => (
@@ -88,6 +88,7 @@ const Forgetpassword = () => {
                 {errorsCollection.email && (
                 <Text style={{color: 'red'}}>{errorsCollection.email[0]}</Text>)}
                 </View>
+                </View>
 
             {
               loader ?
@@ -103,7 +104,7 @@ const Forgetpassword = () => {
                 </Text>
             </LinearGradient>)
             }
-       
+           
           </View>
         </View>
       </ImageBackground>
@@ -191,6 +192,10 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     backgroundColor: 'transparent',
     letterSpacing:1
+  },
+  selectorBorder:{
+    borderBottomWidth: 0.9,
+    borderColor: '#2C2C2C',
   },
 
 })
