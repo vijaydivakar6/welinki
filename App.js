@@ -29,10 +29,6 @@ const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [loader, setLoader] = useState(false);
 
-  useLayoutEffect(() => {
-    console.log('useLayoutEffect');
-  }, []);
-
   useEffect(async () => {
     console.log('useEffecffff');
     setLoader(true);
@@ -57,7 +53,7 @@ const App = () => {
         }}
         // initialRouteName={'Getstarted'}
       >
-        <Stack.Screen name="tab" component={Tab} />
+        <Stack.Screen name="tab" component={Signup} />
         {/* {isAuth ? (
           <>
             <Tab/>
