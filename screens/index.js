@@ -24,6 +24,7 @@ import Listcollection from './Listcollection'
 import Galleryview from './Galleryview'
 import Youtubeview from './Youtubeview'
 import Contactlinks from './Contactslinks'
+import Payment from './Payment'
 export {
     Home,
     Dashboard,
@@ -50,4 +51,5 @@ export {
     Listcollection,
     Galleryview,
     Youtubeview,
+    Payment
 }

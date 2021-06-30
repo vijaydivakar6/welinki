@@ -15,6 +15,7 @@ import {
   Signup,
   Uservendorlogin,
   Viewinfoads,
+  Payment
 } from './screens';
 import {Provider} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -53,7 +54,7 @@ const App = () => {
         }}
         // initialRouteName={'Getstarted'}
       >
-        <Stack.Screen name="tab" component={Login} />
+        <Stack.Screen name="tab" component={Signup} />
         {/* {isAuth ? (
           <>
             <Tab/>
