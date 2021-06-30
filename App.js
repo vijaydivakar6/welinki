@@ -53,7 +53,7 @@ const App = () => {
         }}
         // initialRouteName={'Getstarted'}
       >
-        <Stack.Screen name="tab" component={Signup} />
+        <Stack.Screen name="tab" component={Login} />
         {/* {isAuth ? (
           <>
             <Tab/>
