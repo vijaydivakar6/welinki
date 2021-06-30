@@ -54,8 +54,8 @@ const App = () => {
         }}
         // initialRouteName={'Getstarted'}
       >
-        <Stack.Screen name="tab" component={Signup} />
-        {/* {isAuth ? (
+         {/* <Stack.Screen name="tab" component={Signup} /> */}
+         {isAuth ? (
           <>
             <Tab/>
             <Stack.Screen name="Allcategories" component={Allcategories} />
@@ -70,7 +70,7 @@ const App = () => {
             <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="Forgetpassword" component={Forgetpassword} />
           </>
-        )} */}
+        )} 
       </Stack.Navigator>
     </NavigationContainer>
   );
