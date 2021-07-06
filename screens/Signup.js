@@ -82,7 +82,6 @@ function Signup({navigation}) {
     console.log('====================================');
     console.log('Clicked', data);
     console.log('====================================');
-
     setLoader(true);
     client
       .post('/vendor/register', {

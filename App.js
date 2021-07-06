@@ -1,11 +1,11 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import 'react-native-gesture-handler';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import Tabs from './navigation/tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import MainTabScreen from './screens/MainTabScreen';
 import Sidebar from './navigation/sidebar';
-
+import Loader from './components/Loader';
 import {
   Allbusiness,
   Allcategories,
@@ -17,11 +17,13 @@ import {
   Viewinfoads,
   Payment
 } from './screens';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {View, ActivityIndicator} from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 
-import Tab from './navigation/tabs';
+import { navigationRef } from './navigation/RootNavigation';
+
+
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -46,18 +48,24 @@ const App = () => {
     }
   }, []);
 
+  if (loader) {
+    return <Loader />;
+  }
+
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      ref={navigationRef}
+    >
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
         }}
-        // initialRouteName={'Getstarted'}
+      // initialRouteName={'Getstarted'}
       >
-         {/* <Stack.Screen name="tab" component={Signup} /> */}
-         {isAuth ? (
+        {/* <Stack.Screen name="tab" component={Signup} /> */}
+        {isAuth ? (
           <>
-            <Tab/>
+            {/* <Stack.Screen name="HomeScreen" component={MainTabScreen} /> */}
             <Stack.Screen name="Allcategories" component={Allcategories} />
             <Stack.Screen name="Allbusiness" component={Allbusiness} />
             <Stack.Screen name="Viewinfoads" component={Viewinfoads} />
@@ -70,7 +78,7 @@ const App = () => {
             <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="Forgetpassword" component={Forgetpassword} />
           </>
-        )} 
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Home, Dashboard, Login, Getstarted ,Signup, Forgetpassword ,Uservendorlogin ,Allcategories
    ,Addbusiness ,Allbusiness ,Viewinfoads ,Mybusiness ,Youtubead ,Imagead ,Videoad ,Mymembership ,Addcategory ,Mycontacts ,Editprofile ,Changepassword ,Addlinks ,Viewdetails} from "../screens"
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Tabs from './tabs';
+import Tabs from '../screens/MainTabScreen';
 import { DrawerContent } from '../screens/Drawercontent';
 import LinearGradient from 'react-native-linear-gradient';
 

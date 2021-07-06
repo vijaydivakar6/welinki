@@ -26,7 +26,7 @@ export default class Loader extends React.Component {
         animationStyle={styles.lottie}
         speed={1}
       >
-        {/* <Text>Welinki</Text> */}
+        <Text>Welinki</Text>
       </AnimatedLoader>
     );
   }

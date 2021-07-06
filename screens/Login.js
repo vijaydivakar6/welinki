@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -11,28 +11,31 @@ import {
   ActivityIndicator,
   TouchableOpacity
 } from 'react-native';
-import {COLORS, icons, images} from '../constants';
-import {useForm, Controller} from 'react-hook-form';
+import { COLORS, icons, images } from '../constants';
+import { useForm, Controller } from 'react-hook-form';
 import LinearGradient from 'react-native-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeRouter, Route, Link } from "react-router-native";
 
 import client from '../API/api';
 
-const Login = ({navigation}) => {
+import * as RootNavigation from '../navigation/RootNavigation';
+
+
+const Login = ({ navigation }) => {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm();
 
   const [loader, setLoader] = useState(false);
   const [errorsCollection, seterrorsCollection] = useState({});
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log('====================================');
-    console.log('Clicked', data);
+    console.log('Clicked');
     console.log('====================================');
-
     setLoader(true);
 
     client
@@ -42,10 +45,13 @@ const Login = ({navigation}) => {
         role: 'vendor',
       })
       .then(async ({data}) => {
-        
+
         setLoader(false);
         try {
           await AsyncStorage.setItem('token', data.token);
+          navigation.navigate('Galleryview');
+
+          // alert('hai')
         } catch (e) {
           console.error(e); // saving error
         }
@@ -74,7 +80,7 @@ const Login = ({navigation}) => {
         <View style={[styles.container]}>
           <View style={[styles.login_head]}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image source={icons.leftarrow} />
+              <Image source={icons.leftarrow} />
             </TouchableOpacity>
             <Text style={[styles.login_text]}>Login</Text>
           </View>
@@ -89,7 +95,7 @@ const Login = ({navigation}) => {
               <Text style={[styles.email_text]}>Email address</Text>
               <Controller
                 control={control}
-                render={({field: {onChange, onBlur, value}}) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -108,7 +114,7 @@ const Login = ({navigation}) => {
                 defaultValue=""
               />
               {errorsCollection.email && (
-                <Text style={{color: 'red'}}>{errorsCollection.email[0]}</Text>
+                <Text style={{ color: 'red' }}>{errorsCollection.email[0]}</Text>
               )}
             </View>
             <View>
@@ -116,7 +122,7 @@ const Login = ({navigation}) => {
 
               <Controller
                 control={control}
-                render={({field: {onChange, onBlur, value}}) => (
+                render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
                     style={styles.input}
                     onBlur={onBlur}
@@ -135,9 +141,9 @@ const Login = ({navigation}) => {
                 name="password"
                 defaultValue=""
               />
-             
-             {errorsCollection.password && (
-                <Text style={{color: 'red'}}>{errorsCollection.password[0]}</Text>
+
+              {errorsCollection.password && (
+                <Text style={{ color: 'red' }}>{errorsCollection.password[0]}</Text>
               )}
 
             </View>
@@ -152,14 +158,14 @@ const Login = ({navigation}) => {
 
             {loader ? (
               <ActivityIndicator
-                style={{marginTop: 10}}
+                style={{ marginTop: 10 }}
                 size="large"
                 color="#000"
               />
             ) : (
               <LinearGradient
-                start={{x: 0.0, y: 0.25}}
-                end={{x: 0.9, y: 1.0}}
+                start={{ x: 0.0, y: 0.25 }}
+                end={{ x: 0.9, y: 1.0 }}
                 colors={['#31A5E5', '#05EB6D']}
                 style={styles.linearGradient}>
                 <Text
@@ -171,7 +177,7 @@ const Login = ({navigation}) => {
             )}
 
             <View style={styles.donthaveSec}>
-              <Text onPress={() =>  navigation.navigate('Signup')} style={styles.donthaveText}>
+              <Text onPress={() => navigation.navigate('Signup')} style={styles.donthaveText}>
                 Don’t have account? Signup
               </Text>
             </View>

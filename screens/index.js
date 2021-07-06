@@ -25,6 +25,7 @@ import Galleryview from './Galleryview'
 import Youtubeview from './Youtubeview'
 import Contactlinks from './Contactslinks'
 import Payment from './Payment'
+import MainTabScreen from './MainTabScreen'
 export {
     Home,
     Dashboard,
@@ -51,5 +52,6 @@ export {
     Listcollection,
     Galleryview,
     Youtubeview,
-    Payment
+    Payment,
+    MainTabScreen
 }
