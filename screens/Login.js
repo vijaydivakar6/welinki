@@ -33,9 +33,14 @@ const Login = ({ navigation }) => {
   const [errorsCollection, seterrorsCollection] = useState({});
 
   const onSubmit = (data) => {
+
+ 
     console.log('====================================');
     console.log('Clicked');
     console.log('====================================');
+
+   
+
     setLoader(true);
 
     client
@@ -49,7 +54,7 @@ const Login = ({ navigation }) => {
         setLoader(false);
         try {
           await AsyncStorage.setItem('token', data.token);
-          navigation.navigate('Galleryview');
+          navigation.navigate("HomeScreen");
 
           // alert('hai')
         } catch (e) {
@@ -69,7 +74,7 @@ const Login = ({ navigation }) => {
           console.error(error);
         }
       });
-    console.log(data);
+    // console.log(data);
   };
 
   return (
