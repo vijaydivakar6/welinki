@@ -12,11 +12,10 @@ import {
 } from 'react-native';
 import client from '../API/api';
 
-import { YouTubeStandaloneAndroid } from 'react-native-youtube';
+import YouTube from 'react-native-youtube';
 
-
-const Youtubeview = ( route ) => {
-  const {videocarousal_id} = route.params;
+const Youtubeview = ({route}) => {
+  const {id} = route.params;
   const [loader, setLoader] = useState(false);
   const [video, setVideo] = useState({});
 
@@ -26,7 +25,7 @@ const Youtubeview = ( route ) => {
     console.log('loaded');
     setLoader(true);
     client
-      .get(`/vendor/youtube/view/${videocarousal_id}`)
+      .get(`/vendor/youtube/view/${id}`)
       .then(({data: {data}}) => {
         console.log(data);
         setVideo(data);
@@ -38,9 +37,6 @@ const Youtubeview = ( route ) => {
         console.log(error);
       });
   }, []);
-
-
-
 
   return (
     <ScrollView>
@@ -54,7 +50,17 @@ const Youtubeview = ( route ) => {
           </View>
 
           <View style={styles.SingleCarousalImg}>
-          
+            <YouTube
+              videoId="EzyR_MynRwU" // The YouTube video ID
+              play // control playback of video with true/false
+              fullscreen // control whether the video should play in fullscreen or inline
+              loop // control whether the video should loop when ended
+              // onReady={e => this.setState({ isReady: true })}
+              // onChangeState={e => this.setState({ status: e.state })}
+              // onChangeQuality={e => this.setState({ quality: e.quality })}
+              // onError={e => this.setState({ error: e.error })}
+              style={{alignSelf: 'stretch', height: 300}}
+            />
           </View>
           <View>
             {/* <Text style={styles.videosubTitle}>Handy Clutches</Text> */}
