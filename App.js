@@ -1,8 +1,10 @@
 import React, {useEffect, useLayoutEffect, useState} from 'react';
+import { Button} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import { DrawerActions } from '@react-navigation/native';
 import MainTabScreen from './screens/MainTabScreen';
 import Sidebar from './screens/sideScreen';
 import Loader from './components/Loader';
@@ -52,13 +54,33 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer ref={navigationRef} >
       <Stack.Navigator
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
+          headerTitle: false,
+          headerStyle: {
+            backgroundColor: '#16d09b',
+          },
         }}
         initialRouteName={isAuth ? 'SideScreen' : 'Getstarted'} >
-        <Stack.Screen name="SideScreen">{props => <Sidebar {...props} />}</Stack.Screen>
+        <Stack.Screen name="SideScreen" options={({ navigation }) => ({
+          headerRight: () => (
+            <Button
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer()) }
+              title="Right"
+              color="#000"
+            />
+          ),
+          headerLeft: () => (
+            <Button
+            onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+              title="Left"
+              color="#000"
+            />
+          ),
+          
+        })} >{props => <Sidebar {...props}  />}</Stack.Screen>
         <Stack.Screen name="Getstarted" component={Getstarted} />
         <Stack.Screen name="Uservendorlogin" component={Uservendorlogin} />
         <Stack.Screen name="Login" component={Login} />

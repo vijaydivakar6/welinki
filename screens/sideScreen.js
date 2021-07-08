@@ -10,22 +10,19 @@ import { DrawerContent } from '../screens/Drawercontent';
 import LinearGradient from 'react-native-linear-gradient';
 import MainTabScreen from '../screens/MainTabScreen';
 
-const DrawerL = createDrawerNavigator();
-const DrawerR = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
-function RightDrawer() {
-  
+const sideBar = ({navigation}) => {
       
   return (
 
-      <DrawerR.Navigator drawerContent={props => <DrawerContent {...props}/> } screenOptions={{
-          headerShown:true,
+      <Drawer.Navigator drawerContent={props => <DrawerContent {...props} /> }  screenOptions={{
+          headerShown:false,
           headerTitle: false,
           headerStyle:{
             backgroundColor:'#16d09b',
             color:'#fff'
           },
-          
           headerBackground: (
             <LinearGradient
               colors={['#a13388', '#10356c']}
@@ -36,42 +33,32 @@ function RightDrawer() {
             
           ),
           
-        }} initialRouteName="Home" drawerPosition="right" >
-         
-        <DrawerR.Screen name="Allcategories" component={MainTabScreen} />
-        <DrawerR.Screen name="Dashboard" component={Dashboard} />
-        <DrawerR.Screen name="Getstarted" component={Getstarted} />
-        <DrawerR.Screen name="Uservendorlogin" component={Uservendorlogin} />
-        <DrawerR.Screen name="Forgetpassword" component={Forgetpassword} />
-        <DrawerR.Screen name="Addbusiness" component={Addbusiness} />
-        <DrawerR.Screen name="Allbusiness" component={Allbusiness} />
-        <DrawerR.Screen name="Addlinks" component={Addlinks} />
-        <DrawerR.Screen name="Viewinfoads" component={Viewinfoads} />
-        <DrawerR.Screen name="Mybusiness" component={Mybusiness} />
-        <DrawerR.Screen name="Youtubead" component={Youtubead} />
-        <DrawerR.Screen name="Imagead" component={Imagead} />
-        <DrawerR.Screen name="Videoad" component={Videoad} />
-        <DrawerR.Screen name="Mymembership" component={Mymembership} />
-        <DrawerR.Screen name="Addcategory" component={Addcategory} />
-        <DrawerR.Screen name="Mycontacts" component={Mycontacts} />
-        <DrawerR.Screen name="Editprofile" component={Editprofile} />
-        <DrawerR.Screen name="Changepassword" component={Changepassword} />
-        <DrawerR.Screen name="Viewdetails" component={Viewdetails} />
-        <DrawerR.Screen name="Galleryview" component={Galleryview} />
-        <DrawerR.Screen name="Youtubeview" component={Youtubeview} />
-      </DrawerR.Navigator>
+        }}  drawerPosition= 'right'>
+        <Drawer.Screen name="Allcategories"  component={MainTabScreen} />
+        <Drawer.Screen name="Dashboard" component={Dashboard} />
+        <Drawer.Screen name="Getstarted" component={Getstarted} />
+        <Drawer.Screen name="Uservendorlogin" component={Uservendorlogin} />
+        <Drawer.Screen name="Forgetpassword" component={Forgetpassword} />
+        <Drawer.Screen name="Addbusiness" component={Addbusiness} />
+        <Drawer.Screen name="Allbusiness" component={Allbusiness} />
+        <Drawer.Screen name="Addlinks" component={Addlinks} />
+        <Drawer.Screen name="Viewinfoads" component={Viewinfoads} />
+        <Drawer.Screen name="Mybusiness" component={Mybusiness} />
+        <Drawer.Screen name="Youtubead" component={Youtubead} />
+        <Drawer.Screen name="Imagead" component={Imagead} />
+        <Drawer.Screen name="Videoad" component={Videoad} />
+        <Drawer.Screen name="Mymembership" component={Mymembership} />
+        <Drawer.Screen name="Addcategory" component={Addcategory} />
+        <Drawer.Screen name="Mycontacts" component={Mycontacts} />
+        <Drawer.Screen name="Editprofile" component={Editprofile} />
+        <Drawer.Screen name="Changepassword" component={Changepassword} />
+        <Drawer.Screen name="Viewdetails" component={Viewdetails} />
+        <Drawer.Screen name="Galleryview" component={Galleryview} />
+        <Drawer.Screen name="Youtubeview" component={Youtubeview} />
+      </Drawer.Navigator>
     
   );
 }
 
-function LeftDrawer() {
-  return (
-    <DrawerL.Navigator initialRouteName="RightDrawer"   drawerPosition="left">
-       <DrawerL.Screen name="RightDrawer" component={RightDrawer} />
-      <DrawerL.Screen name="Addcategory" component={Addcategory} />
-      <DrawerL.Screen name="Allbusiness" component={Allbusiness} />
-    </DrawerL.Navigator>
-  )
-}
 
-export default LeftDrawer
+export default sideBar
