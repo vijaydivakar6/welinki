@@ -16,17 +16,16 @@ import SingleCarousal from '../components/Singlecarousal';
 import SinglevideoPlayer from '../components/Singlevideoplayer';
 
 const Viewdetails = ({ route, navigation }) => {
-  const {imgcarousal_id} = route.params;
+  const {id} = route.params;
   const [loader, setLoader] = useState(false);
   const [video, setVideo] = useState({});
 
   // /vendor/gallery/view/2
 
   useEffect(() => {
-    console.log('loaded',imgcarousal_id);
     setLoader(true);
     client
-      .get(`/vendor/gallery/view/${imgcarousal_id}`)
+      .get(`/vendor/video/view/${id}`)
       .then(({data: {data}}) => {
         console.log(data);
         setVideo(data);
@@ -50,10 +49,9 @@ const Viewdetails = ({ route, navigation }) => {
             {/* <Text style={styles.pageText}>{video.description}</Text> */}
           </View>
           <View style={styles.SingleCarousalImg}>
-            {
-              video?.galleryphotos &&
-              <SingleCarousal url={video.galleryphotos.map((el) => el.name)} />
-            }
+            <SinglevideoPlayer
+             url={video.video}
+            />
           </View>
           <View>
             {/* <Text style={styles.videosubTitle}>Handy Clutches</Text> */}
