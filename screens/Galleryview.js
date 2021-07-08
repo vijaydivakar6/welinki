@@ -15,7 +15,8 @@ import {COLORS, icons, images} from '../constants';
 import SingleCarousal from '../components/Singlecarousal';
 import SinglevideoPlayer from '../components/Singlevideoplayer';
 
-const Galleryview = () => {
+const Galleryview = ({ route }) => {
+  const {imgcarousal_id} = route.params;
   const [loader, setLoader] = useState(false);
   const [gallery, setGallery] = useState({});
 
@@ -25,7 +26,7 @@ const Galleryview = () => {
     console.log('loaded');
     setLoader(true);
     client
-      .get('/vendor/gallery/view/2')
+      .get(`/vendor/gallery/view/${imgcarousal_id}`)
       .then(({data: {data}}) => {
         console.log(data);
         setGallery(data);

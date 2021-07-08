@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -13,11 +13,11 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native';
-import {COLORS, icons, images} from '../constants';
+import { COLORS, icons, images } from '../constants';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import client from '../API/api';
 
-const Item = ({name,onPress, email, mobile_number, image}) => (
+const Item = ({ name, onPress, email, mobile_number, image }) => (
   <TouchableOpacity onPress={onPress}>
     <View style={[styles.busiCardSec]}>
       <View>
@@ -42,9 +42,8 @@ const Item = ({name,onPress, email, mobile_number, image}) => (
 );
 
 const Allbusiness = ({ route, navigation }) => {
- 
-   const {category_parent_id} = route.params;
-  
+
+  const { category_parent_id } = route.params || {};
   const [loader, setLoader] = useState(false);
   const [business, setBusiness] = useState([]);
   const [dataArray, setDataArray] = useState([]);
@@ -53,18 +52,19 @@ const Allbusiness = ({ route, navigation }) => {
 
   const fetchAllBusiness = () => {
     setLoader(true);
-    console.log('page', page);
+    console.log(category_parent_id);
     client
-      .get(`/vendor/business/${category_parent_id}`, {
-        params: {page},
+      .get(`/vendor/business/`, {
+        params: { page, category_id: category_parent_id },
       })
-      .then(({data: {data}}) => {
-        // console.log('data origon',data);
+      .then(({ data: { data } }) => {
+        console.log(data);
         setDataArray(data);
         setLoader(false);
         SetRefreshinBoolean(false);
         if (page === 1) {
           setBusiness(data);
+          console.log(data)
         } else {
           setBusiness([...business, ...data]);
         }
@@ -80,14 +80,14 @@ const Allbusiness = ({ route, navigation }) => {
     fetchAllBusiness();
   }, [page]);
 
-  const renderItem = ({item}) => (
+  const renderItem = ({ item }) => (
     <Item
       name={item.name}
       email={item.email}
       mobile_number={item.mobile_number}
       image={item.image}
-      onPress={() => navigation.navigate('Viewinfoads',{
-        business_id : item.id
+      onPress={() => navigation.navigate('Viewinfoads', {
+        business_id: item.id
       })}
     />
   );
@@ -108,7 +108,7 @@ const Allbusiness = ({ route, navigation }) => {
   };
 
   return (
-    <ScrollView>
+
     <View style={[styles.container]}>
       <View style={styles.allCateSec}>
         <Text style={styles.allCateText}>All Business Listings</Text>
@@ -126,25 +126,9 @@ const Allbusiness = ({ route, navigation }) => {
         />
       </SafeAreaView>
     </View>
-    </ScrollView>
+
   );
 };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     marginTop: StatusBar.currentHeight || 0,
-//   },
-//   item: {
-//     backgroundColor: '#f9c2ff',
-//     padding: 20,
-//     marginVertical: 8,
-//     marginHorizontal: 16,
-//   },
-//   title: {
-//     fontSize: 32,
-//   },
-// });
 
 const styles = StyleSheet.create({
   containerItem: {
@@ -185,7 +169,7 @@ const styles = StyleSheet.create({
     top: 30,
     zIndex: 9,
     elevation: 20,
-    borderRadius:10
+    borderRadius: 10
   },
   businessCard: {
     backgroundColor: '#ffffff',
@@ -197,7 +181,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingTop: 10,
     paddingLeft: 30,
-    paddingBottom: 10,
+    paddingBottom: 0,
     paddingRight: 30,
     shadowColor: '#000',
     shadowOffset: {

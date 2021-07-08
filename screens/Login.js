@@ -54,7 +54,7 @@ const Login = ({ navigation }) => {
         setLoader(false);
         try {
           await AsyncStorage.setItem('token', data.token);
-          navigation.navigate("HomeScreen");
+          navigation.navigate("SideScreen");
 
           // alert('hai')
         } catch (e) {

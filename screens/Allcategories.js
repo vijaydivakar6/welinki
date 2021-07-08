@@ -58,9 +58,7 @@ const Allcategories = ({navigation}) => {
           categories.map((el, index) => (
             <View key={index} style={[styles.containerIconSec]}>
               <View style={[styles.containerIcon]}>
-                <TouchableOpacity onPress={() => navigation.navigate('Allbusiness',{
-                  category_parent_id : el.id
-                })}>
+                <TouchableOpacity  onPress={() => navigation.navigate('Allbusiness',{ category_parent_id : el.id})}>
                   <Image
                     style={[styles.catImg]}
                     source={{
@@ -86,8 +84,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   catImg: {
-    width: 70,
-    height: 70,
+    width: 80,
+    height: 80,
   },
   allCateText: {
     fontSize: 20,

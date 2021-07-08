@@ -6,7 +6,7 @@ import {
 import Carousel from 'react-native-snap-carousel';
 import { COLORS, icons, images } from "../constants";
 
- class VideoCarousal extends Component {
+  class VideoCarousal extends Component {
 
  
     constructor(props){
@@ -32,11 +32,15 @@ import { COLORS, icons, images } from "../constants";
 
     _renderItem({item,index}){
         return (
+          <TouchableOpacity onPress={() => navigation.navigate('Youtubeview' ,{
+            videocarousal_id: item.id
+          })}>
           <View  style={styles.imgAdContent}>
             <Image style={[styles.busiImg]} source={images.businessimg} />
             <Text style={styles.firstTitleText }>{item.title}</Text>
             <Text style={styles.secondText}>{item.text}</Text>
           </View>
+          </TouchableOpacity>
 
         )
     }
@@ -85,4 +89,3 @@ var styles = StyleSheet.create({
  });
 
 
- export default VideoCarousal;

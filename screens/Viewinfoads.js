@@ -59,7 +59,7 @@ const Viewinfoads = ({ route, navigation }) => {
                 <Text style={styles.imgAdTitleAd}>Image Ad’s</Text>
               </View>
               <View style={styles.imgAdSec}>
-                <ImageCarousal type="gallery" data={business.galleries} />
+                <ImageCarousal type="gallery" data={business.galleries}  navigation={navigation}/>
               </View>
             </View>
           )}
@@ -73,7 +73,7 @@ const Viewinfoads = ({ route, navigation }) => {
                 <Text style={styles.imgAdTitleAd}>Video Ad’s</Text>
               </View>
               <View style={styles.imgAdSec}>
-                <ImageCarousal type="videos" data={business.videos} />
+                <ImageCarousal type="videos" data={business.videos}  navigation={navigation}/>
               </View>
             </View>
             </View>
@@ -94,7 +94,7 @@ const Viewinfoads = ({ route, navigation }) => {
                 <Text style={styles.imgAdTitleAd}>Youtube Ad’s</Text>
               </View>
               <View style={styles.imgAdSec}>
-                <ImageCarousal type="youtubes" data={business.youtubes} />
+                <ImageCarousal type="youtubes" data={business.youtubes} navigation={navigation}/>
               </View>
             </View>
             </View>

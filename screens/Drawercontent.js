@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
     useTheme,
@@ -13,10 +14,20 @@ import {
     TouchableRipple,
     Switch
 } from 'react-native-paper';
+
 export function DrawerContent(props) {
+    const signOut = () => {
+        console.log(props);
+        try {
+            AsyncStorage.removeItem('token',() => props.navigation.navigate('Login'));
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
     return (
         <View style={{ flex: 1 }}>
-            <DrawerContentScrollView {...props}>
+            <DrawerContentScrollView {...props} >
                 <View style={styles.drawerContent}>
                     <View style={styles.userInfoSection}>
                         <View style={{ flexDirection: 'row', marginTop: 15 }}>
@@ -39,65 +50,76 @@ export function DrawerContent(props) {
                         </View>
                     </View>
 
-                    <Drawer.Section style={styles.drawerSection}>
+                    <Drawer.Section style={styles.drawerSection} >
                         <DrawerItem
-                         icon={({color, size}) => (
-                            <Icon 
-                            name="nature-people" 
-                            color={color}
-                            size={size}
-                            />
-                        )}
+                            icon={({ color, size }) => (
+                                <Icon
+                                    name="nature-people"
+                                    color={color}
+                                    size={size}
+                                />
+                            )}
                             label="My Profile"
-                            onPress={() => { props.navigation.navigate('Home') }}
+                            onPress={() => { props.navigation.navigate('Editprofile') }}
                         />
                         <DrawerItem
-                                 icon={({color, size}) => (
-                                    <Icon 
-                                    name="google-my-business" 
+                            icon={({ color, size }) => (
+                                <Icon
+                                    name="google-my-business"
                                     color={color}
                                     size={size}
-                                    />
-                                )}
+                                />
+                            )}
                             label="My Bussiness"
-                            onPress={() => { props.navigation.navigate('Profile') }}
+                            onPress={() => { props.navigation.navigate('Allcategories') }}
                         />
                         <DrawerItem
-                                icon={({color, size}) => (
-                                    <Icon 
-                                    name="bookmark-outline" 
+                            icon={({ color, size }) => (
+                                <Icon
+                                    name="bookmark-outline"
                                     color={color}
                                     size={size}
-                                    />
-                                )}
+                                />
+                            )}
                             label="Memebership"
-                            onPress={() => { props.navigation.navigate('Memebership') }}
+                            onPress={() => { props.navigation.navigate('Mymembership') }}
                         />
                         <DrawerItem
-                                icon={({color, size}) => (
-                                    <Icon 
-                                    name="bookmark-outline" 
+                            icon={({ color, size }) => (
+                                <Icon
+                                    name="bookmark-outline"
                                     color={color}
                                     size={size}
-                                    />
-                                )}
-                            label="Settings"
-                            onPress={() => { props.navigation.navigate('SettingsScreen') }}
+                                />
+                            )}
+                            label="My Contacts"
+                            onPress={() => { props.navigation.navigate('Editprofile') }}
+                        />
+                        <DrawerItem
+                            icon={({ color, size }) => (
+                                <Icon
+                                    name="bookmark-outline"
+                                    color={color}
+                                    size={size}
+                                />
+                            )}
+                            label="Change Password"
+                            onPress={() => { props.navigation.navigate('Changepassword') }}
                         />
                     </Drawer.Section>
                 </View>
             </DrawerContentScrollView>
             <Drawer.Section style={styles.bottomDrawerSection}>
                 <DrawerItem
-                 icon={({color, size}) => (
-                    <Icon 
-                    name="exit-to-app" 
-                    color={color}
-                    size={size}
-                    />
-                )}
-                    label="Sign Out"
-                    onPress={() => { signOut() }}
+                    icon={({ color, size }) => (
+                        <Icon
+                            name="exit-to-app"
+                            color={color}
+                            size={size}
+                        />
+                    )}
+                    label="Logout"
+                    onPress={signOut}
                 />
             </Drawer.Section>
         </View>

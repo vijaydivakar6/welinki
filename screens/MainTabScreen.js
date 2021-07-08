@@ -19,7 +19,7 @@ import singupUseForm from '../container/signup/singupUseForm';
 
 const Tab = createBottomTabNavigator();
 
-const MainTabScreen  = () => {
+const MainTabScreen  = ({navigation}) => {
 
     return (
         <Tab.Navigator tabBarOptions={{
@@ -31,7 +31,7 @@ const MainTabScreen  = () => {
             }
         }}>
             <Tab.Screen name="Allcategories" 
-             children={() => <Allcategories formHelp={singupUseForm()} />}
+             children={() => <Allcategories navigation={navigation} formHelp={singupUseForm()} />}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_home} resizeMode="contain" style={{
@@ -65,7 +65,7 @@ const MainTabScreen  = () => {
                     // )
                 }}
             />
-            <Tab.Screen name="Viewinfoads" component={Viewinfoads}
+            <Tab.Screen name="AllBusiness" component={Allbusiness}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_building} resizeMode="contain" style={{
@@ -83,7 +83,7 @@ const MainTabScreen  = () => {
                 }}
             />
 
-            <Tab.Screen name="profile" component={Login}
+            <Tab.Screen name="profile" component={Editprofile}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_profile} resizeMode="contain" style={{

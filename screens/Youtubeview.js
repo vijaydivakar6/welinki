@@ -15,7 +15,8 @@ import client from '../API/api';
 import { YouTubeStandaloneAndroid } from 'react-native-youtube';
 
 
-const Youtubeview = () => {
+const Youtubeview = ( route ) => {
+  const {videocarousal_id} = route.params;
   const [loader, setLoader] = useState(false);
   const [video, setVideo] = useState({});
 
@@ -25,7 +26,7 @@ const Youtubeview = () => {
     console.log('loaded');
     setLoader(true);
     client
-      .get('/vendor/youtube/view/2')
+      .get(`/vendor/youtube/view/${videocarousal_id}`)
       .then(({data: {data}}) => {
         console.log(data);
         setVideo(data);

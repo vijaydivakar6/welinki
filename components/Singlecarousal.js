@@ -72,12 +72,10 @@ export default function Singlecarousal({url}) {
 const styles = StyleSheet.create({
     container: {
         flex: 0,
-
-
     },
     carousalImgAlign: {
-        // width: '100%'
-        width: 100,
-        height : 100,
+        width: '90%',
+        height : 300,
+        resizeMode: 'contain'
     }
 });

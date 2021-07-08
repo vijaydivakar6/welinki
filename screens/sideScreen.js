@@ -3,7 +3,7 @@ import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { Home, Dashboard, Login, Getstarted ,Signup, Forgetpassword ,Uservendorlogin ,Allcategories
-   ,Addbusiness ,Allbusiness ,Viewinfoads ,Mybusiness ,Youtubead ,Imagead ,Videoad ,Mymembership ,Addcategory ,Mycontacts ,Editprofile ,Changepassword ,Addlinks ,Viewdetails} from "../screens"
+   ,Addbusiness ,Allbusiness ,Viewinfoads ,Mybusiness ,Youtubead ,Imagead ,Videoad ,Mymembership ,Addcategory ,Mycontacts ,Editprofile ,Changepassword ,Addlinks ,Viewdetails,Galleryview,Youtubeview} from "../screens"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Tabs from '../screens/MainTabScreen';
 import { DrawerContent } from '../screens/Drawercontent';
@@ -18,6 +18,7 @@ const sideBar = () => {
 
       <Drawer.Navigator drawerContent={props => <DrawerContent {...props}/> } screenOptions={{
           headerShown:true,
+          headerTitle: false,
           headerStyle:{
             backgroundColor:'#16d09b',
             color:'#fff'
@@ -52,9 +53,8 @@ const sideBar = () => {
         <Drawer.Screen name="Editprofile" component={Editprofile} />
         <Drawer.Screen name="Changepassword" component={Changepassword} />
         <Drawer.Screen name="Viewdetails" component={Viewdetails} />
-        <Drawer.Screen name="Signup" component={Signup} />
-        <Drawer.Screen name="Login" component={Login} />
-       
+        <Drawer.Screen name="Galleryview" component={Galleryview} />
+        <Drawer.Screen name="Youtubeview" component={Youtubeview} />
       </Drawer.Navigator>
     
   );

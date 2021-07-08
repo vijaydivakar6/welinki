@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import MainTabScreen from './screens/MainTabScreen';
-import Sidebar from './navigation/sidebar';
+import Sidebar from './screens/sideScreen';
 import Loader from './components/Loader';
 import {
   Allbusiness,
@@ -16,6 +16,7 @@ import {
   Uservendorlogin,
   Viewinfoads,
   Payment,
+  Editprofile,
 } from './screens';
 import {Provider} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -56,16 +57,8 @@ const App = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={isAuth ? 'HomeScreen' : 'Getstarted'}>
-        {/* <Stack.Screen name="tab" component={Signup} /> */}
-        {/* <Stack.Screen name='Some cool name' component={} /> */}
-        <Stack.Screen name="HomeScreen">
-          {props => <MainTabScreen {...props} />}
-        </Stack.Screen>
-        {/* <Stack.Screen name="HomeScreen" component={MainTabScreen} /> */}
-        {/* <Stack.Screen name="Allcategories" component={Allcategories} />
-            <Stack.Screen name="Allbusiness" component={Allbusiness} />
-            <Stack.Screen name="Viewinfoads" component={Viewinfoads} /> */}
+        initialRouteName={isAuth ? 'SideScreen' : 'Getstarted'} >
+        <Stack.Screen name="SideScreen">{props => <Sidebar {...props} />}</Stack.Screen>
         <Stack.Screen name="Getstarted" component={Getstarted} />
         <Stack.Screen name="Uservendorlogin" component={Uservendorlogin} />
         <Stack.Screen name="Login" component={Login} />

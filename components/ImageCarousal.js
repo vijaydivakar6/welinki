@@ -10,9 +10,9 @@ import {
 import Carousel from 'react-native-snap-carousel';
 import {COLORS, icons, images} from '../constants';
 
-export default function ImageCarousal({data}) {
+export default function ImageCarousal({data ,navigation}) {
   useEffect(() => {
-    console.log(data, 'props');
+    console.log(data, 'image ccarousal props');
     setCarouselItems(data);
 
     console.log('carouselItems', carouselItems);
@@ -24,7 +24,9 @@ export default function ImageCarousal({data}) {
 
   const _renderItem = ({item, index}) => {
     return (
-      <TouchableOpacity onPress={() => console.log(item.id)}>
+      <TouchableOpacity onPress={() => navigation.navigate('Galleryview', {
+        imgcarousal_id: item.id
+      }) }>
         <View style={styles.imgAdContent}>
           <Image style={[styles.busiImg]} source={{uri: item.image}} />
           <Text style={styles.firstTitleText}>{item.name}</Text>
