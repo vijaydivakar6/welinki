@@ -9,6 +9,7 @@ const welinkilogo = require("../assets/images/welinkilogo.png");
 const businessimg = require("../assets/images/businessimg.png");
 const workchart = require("../assets/images/work_chart.png");
 const shoppingimage = require("../assets/images/shoppingimage.png");
+const welinkilogo2 = require("../assets/images/welinkilogo2.png");
 export default {
     girlsit,
     girlstanding,
@@ -21,4 +22,5 @@ export default {
     businessimg,
     workchart,
     shoppingimage,
+    welinkilogo2
 }

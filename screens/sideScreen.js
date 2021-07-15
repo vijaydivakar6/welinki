@@ -10,31 +10,16 @@ import { DrawerContent } from '../screens/Drawercontent';
 import LinearGradient from 'react-native-linear-gradient';
 import MainTabScreen from '../screens/MainTabScreen';
 
+
 const Drawer = createDrawerNavigator();
 
-const sideBar = ({navigation}) => {
-      
-  return (
 
-      <Drawer.Navigator drawerContent={props => <DrawerContent {...props} /> }  screenOptions={{
-          headerShown:false,
-          headerTitle: false,
-          headerStyle:{
-            backgroundColor:'#16d09b',
-            color:'#fff'
-          },
-          headerBackground: (
-            <LinearGradient
-              colors={['#a13388', '#10356c']}
-              style={{ flex: 1 }}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-            />
-            
-          ),
-          
-        }}  drawerPosition= 'right'>
-        <Drawer.Screen name="Allcategories"  component={MainTabScreen} />
+function Sidebar() {
+  
+    
+  return (
+      <Drawer.Navigator drawerContent={props => <DrawerContent {...props}/> }  initialRouteName="Allcategories"  >
+        <Drawer.Screen name="Allcategories" component={MainTabScreen} />
         <Drawer.Screen name="Dashboard" component={Dashboard} />
         <Drawer.Screen name="Getstarted" component={Getstarted} />
         <Drawer.Screen name="Uservendorlogin" component={Uservendorlogin} />
@@ -61,4 +46,4 @@ const sideBar = ({navigation}) => {
 }
 
 
-export default sideBar
+export default Sidebar

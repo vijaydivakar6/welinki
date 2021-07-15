@@ -19,6 +19,7 @@ import singupUseForm from '../container/signup/singupUseForm';
 
 const Tab = createBottomTabNavigator();
 
+
 const MainTabScreen  = ({navigation}) => {
 
     return (

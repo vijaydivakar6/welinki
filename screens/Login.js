@@ -22,7 +22,7 @@ import client from '../API/api';
 import * as RootNavigation from '../navigation/RootNavigation';
 
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation  }) => {
   const {
     control,
     handleSubmit,
@@ -54,7 +54,7 @@ const Login = ({ navigation }) => {
         setLoader(false);
         try {
           await AsyncStorage.setItem('token', data.token);
-          navigation.navigate("SideScreen");
+          navigation.navigate("Addbusiness");
 
           // alert('hai')
         } catch (e) {

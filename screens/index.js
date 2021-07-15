@@ -26,7 +26,7 @@ import Youtubeview from './Youtubeview'
 import Contactlinks from './Contactslinks'
 import Payment from './Payment'
 import MainTabScreen from './MainTabScreen'
-import sideScreen from './sideScreen'
+// import sideScreen from './sideScreen'
 export {
     Home,
     Dashboard,
@@ -55,5 +55,5 @@ export {
     Youtubeview,
     Payment,
     MainTabScreen,
-    sideScreen
+    // sideScreen
 }
