@@ -84,7 +84,7 @@ const MainTabScreen  = ({navigation}) => {
                 }}
             />
 
-            <Tab.Screen name="profile" component={Editprofile}
+            <Tab.Screen name="profile" component={Login}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image source={icons.bx_profile} resizeMode="contain" style={{

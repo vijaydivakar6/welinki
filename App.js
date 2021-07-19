@@ -65,12 +65,8 @@ const HomeStackScreen = () => (
             color="#000"
           />
         ),
-      })}    >{props => <Sidebar {...props} />}</HomeStack.Screen>
-      <HomeStack.Screen name="Getstarted" component={Getstarted} />
-      <HomeStack.Screen name="Uservendorlogin" component={Uservendorlogin} />
-      <HomeStack.Screen name="Login" component={Login} />
-      <HomeStack.Screen name="Signup" component={Signup} />
-      <HomeStack.Screen name="Forgetpassword" component={Forgetpassword} />    
+      })}    >{props => <Sidebar {...props} />}</HomeStack.Screen>   
+      <HomeStack.Screen name="Allcategories" component={Allcategories} />
     </HomeStack.Navigator>
 
 )
@@ -82,6 +78,7 @@ const RightDrawer = () => (
       <DrawerR.Screen name="home" component={HomeStackScreen} />
       <DrawerR.Screen name="Sidebar" component={Sidebar} />
       <DrawerR.Screen name="MainTabScreen" component={MainTabScreen} />
+      <DrawerR.Screen name="Allcategories" component={Allcategories} />
     </DrawerR.Navigator>
 )
 
@@ -89,35 +86,13 @@ const DrawerL = createDrawerNavigator();
 const LeftDrawer  = () => (
     <DrawerL.Navigator  drawerContent={props => <DrawerContentLeft {...props} />} initialRouteName="RightDrawer" drawerPosition="left" drawerOpenRoute='LeftSideMenu'>
       <DrawerL.Screen name="Home" component={RightDrawer}  />
-      <DrawerR.Screen name="Sidebar" component={Sidebar} />
+      <DrawerL.Screen name="Sidebar" component={Sidebar} />
+      <DrawerL.Screen name="Allcategories" component={Allcategories} />
     </DrawerL.Navigator>
   )
 
 
 const RootStack = createStackNavigator();
-const RootStackScreen = ({ isAuth }) => (
-  <RootStack.Navigator headerMode="none" >
-    {isAuth ? (
-      <RootStack.Screen
-        name="App"
-        component={LeftDrawer}
-        options={{
-          animationEnabled: false
-        }}
-        />
-    ) : (
-      <RootStack.Screen
-        name="Auth"
-        component={AuthStackScreen}
-        options={{
-          animationEnabled: false
-        }}
-        />
-    )}
-  </RootStack.Navigator>
-);
-
-
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [loader, setLoader] = useState(false);
@@ -144,9 +119,30 @@ const App = () => {
 
     return (
     <NavigationContainer ref={navigationRef}  >
-      <RootStackScreen isAuth={isAuth}/>
+      <RootStack.Navigator headerMode="none" initialRouteName={isAuth ? 'LeftDrawer' : 'AuthStackScreen'}>
+    {isAuth ? (
+      <RootStack.Screen
+        name="LeftDrawer"
+        component={LeftDrawer}
+        options={{
+          animationEnabled: false
+        }}
+        />
+    ) : (
+      <RootStack.Screen
+        name="AuthStackScreen"
+        component={AuthStackScreen}
+        options={{
+          animationEnabled: false
+        }}
+        />
+    )}
+  </RootStack.Navigator>
     </NavigationContainer>
   );
+
+
+
 
 
 };

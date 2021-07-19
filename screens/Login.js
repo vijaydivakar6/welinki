@@ -54,7 +54,7 @@ const Login = ({ navigation  }) => {
         setLoader(false);
         try {
           await AsyncStorage.setItem('token', data.token);
-          navigation.navigate("Addbusiness");
+          navigation.navigate('Allcategories');
 
           // alert('hai')
         } catch (e) {

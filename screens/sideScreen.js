@@ -18,8 +18,14 @@ function Sidebar() {
   
     
   return (
-      <Drawer.Navigator drawerContent={props => <DrawerContent {...props}/> }  initialRouteName="Allcategories"  >
-        <Drawer.Screen name="Allcategories" component={MainTabScreen} />
+      <Drawer.Navigator screenOptions={{
+        headerShown: false,
+        headerTitle: false,
+        headerStyle: {
+          backgroundColor: '#16d09b',
+        },
+      }} drawerContent={props => <DrawerContent {...props}/> }  initialRouteName="Allcategories"  >
+        <Drawer.Screen name="MainTabScreen" component={MainTabScreen} />
         <Drawer.Screen name="Dashboard" component={Dashboard} />
         <Drawer.Screen name="Getstarted" component={Getstarted} />
         <Drawer.Screen name="Uservendorlogin" component={Uservendorlogin} />
@@ -40,6 +46,7 @@ function Sidebar() {
         <Drawer.Screen name="Viewdetails" component={Viewdetails} />
         <Drawer.Screen name="Galleryview" component={Galleryview} />
         <Drawer.Screen name="Youtubeview" component={Youtubeview} />
+        <Drawer.Screen name="Login" component={Login} />
       </Drawer.Navigator>
     
   );
