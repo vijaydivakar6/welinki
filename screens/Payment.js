@@ -1,7 +1,7 @@
 import React from "react"
 import { View, StyleSheet, Text } from "react-native"
 import Button from "../components/Button"
-import useInAppPurchase from "../custom_hooks/useInAppPurchase"
+// import useInAppPurchase from "../custom_hooks/useInAppPurchase"
 
 const Payment = () => {
   const {

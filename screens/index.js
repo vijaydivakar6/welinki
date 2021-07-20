@@ -24,7 +24,7 @@ import Listcollection from './Listcollection'
 import Galleryview from './Galleryview'
 import Youtubeview from './Youtubeview'
 import Contactlinks from './Contactslinks'
-import Payment from './Payment'
+// import Payment from './Payment'
 import MainTabScreen from './MainTabScreen'
 // import sideScreen from './sideScreen'
 export {
@@ -53,7 +53,7 @@ export {
     Listcollection,
     Galleryview,
     Youtubeview,
-    Payment,
+    // Payment,
     MainTabScreen,
     // sideScreen
 }
