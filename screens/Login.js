@@ -18,11 +18,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeRouter, Route, Link } from "react-router-native";
 
 import client from '../API/api';
+import { useNavigation } from '@react-navigation/native'
 
 import * as RootNavigation from '../navigation/RootNavigation';
 
 
-const Login = ({ navigation  }) => {
+const Login = ({   }) => {
+  const navigation = useNavigation()
+
   const {
     control,
     handleSubmit,
@@ -54,7 +57,7 @@ const Login = ({ navigation  }) => {
         setLoader(false);
         try {
           await AsyncStorage.setItem('token', data.token);
-          navigation.navigate('Allcategories');
+          navigation.navigate('LeftDrawer');
 
           // alert('hai')
         } catch (e) {

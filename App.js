@@ -20,24 +20,6 @@ import { navigationRef } from './navigation/RootNavigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MainTabScreen from './screens/MainTabScreen';
 
-const AuthStack  = createStackNavigator();
-
-const AuthStackScreen = ( props) => (
-    <AuthStack.Navigator screenOptions={{
-      headerShown: false,
-      headerTitle: false,
-      headerStyle: {
-        backgroundColor: '#16d09b',
-      },
-    }} >
-      <AuthStack.Screen name="Getstarted" component={Getstarted} />
-      <AuthStack.Screen name="Uservendorlogin" component={Uservendorlogin} />
-      <AuthStack.Screen name="Login" component={Login} {...props}  />
-      <AuthStack.Screen name="Signup" component={Signup} />
-      <AuthStack.Screen name="Forgetpassword" component={Forgetpassword} />
-    </AuthStack.Navigator>
-
-)
 
 const HomeStack = createStackNavigator();
 const HomeStackScreen = () => (
@@ -66,16 +48,36 @@ const HomeStackScreen = () => (
           />
         ),
       })}    >{props => <Sidebar {...props} />}</HomeStack.Screen>   
-      <HomeStack.Screen name="Allcategories" component={Allcategories} />
     </HomeStack.Navigator>
 
 )
 
 
+const AuthStack  = createStackNavigator();
+
+const AuthStackScreen = ( ) => (
+    <AuthStack.Navigator screenOptions={{
+      headerShown: false,
+      headerTitle: false,
+      headerStyle: {
+        backgroundColor: '#16d09b',
+      },
+    }} >
+      <AuthStack.Screen name="Getstarted" component={Getstarted} />
+      <AuthStack.Screen name="Uservendorlogin" component={Uservendorlogin} />
+      <AuthStack.Screen name="Login" component={Login}   />
+      <AuthStack.Screen name="Signup" component={Signup} />
+      <AuthStack.Screen name="Forgetpassword" component={Forgetpassword} />
+    </AuthStack.Navigator>
+
+)
+
+
+
 const DrawerR = createDrawerNavigator();
 const RightDrawer = () => (
     <DrawerR.Navigator drawerContent={props => <DrawerContent {...props} />} initialRouteName="home" drawerPosition="right" drawerOpenRoute='RightSideMenu' >
-      <DrawerR.Screen name="home" component={HomeStackScreen} />
+      <DrawerR.Screen name="HomeStackScreen" component={HomeStackScreen} />
       <DrawerR.Screen name="Sidebar" component={Sidebar} />
       <DrawerR.Screen name="MainTabScreen" component={MainTabScreen} />
       <DrawerR.Screen name="Allcategories" component={Allcategories} />
@@ -85,14 +87,15 @@ const RightDrawer = () => (
 const DrawerL = createDrawerNavigator();
 const LeftDrawer  = () => (
     <DrawerL.Navigator  drawerContent={props => <DrawerContentLeft {...props} />} initialRouteName="RightDrawer" drawerPosition="left" drawerOpenRoute='LeftSideMenu'>
-      <DrawerL.Screen name="Home" component={RightDrawer}  />
-      <DrawerL.Screen name="Sidebar" component={Sidebar} />
       <DrawerL.Screen name="Allcategories" component={Allcategories} />
+      <DrawerL.Screen name="RightDrawer" component={RightDrawer}  />
+      <DrawerL.Screen name="Sidebar" component={Sidebar} />
     </DrawerL.Navigator>
   )
 
 
-const RootStack = createStackNavigator();
+
+const AppStack = createStackNavigator();
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [loader, setLoader] = useState(false);
@@ -119,32 +122,27 @@ const App = () => {
 
     return (
     <NavigationContainer ref={navigationRef}  >
-      <RootStack.Navigator headerMode="none" initialRouteName={isAuth ? 'LeftDrawer' : 'AuthStackScreen'}>
+      <AppStack.Navigator headerMode="none" >
     {isAuth ? (
-      <RootStack.Screen
-        name="LeftDrawer"
-        component={LeftDrawer}
-        options={{
-          animationEnabled: false
-        }}
-        />
+      <AppStack.Screen
+      name="Home"
+      component={LeftDrawer}
+      options={{
+        animationEnabled: false
+      }}
+      />
     ) : (
-      <RootStack.Screen
-        name="AuthStackScreen"
-        component={AuthStackScreen}
-        options={{
-          animationEnabled: false
-        }}
-        />
+      <AppStack.Screen
+       name="Auth"
+       component={AuthStackScreen}
+       options={{
+         animationEnabled: false
+       }}
+       />
     )}
-  </RootStack.Navigator>
+  </AppStack.Navigator>
     </NavigationContainer>
   );
-
-
-
-
-
 };
 
 export default App;
